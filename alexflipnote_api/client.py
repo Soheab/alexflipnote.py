@@ -27,15 +27,15 @@ class Client:
         return self._BASE_URL + path
 
     async def achievement(self, text, icon: int = None):
-        icons = "https://i.alexflipnote.dev/9ZXAP35.png"
+        icon = ""
         if icon is not None:
-            if icon > 39:
-                raise BadRequest("There are only 39 icons, see them all here {}".format(icons))
-        url = self.api_url("achievement?text={}&icon={}".format(text, icon))
+            "&icon={}".format(icon)
+
+        url = self.api_url("achievement?text={}{}".format(text, icon))
         return url
 
     async def amiajoke(self, image: str):
-        get_url = url_regex.UrlRegex(image)
+        get_url = url_regex.UrlRegex(str(image))
         if not get_url.detect:
             raise BadRequest("String passed is not a valid URL.")
         if get_url.links[0].domain != "cdn.discordapp.com":
@@ -45,7 +45,7 @@ class Client:
         return url
 
     async def bad(self, image: str):
-        get_url = url_regex.UrlRegex(image)
+        get_url = url_regex.UrlRegex(str(image))
         if not get_url.detect:
             raise BadRequest("String passed is not a valid URL.")
         if get_url.links[0].domain != "cdn.discordapp.com":
@@ -60,10 +60,12 @@ class Client:
         return url['file']
 
     async def calling(self, text):
+        text = text.replace(" ", "%20").replace("#", "%23")
         url = self.api_url("calling?text={}".format(text))
         return url
 
     async def captcha(self, text):
+        text = text.replace(" ", "%20").replace("#", "%23")
         url = self.api_url("captcha?text={}".format(text))
         return url
 
@@ -73,6 +75,7 @@ class Client:
         return url['file']
 
     async def challenge(self, text, icon: int = None):
+        text = text.replace(" ", "%20").replace("#", "%23")
         url = self.api_url("challenge?text={}&icon={}".format(text, icon))
         return url
 
@@ -83,7 +86,7 @@ class Client:
         return Colour(response)
 
     async def github_colour(self):
-        url = await self._http_client.get(self.api_url("color/github"))
+        url = self.api_url("color/github")
         return url
 
     async def colour_image(self, colour):
@@ -95,7 +98,7 @@ class Client:
         return url
 
     async def colourify(self, image, c=None, b=None):
-        get_url = url_regex.UrlRegex(image)
+        get_url = url_regex.UrlRegex(str(image))
         if not get_url.detect:
             raise BadRequest("String passed is not a valid URL.")
 
@@ -103,6 +106,8 @@ class Client:
         return url
 
     async def didyoumean(self, top, bottom):
+        top = top.replace(" ", "%20").replace("#", "%23")
+        bottom = bottom.replace(" ", "%20").replace("#", "%23")
         url = self.api_url("didyoumean?top={}&bottom={}".format(top, bottom))
         return url
 
@@ -112,10 +117,13 @@ class Client:
         return url['file']
 
     async def drake(self, top, bottom):
+        top = top.replace(" ", "%20").replace("#", "%23")
+        bottom = bottom.replace(" ", "%20").replace("#", "%23")
         url = self.api_url("drake?top={}&bottom={}".format(top, bottom))
         return url
 
     async def facts(self, text):
+        text = text.replace(" ", "%20").replace("#", "%23")
         url = self.api_url("facts?text={}".format(text))
         return url
 
@@ -125,7 +133,7 @@ class Client:
         if name not in options:
             raise BadRequest(name + "is not a valid option! valid options: " + ", ".join(options))
 
-        get_url = url_regex.UrlRegex(image)
+        get_url = url_regex.UrlRegex(str(image))
         if not get_url.detect:
             raise BadRequest("String passed is not a valid URL.")
         if get_url.links[0].domain != "cdn.discordapp.com":
@@ -135,8 +143,9 @@ class Client:
         return url
 
     async def floor(self, text, image: str = None):
+        text = text.replace(" ", "%20").replace("#", "%23")
         if image is not None:
-            get_url = url_regex.UrlRegex(image)
+            get_url = url_regex.UrlRegex(str(image))
             if not get_url.detect:
                 raise BadRequest("String passed is not a valid URL.")
             image = "&image={}".format(image)
@@ -149,7 +158,7 @@ class Client:
         return url['text']
 
     async def jokeoverhead(self, image: str):
-        get_url = url_regex.UrlRegex(image)
+        get_url = url_regex.UrlRegex(str(image))
         if not get_url.detect:
             raise BadRequest("String passed is not a valid URL.")
         if get_url.links[0].domain != "cdn.discordapp.com":
@@ -158,6 +167,8 @@ class Client:
         return url
 
     async def pornhub(self, text, text2):
+        text = text.replace(" ", "%20").replace("#", "%23")
+        text2 = text2.replace(" ", "%20").replace("#", "%23")
         url = self.api_url("pornhub?text={}&text2={}".format(text, text2))
         return url
 
@@ -167,7 +178,7 @@ class Client:
         return url['file']
 
     async def salty(self, image: str):
-        get_url = url_regex.UrlRegex(image)
+        get_url = url_regex.UrlRegex(str(image))
         if not get_url.detect:
             raise BadRequest("String passed is not a valid URL.")
         if get_url.links[0].domain != "cdn.discordapp.com":
@@ -176,17 +187,18 @@ class Client:
         return url
 
     async def scroll(self, text):
+        text = text.replace(" ", "%20").replace("#", "%23")
         url = self.api_url("scroll?text={}".format(text))
         return url
 
     async def ship(self, user: str, user2: str):
-        user_url = url_regex.UrlRegex(user)
+        user_url = url_regex.UrlRegex(str(user))
         if not user_url.detect:
             raise BadRequest("String passed is not a valid URL.")
         if user_url.links[0].domain != "cdn.discordapp.com":
             raise BadRequest("Only Discord CDN URLs are allowed...")
 
-        user2_url = url_regex.UrlRegex(user2)
+        user2_url = url_regex.UrlRegex(str(user2))
         if not user2_url.detect:
             raise BadRequest("String passed is not a valid URL.")
         if user2_url.links[0].domain != "cdn.discordapp.com":
@@ -204,6 +216,7 @@ class Client:
         return SteamUser(response)
 
     async def supreme(self, text, dark=False, light=False):
+        text = text.replace(" ", "%20").replace("#", "%23")
         darkorlight = ""
         if dark:
             darkorlight = "&dark=true"
@@ -216,13 +229,13 @@ class Client:
         return url
 
     async def trash(self, face: str, trash: str):
-        user_url = url_regex.UrlRegex(face)
+        user_url = url_regex.UrlRegex(str(face))
         if not user_url.detect:
             raise BadRequest("String passed is not a valid URL.")
         if user_url.links[0].domain != "cdn.discordapp.com":
             raise BadRequest("Only Discord CDN URLs are allowed...")
 
-        user2_url = url_regex.UrlRegex(trash)
+        user2_url = url_regex.UrlRegex(str(trash))
         if not user2_url.detect:
             raise BadRequest("String passed is not a valid URL.")
         if user2_url.links[0].domain != "cdn.discordapp.com":
