@@ -22,7 +22,7 @@ import alexflipnote_api
 
 afa = alexflipnote-api.Client()
 
-print(await afa.supreme("some text, yes", dark=True) # making it dark, there is also light = True.
+print(await afa.supreme("#some text, yes", dark=True) # making it dark, there is also light = True.
 >>> https://api.alexflipnote.dev/supreme?text=%23some%20text,%20yes&dark=true
 ``` 
 
@@ -33,7 +33,7 @@ print(await afa.supreme("some text, yes", dark=True) # making it dark, there is 
 import alexflipnote_api as ap
 from discord.ext import commands
 
-bot = commands.Bot(command_prefix="!"
+bot = commands.Bot(command_prefix="!")
 colour_api = ap.Client()
 
 # source: https://github.com/AlexFlipnote/discord_bot.py/blob/6d1adc72e9c19bb4ca90718e5f6d335faf842dd9/cogs/fun.py#L114-L147
