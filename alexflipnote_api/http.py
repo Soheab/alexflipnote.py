@@ -18,7 +18,7 @@ class HTTPSession(aiohttp.ClientSession):
 session = HTTPSession()
 
 
-def close():
+async def close():
     if not session.closed:
         await session.close()
 
