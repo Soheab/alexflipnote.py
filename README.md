@@ -51,26 +51,30 @@ async def colourinfo(ctx, colour: str)):
         if colour[:1] == "#":
             colour = colour[1:]
 
-        if not re.search(r'^(?:[0-9a-fA-F]{3}){1,2}$', colour):
-            return await ctx.send("You're only allowed to enter HEX (0-9 & A-F)")
-
         try:
-            get_color = color_api.colour(colour)
+            get_colour = color_api.colour(colour)
+        except ap.BadRequest as e: # if not valid HEX
+            return await ctx.send(e)
         except aiohttp.ClientConnectorError:
             return await ctx.send("The API seems to be down...")
         except aiohttp.ContentTypeError:
             return await ctx.send("The API returned an error or didn't return JSON...")
 
-        embed = discord.Embed(colour=r["int"])
-        embed.set_thumbnail(url=r["image"])
-        embed.set_image(url=r["image_gradient"])
+        embed = discord.Embed(colour=get_colour.int)
+        embed.set_thumbnail(url=get_colour.image)
+        embed.set_image(url=get_colour.image_gradient)
 
-        embed.add_field(name="HEX", value=r['hex'], inline=True)
-        embed.add_field(name="RGB", value=r['rgb'], inline=True)
-        embed.add_field(name="Int", value=r['int'], inline=True)
-        embed.add_field(name="Brightness", value=r['brightness'], inline=True)
+        embed.add_field(name="HEX", value=get_colour.hex, inline=True)
+        embed.add_field(name="RGB", value=get_colour.rgb, inline=True)
+        embed.add_field(name="Int", value=get_colour.int, inline=True)
+        embed.add_field(name="Brightness", value=get_colour.brightness, inline=True)
 
-        await ctx.send(embed=embed, content=f"{ctx.invoked_with.title()} name: **{r['name']}**")
-
+        await ctx.send(embed=embed, content=f"{ctx.invoked_with.title()} name: **{get_colour.name}**")
 
 ```
+
+# Made by
+
+This wrapper is made Soheab_#6240, contact me for anything related to this wrapper.
+
+This was made for the AlexFlipnote api, link: https://api.alexflipnote.dev.
