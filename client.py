@@ -3,7 +3,7 @@ import re
 import aiohttp
 import url_regex
 
-import http
+from . import http
 from .colour import Colour
 from .steam import SteamUser
 
@@ -18,13 +18,13 @@ class SteamUserNotFound(Exception):
 
 class Client:
     # SR API BASE PATH
-    BASE_URL = "https://api.alexflipnote.dev/"
+    _BASE_URL = "https://api.alexflipnote.dev/"
 
     def __init__(self):
         self._http_client = http
 
     def api_url(self, path):
-        return self.BASE_URL + path
+        return self._BASE_URL + path
 
     async def achievement(self, text, icon: int = None):
         icons = "https://i.alexflipnote.dev/9ZXAP35.png"
