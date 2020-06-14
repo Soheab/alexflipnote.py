@@ -3,6 +3,7 @@ class Colour:
                  "int", "name", "rgb", "rgb_values", "shade", "tint")
 
     def __init__(self, data):
+        print("DATA IN CLASS: {}".format(data))
         self.blackorwhite_text = data.get('blackorwhite_text')
         self.brightness = int(data.get('brightness'))
         self.hex = data.get('hex')

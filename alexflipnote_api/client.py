@@ -79,8 +79,8 @@ class Client:
     async def colour(self, colour):
         if not re.search(r'^(?:[0-9a-fA-F]{3}){1,2}$', colour):
             raise BadRequest("Invalid HEX value. You're only allowed to enter HEX (0-9 & A-F)")
-        response = await self._http_client.get(self.api_url("colour/{}".format(colour)), res_method="json")
-
+        response = await self._http_client.get(str(self.api_url("colour/{}").format(colour)), res_method="json")
+        print("RESPONSE WHEN PASSING: {}".format(response))
         return Colour(response)
 
     async def github_colour(self):
