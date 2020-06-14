@@ -2,10 +2,10 @@ from setuptools import setup
 
 setup(
     name = 'alexflipnote-api',
-    version = '0.2',
+    version = '0.3',
     packages = ['alexflipnote_api'],
     url = 'https://github.com/Soheab/Alexflipnote_api',
-    download_url = 'https://github.com/Soheab/alexflipnote_api/archive/0.2.tar.gz',
+    download_url = 'https://github.com/Soheab/alexflipnote_api/archive/0.3.tar.gz',
     license = 'MIT',
     author = 'Soheab',
     author_email = '',
