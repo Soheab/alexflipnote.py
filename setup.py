@@ -3,9 +3,9 @@ from setuptools import setup
 setup(
     name = 'alexflipnote-api',
     version = '0.2',
-    packages = ['alexflipnote-api'],
+    packages = ['alexflipnote_api'],
     url = 'https://github.com/Soheab/Alexflipnote_api',
-    download_url = 'https://github.com/Soheab/alexflipnote_api/archive/1.1.tar.gz',
+    download_url = 'https://github.com/Soheab/alexflipnote_api/archive/0.2.tar.gz',
     license = 'MIT',
     author = 'Soheab',
     author_email = '',

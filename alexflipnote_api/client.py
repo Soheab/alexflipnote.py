@@ -79,7 +79,7 @@ class Client:
     async def colour(self, colour):
         if not re.search(r'^(?:[0-9a-fA-F]{3}){1,2}$', colour):
             raise BadRequest("Invalid HEX value. You're only allowed to enter HEX (0-9 & A-F)")
-        response = await self._http_client.get(self.api_url("colour/{}".format(colour)))
+        response = await self._http_client.get(self.api_url("colour/{}".format(colour)), res_method="json")
 
         return Colour(response)
 
@@ -207,13 +207,13 @@ class Client:
     async def supreme(self, text, dark=False, light=False):
         darkorlight = ""
         if dark:
-            darkorlight = "dark=true"
+            darkorlight = "&dark=true"
         if light:
-            darkorlight = "light=true"
+            darkorlight = "&light=true"
         if dark and light:
             raise BadRequest("You can't choose both dark and light.")
 
-        url = self.api_url("supreme?text={}&{}".format(text, darkorlight))
+        url = self.api_url("supreme?text={}{}".format(text, darkorlight))
         return url
 
     async def trash(self, face: str, trash: str):
