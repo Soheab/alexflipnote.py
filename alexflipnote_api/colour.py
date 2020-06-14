@@ -13,4 +13,4 @@ class Colour:
         self.rgb = data.get('rgb')
         self.rgb_values = data.get('rgb_values')
         self.shade = data.get('shade')
-        self.tint = data.get('image')
+        self.tint = data.get('tint')
