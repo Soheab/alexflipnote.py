@@ -9,7 +9,7 @@ class Colour:
         self.image = data.get('image')
         self.image_gradient = data.get('image_gradient')
         self.int = int(data.get('int'))
-        self.name = int(data.get('name'))
+        self.name = data.get('name')
         self.rgb = data.get('rgb')
         self.rgb_values = data.get('rgb_values')
         self.shade = data.get('shade')
