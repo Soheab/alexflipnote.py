@@ -153,7 +153,7 @@ class Client:
 
         return url
 
-    github_colour = github_colour  # aliases to github_colour
+    github_colour = github_colours  # aliases to github_colour
 
     async def colour_image(self, colour=None, return_bytes=False):
         if colour is None:
