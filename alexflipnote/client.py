@@ -6,8 +6,8 @@ import aiohttp
 import url_regex
 
 from . import http
-from .colour import Colour
-from .steam import SteamUser
+from .classes import Colour
+from .classes import Steam
 
 
 class BadRequest(Exception):
@@ -320,7 +320,7 @@ class Client:
         except aiohttp.ContentTypeError:
             raise SteamUserNotFound("SteamUser user not found.")
 
-        return SteamUser(response)
+        return Steam(response)
 
     async def supreme(self, text, dark=False, light=False):
         text = text.replace(" ", "%20").replace("#", "%23")
