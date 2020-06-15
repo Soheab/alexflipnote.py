@@ -13,10 +13,8 @@ from .classes import Steam
 class BadRequest(Exception):
     pass
 
-
-class SteamUserNotFound(Exception):
+class NotFound(Exception):
     pass
-
 
 class Client:
     _BASE_URL = "https://api.alexflipnote.dev/"
@@ -238,7 +236,7 @@ class Client:
         options = ['blur', 'invert', 'b&w', 'deepfry', 'snow', 'gay',
                    'pixelate', 'jpegify', 'magik', 'communist']
         if name not in options:
-            raise BadRequest(name + "is not a valid option! valid options: " + ", ".join(options))
+            raise NotFound("Filter not found. Valid options: " + ", ".join(options))
 
         get_url = url_regex.UrlRegex(str(image))
         if not get_url.detect:
@@ -352,7 +350,7 @@ class Client:
         try:
             response = await self._http_client.get(self.api_url(f"steam/user/{profile}"), res_method = "json")
         except aiohttp.ContentTypeError:
-            raise SteamUserNotFound("SteamUser user not found.")
+            raise NotFound("User not found on steam.")
 
         return Steam(response)
 
@@ -364,7 +362,7 @@ class Client:
         if light:
             darkorlight = "&light=true"
         if dark and light:
-            raise BadRequest("You can't choose both dark and light.")
+            raise BadRequest("You can only choose either light or dark, not both.")
 
         url = self.api_url(f"supreme?text={text}{darkorlight}")
 

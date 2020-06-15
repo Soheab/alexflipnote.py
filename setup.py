@@ -5,15 +5,16 @@ with open('README.md') as f:
 
 setup(
     name = 'alexflipnote.py',
-    version = '1.0.0',
+    version = '1.0.1',
     packages = ['alexflipnote'],
     url = 'https://github.com/Soheab/Alexflipnote.py',
-    download_url = 'https://github.com/Soheab/alexflipnote.py/archive/1.0.0.tar.gz',
+    download_url = 'https://github.com/Soheab/alexflipnote.py/archive/1.0.1.tar.gz',
     license = 'MIT',
     author = 'Soheab',
     author_email = '',
     install_requires=['aiohttp', 'url_regex'],
     description = 'An easy to use Python Wrapper for the AlexFlipnote API',
     long_description=readme,
+    long_description_content_type='text/markdown',
     python_requires='>=3.6',
 )

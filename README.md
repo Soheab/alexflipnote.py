@@ -47,8 +47,8 @@
 
 ## What is return_bytes?
  You can set this to True (Defaults to False) to let the
- api return an io.BytesIO object, which can be passed it 
- to discord.File().
+ api return an io.BytesIO object, which can be passed 
+ to discord.File() with a filename.
  
  **Here is an example of return_bytes in a discord.py bot:**
  ```py
