@@ -169,24 +169,24 @@ class Client:
 
         return url
 
-    async def colourify(self, image, c="", b="", return_bytes=False):
+    async def colourify(self, image, colour="", background="", return_bytes=False):
         get_url = url_regex.UrlRegex(str(image))
         if not get_url.detect:
             raise BadRequest("String passed is not a valid URL.")
 
-        if c is not None:
-            if not re.search(r'^(?:[0-9a-fA-F]{3}){1,2}$', c):
+        if colour is not None:
+            if not re.search(r'^(?:[0-9a-fA-F]{3}){1,2}$', colour):
                 raise BadRequest("Invalid HEX value. You're only allowed to enter HEX (0-9 & A-F)")
 
-            c = f"&c={c}"
+            colour = f"&c={colour}"
 
-        if b is not None:
-            if not re.search(r'^(?:[0-9a-fA-F]{3}){1,2}$', b):
+        if background is not None:
+            if not re.search(r'^(?:[0-9a-fA-F]{3}){1,2}$', background):
                 raise BadRequest("Invalid HEX value. You're only allowed to enter HEX (0-9 & A-F)")
 
-            b = f"&b={b}"
+            background = f"&b={background}"
 
-        url = self.api_url(f"colourify?image={image}{c}{b}")
+        url = self.api_url(f"colourify?image={image}{colour}{background}")
 
         if return_bytes:
             image_bytes = await self.to_bytes(url)

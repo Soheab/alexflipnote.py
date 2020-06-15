@@ -27,7 +27,7 @@
 | github_colours() | none | none | none |
 | colour_image() | none | colour, return_bytes | str, boolean |
 | colour_image_gradient() | none | colour, return_bytes | str, boolean |
-| colourify() | image | c, b, return_bytes | str, str, str boolean |
+| colourify() | image | colour, background, return_bytes | str, str, str boolean |
 | didyoumean() | top, bottom | return_bytes | str, str, boolean |
 | dogs | none | none | none |
 | drake() | top, bottom | return_bytes | str, str, boolean |
