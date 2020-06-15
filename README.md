@@ -78,11 +78,12 @@ print(await afa.cats)
 >>> https://api.alexflipnote.dev/cats/grRlHyi-AL8_cats.jpg
 ``` 
 
-#### Get supreme logo
+#### Get supreme logo:
+
 ```py
 import alexflipnote
 
-afa = alexflipnoteClient()
+afa = alexflipnote.Client()
 
 print(await afa.supreme("#some text, yes", dark=True)) # making it dark, there is also light = True.
 >>> https://api.alexflipnote.dev/supreme?text=%23some%20text,%20yes&dark=true
