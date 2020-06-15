@@ -35,9 +35,9 @@ class Client:
 
     async def achievement(self, text, icon: int = "", return_bytes=False):
         if icon is not None:
-            icon = "&icon={}".format(icon)
+            icon = f"&icon={icon}"
 
-        url = self.api_url("achievement?text={}{}".format(text, icon))
+        url = self.api_url(f"achievement?text={text}{icon}")
 
         if return_bytes:
             image_bytes = await self.to_bytes(url)
@@ -52,7 +52,7 @@ class Client:
         if get_url.links[0].domain != "cdn.discordapp.com":
             raise BadRequest("Only Discord CDN URLs are allowed...")
 
-        url = self.api_url("amiajoke?image={}".format(image))
+        url = self.api_url("amiajoke?image={image}")
 
         if return_bytes:
             image_bytes = await self.to_bytes(url)
@@ -67,7 +67,7 @@ class Client:
         if get_url.links[0].domain != "cdn.discordapp.com":
             raise BadRequest("Only Discord CDN URLs are allowed...")
 
-        url = self.api_url("bad?image={}".format(image))
+        url = self.api_url("bad?image={image}")
 
         if return_bytes:
             image_bytes = await self.to_bytes(url)
@@ -76,21 +76,13 @@ class Client:
         return url
 
     @property
-    async def birb(self, return_bytes=False):
+    async def birb(self):
         url = await self._http_client.get(self.api_url("bad"), res_method = "json")
-
-        if return_bytes:
-            get_url = (await self._http_client.get(str(url), res_method = "read"))['file']
-            read_url = await self._http_client.get(str(get_url), res_method = "read")
-            bio = io.BytesIO(read_url)
-            bio.seek(0)
-            return bio
-
         return url['file']
 
     async def calling(self, text, return_bytes):
         text = text.replace(" ", "%20").replace("#", "%23")
-        url = self.api_url("calling?text={}".format(text))
+        url = self.api_url(f"calling?text={text}")
 
         if return_bytes:
             image_bytes = await self.to_bytes(url)
@@ -100,7 +92,7 @@ class Client:
 
     async def captcha(self, text, return_bytes):
         text = text.replace(" ", "%20").replace("#", "%23")
-        url = self.api_url("captcha?text={}".format(text))
+        url = self.api_url(f"captcha?text={text}")
 
         if return_bytes:
             image_bytes = await self.to_bytes(url)
@@ -109,22 +101,16 @@ class Client:
         return url
 
     @property
-    async def cats(self, return_bytes=False):
+    async def cats(self):
         url = await self._http_client.get(self.api_url("cats"), res_method = "json")
-
-        if return_bytes:
-            get_url = (await self._http_client.get(str(url), res_method = "read"))['file']
-            image_bytes = await self.to_bytes(get_url)
-            return image_bytes
-
         return url['file']
 
     async def challenge(self, text, icon: int = "", return_bytes=False):
         if icon is not None:
-            icon = "&icon={}".format(icon)
+            icon = f"&icon={icon}"
 
         text = text.replace(" ", "%20").replace("#", "%23")
-        url = self.api_url("challenge?text={}{}".format(text, icon))
+        url = self.api_url(f"challenge?text={text}{icon}")
 
         if return_bytes:
             image_bytes = await self.to_bytes(url)
@@ -140,7 +126,7 @@ class Client:
             raise BadRequest("Invalid HEX value. You're only allowed to enter HEX (0-9 & A-F)")
 
         response = await self._http_client.get(
-            str(self.api_url("colour/{}").format(colour)),
+            str(self.api_url(f"colour/{colour}")),
             res_method = "json"
         )
         return Colour(response)
@@ -148,9 +134,7 @@ class Client:
     color = colour  # aliases to colour
 
     async def github_colours(self):
-
         url = self.api_url("color/github")
-
         return url
 
     github_colour = github_colours  # aliases to github_colour
@@ -162,7 +146,7 @@ class Client:
         if not re.search(r'^(?:[0-9a-fA-F]{3}){1,2}$', colour):
             raise BadRequest("Invalid HEX value. You're only allowed to enter HEX (0-9 & A-F)")
 
-        url = self.api_url("colour/image/{}".format(colour))
+        url = self.api_url(f"colour/image/colour")
 
         if return_bytes:
             image_bytes = await self.to_bytes(url)
@@ -179,7 +163,7 @@ class Client:
         if not re.search(r'^(?:[0-9a-fA-F]{3}){1,2}$', colour):
             raise BadRequest("Invalid HEX value. You're only allowed to enter HEX (0-9 & A-F)")
 
-        url = self.api_url("colour/image/gradient/{}".format(colour))
+        url = self.api_url(f"colour/image/gradient/{colour}")
 
         if return_bytes:
             image_bytes = await self.to_bytes(url)
@@ -196,15 +180,15 @@ class Client:
             if not re.search(r'^(?:[0-9a-fA-F]{3}){1,2}$', c):
                 raise BadRequest("Invalid HEX value. You're only allowed to enter HEX (0-9 & A-F)")
 
-            c = "&c={}".format(c)
+            c = f"&c={c}"
 
         if b is not None:
             if not re.search(r'^(?:[0-9a-fA-F]{3}){1,2}$', b):
                 raise BadRequest("Invalid HEX value. You're only allowed to enter HEX (0-9 & A-F)")
 
-            b = "&b={}".format(b)
+            b = f"&b={b}"
 
-        url = self.api_url("colourify?image={}{}{}".format(image, c, b))
+        url = self.api_url(f"colourify?image={image}{c}{b}")
 
         if return_bytes:
             image_bytes = await self.to_bytes(url)
@@ -212,10 +196,16 @@ class Client:
 
         return url
 
-    async def didyoumean(self, top, bottom):
+    async def didyoumean(self, top, bottom, return_bytes=False):
         top = top.replace(" ", "%20").replace("#", "%23")
         bottom = bottom.replace(" ", "%20").replace("#", "%23")
-        url = self.api_url("didyoumean?top={}&bottom={}".format(top, bottom))
+
+        url = self.api_url(f"didyoumean?top={top}&bottom={bottom}")
+
+        if return_bytes:
+            image_bytes = await self.to_bytes(url)
+            return image_bytes
+
         return url
 
     @property
@@ -223,18 +213,28 @@ class Client:
         url = await self._http_client.get(self.api_url("dogs"), res_method = "json")
         return url['file']
 
-    async def drake(self, top, bottom):
+    async def drake(self, top, bottom, return_bytes=False):
         top = top.replace(" ", "%20").replace("#", "%23")
         bottom = bottom.replace(" ", "%20").replace("#", "%23")
-        url = self.api_url("drake?top={}&bottom={}".format(top, bottom))
+        url = self.api_url(f"drake?top={top}&bottom={bottom}")
+
+        if return_bytes:
+            image_bytes = await self.to_bytes(url)
+            return image_bytes
+
         return url
 
-    async def facts(self, text):
+    async def facts(self, text, return_bytes=False):
         text = text.replace(" ", "%20").replace("#", "%23")
-        url = self.api_url("facts?text={}".format(text))
+        url = self.api_url(f"facts?text={text}")
+
+        if return_bytes:
+            image_bytes = await self.to_bytes(url)
+            return image_bytes
+
         return url
 
-    async def filter(self, name, image: str):
+    async def filter(self, name, image: str, return_bytes=False):
         options = ['blur', 'invert', 'b&w', 'deepfry', 'snow', 'gay',
                    'pixelate', 'jpegify', 'magik', 'communist']
         if name not in options:
@@ -246,17 +246,26 @@ class Client:
         if get_url.links[0].domain != "cdn.discordapp.com":
             raise BadRequest("Only Discord CDN URLs are allowed...")
 
-        url = self.api_url("filter/{}?image={}".format(name, image))
+        url = self.api_url(f"filter/{name}?image={image}")
+
+        if return_bytes:
+            image_bytes = await self.to_bytes(url)
+            return image_bytes
+
         return url
 
-    async def floor(self, text, image: str = None):
+    async def floor(self, text, image: str = None, return_bytes=False):
         text = text.replace(" ", "%20").replace("#", "%23")
         if image is not None:
             get_url = url_regex.UrlRegex(str(image))
             if not get_url.detect:
                 raise BadRequest("String passed is not a valid URL.")
-            image = "&image={}".format(image)
-        url = self.api_url("floor?text={}{}".format(text, image))
+            image = f"&image={image}"
+        url = self.api_url(f"floor?text={text}{image}")
+
+        if return_bytes:
+            image_bytes = await self.to_bytes(url)
+            return image_bytes
         return url
 
     @property
@@ -264,19 +273,29 @@ class Client:
         url = await self._http_client.get(self.api_url("fml"), res_method = "json")
         return url['text']
 
-    async def jokeoverhead(self, image: str):
+    async def jokeoverhead(self, image: str, return_bytes=False):
         get_url = url_regex.UrlRegex(str(image))
         if not get_url.detect:
             raise BadRequest("String passed is not a valid URL.")
         if get_url.links[0].domain != "cdn.discordapp.com":
             raise BadRequest("Only Discord CDN URLs are allowed...")
-        url = self.api_url("jokeoverhead?image={}".format(image))
+        url = self.api_url(f"jokeoverhead?image={image}")
+
+        if return_bytes:
+            image_bytes = await self.to_bytes(url)
+            return image_bytes
+
         return url
 
-    async def pornhub(self, text, text2):
+    async def pornhub(self, text, text2, return_bytes=False):
         text = text.replace(" ", "%20").replace("#", "%23")
         text2 = text2.replace(" ", "%20").replace("#", "%23")
-        url = self.api_url("pornhub?text={}&text2={}".format(text, text2))
+        url = self.api_url(f"pornhub?text={text}&text2={text2}")
+
+        if return_bytes:
+            image_bytes = await self.to_bytes(url)
+            return image_bytes
+
         return url
 
     @property
@@ -284,21 +303,31 @@ class Client:
         url = await self._http_client.get(self.api_url("sadcat"), res_method = "json")
         return url['file']
 
-    async def salty(self, image: str):
+    async def salty(self, image: str, return_bytes=False):
         get_url = url_regex.UrlRegex(str(image))
         if not get_url.detect:
             raise BadRequest("String passed is not a valid URL.")
         if get_url.links[0].domain != "cdn.discordapp.com":
             raise BadRequest("Only Discord CDN URLs are allowed...")
-        url = self.api_url("salty?image={}".format(image))
+        url = self.api_url(f"salty?image={image}")
+
+        if return_bytes:
+            image_bytes = await self.to_bytes(url)
+            return image_bytes
+
         return url
 
-    async def scroll(self, text):
+    async def scroll(self, text, return_bytes=False):
         text = text.replace(" ", "%20").replace("#", "%23")
-        url = self.api_url("scroll?text={}".format(text))
+        url = self.api_url(f"scroll?text={text}")
+
+        if return_bytes:
+            image_bytes = await self.to_bytes(url)
+            return image_bytes
+
         return url
 
-    async def ship(self, user: str, user2: str):
+    async def ship(self, user: str, user2: str, return_bytes=False):
         user_url = url_regex.UrlRegex(str(user))
         if not user_url.detect:
             raise BadRequest("String passed is not a valid URL.")
@@ -311,18 +340,23 @@ class Client:
         if user2_url.links[0].domain != "cdn.discordapp.com":
             raise BadRequest("Only Discord CDN URLs are allowed...")
 
-        url = self.api_url("ship?user={}&user2={}".format(user, user2))
+        url = self.api_url(f"ship?user={user}&user2={user2}")
+
+        if return_bytes:
+            image_bytes = await self.to_bytes(url)
+            return image_bytes
+
         return url
 
     async def steam(self, profile):
         try:
-            response = await self._http_client.get(self.api_url("steam/user/{}".format(profile)), res_method = "json")
+            response = await self._http_client.get(self.api_url(f"steam/user/{profile}"), res_method = "json")
         except aiohttp.ContentTypeError:
             raise SteamUserNotFound("SteamUser user not found.")
 
         return Steam(response)
 
-    async def supreme(self, text, dark=False, light=False):
+    async def supreme(self, text, dark=False, light=False, return_bytes=False):
         text = text.replace(" ", "%20").replace("#", "%23")
         darkorlight = ""
         if dark:
@@ -332,10 +366,15 @@ class Client:
         if dark and light:
             raise BadRequest("You can't choose both dark and light.")
 
-        url = self.api_url("supreme?text={}{}".format(text, darkorlight))
+        url = self.api_url(f"supreme?text={text}{darkorlight}")
+
+        if return_bytes:
+            image_bytes = await self.to_bytes(url)
+            return image_bytes
+
         return url
 
-    async def trash(self, face: str, trash: str):
+    async def trash(self, face: str, trash: str, return_bytes=False):
         user_url = url_regex.UrlRegex(str(face))
         if not user_url.detect:
             raise BadRequest("String passed is not a valid URL.")
@@ -348,5 +387,10 @@ class Client:
         if user2_url.links[0].domain != "cdn.discordapp.com":
             raise BadRequest("Only Discord CDN URLs are allowed...")
 
-        url = self.api_url("trash?user={}&user2={}".format(face, trash))
+        url = self.api_url(f"trash?user={face}&user2={trash}")
+
+        if return_bytes:
+            image_bytes = await self.to_bytes(url)
+            return image_bytes
+
         return url

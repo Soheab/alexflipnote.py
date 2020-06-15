@@ -1,12 +1,73 @@
-# alexflipnote.py
+# Alexflipnote.py
  An easy to use Python Wrapper for the AlexFlipnote API
 
-# installation
-> pip install alexflipnote.py
+# Requirements
+- Python 3.6 or above
+- aiohttp (python3 -m pip install -U aiohttp)
+- url_regex (python3 -m pip install -U url_regex)
 
+# installation
+
+### Using pip (recommended):
+- pip install alexflipnote.py
+
+# Endpoints
+
+|Name | Required param(s) | Optional param(s) | Accepted values
+|---|---|--------|---| 
+| achievement() | text | icon, return_bytes | str, int, boolean |
+| amiajoke() | image | return_bytes | str, boolean |
+| bad() | image | return_bytes | str, boolean |
+| birb | none | none | none |
+| calling() | text | return_bytes | str, boolean |
+| captcha() | text | return_bytes | str, boolean |
+| cats | none | none | none |
+| challenge() | text | icon, return_bytes | str, int, boolean |
+| colour() | none | colour | str |
+| github_colours() | none | none | none |
+| colour_image() | none | colour, return_bytes | str, boolean |
+| colour_image_gradient() | none | colour, return_bytes | str, boolean |
+| colourify() | image | c, b, return_bytes | str, str, str boolean |
+| didyoumean() | top, bottom | return_bytes | str, str, boolean |
+| dogs | none | none | none |
+| drake() | top, bottom | return_bytes | str, str, boolean |
+| facts() | text | return_bytes | str, boolean |
+| filter() | name, image | return_bytes | valid_filter, str, boolean |
+| floor() | text, image | return_bytes | str, str, boolean |
+| fml | none | none | none |
+| jokeoverhead() | image | return_bytes | str, boolean |
+| pornhub() | text, text2 | return_bytes | str, str, boolean |
+| sadcat | none | none | none |
+| salty() | image | return_bytes | str, boolean |
+| scroll() | text | return_bytes | str, boolean |
+| ship() | user, user2 | return_bytes | str, str, boolean |
+| steam() | profile | none | str |
+| supreme() | text | dark, light, return_bytes | str, boolean |
+| trash() | face, trash | return_bytes | str, boolean |
+
+## What is return_bytes?
+ You can set this to True (Defaults to False) to let the
+ api return an io.BytesIO object, which can be passed it 
+ to discord.File().
+ 
+ **Here is an example of return_bytes in a discord.py bot:**
+ ```py
+import alexflipnote
+
+@bot.command()
+async def colourimage(ctx, colour):
+    api = alexflipnote.Client()
+    colour_image = api.colour_image(colour, return_bytes=True)
+    await ctx.send(content="Images for {colour}",
+                   file = discord.File(
+                        colour_image,
+                        filename="Colour.png"
+                        )
+                   )
+ ```
 # Examples
 
-### Get a random cat pic:
+#### Get a random cat pic:
 
 ```py
 import alexflipnote
@@ -17,7 +78,7 @@ print(await afa.cats)
 >>> https://api.alexflipnote.dev/cats/grRlHyi-AL8_cats.jpg
 ``` 
 
-### Get supreme logo
+#### Get supreme logo
 ```py
 import alexflipnote
 
@@ -27,17 +88,16 @@ print(await afa.supreme("#some text, yes", dark=True)) # making it dark, there i
 >>> https://api.alexflipnote.dev/supreme?text=%23some%20text,%20yes&dark=true
 ``` 
 
-### Color info command in a discord.py Bot:
+#### Color Command in a discord.py Bot:
 
 ```py
 import alexflipnote
 from discord.ext import commands
 
 bot = commands.Bot(command_prefix="!")
-colour_api = alexflipnote.Client()
+alex_api = alexflipnote.Client()
 
 # source: https://github.com/AlexFlipnote/discord_bot.py/blob/6d1adc72e9c19bb4ca90718e5f6d335faf842dd9/cogs/fun.py#L114-L147
-
 @bot.command(aliases=['color'])
 async def colourinfo(ctx, colour: str)):
     """ View the colour HEX details """
@@ -50,8 +110,8 @@ async def colourinfo(ctx, colour: str)):
 
         try:
             if color.lower() == "random":
-                get_colour = await color_api.colour() # random color
-            get_colour = await color_api.colour(colour)
+                get_colour = await alex_api.colour() # random color
+            get_colour = await alex_api.colour(colour)
         except ap.BadRequest as e: # if not valid HEX
             return await ctx.send(e)
         except aiohttp.ClientConnectorError:
@@ -75,4 +135,8 @@ async def colourinfo(ctx, colour: str)):
 
 This wrapper is made Soheab_#6240, contact me for anything related to this wrapper.
 
-This was made for the AlexFlipnote api. Link: https://api.alexflipnote.dev.
+You could join my discord server here: https://discord.gg/yCzcfju or 
+AlexFlipnote's server (recommended): https://discord.gg/alexflipnote .
+
+Please report any bugs in the servers above or dm. Suggestions are also welcome.
+
