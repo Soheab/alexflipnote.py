@@ -11,9 +11,18 @@ class Colour:
         self.int = int(data.get('int'))
         self.name = data.get('name')
         self.rgb = data.get('rgb')
-        self.rgb_values = data.get('rgb_values')
+        self.rgb_values = self.ColourRGB(data.get('rgb_values'))
         self.shade = data.get('shade')
         self.tint = data.get('tint')
+
+    class ColourRGB:
+        __slots__ = ("all", "r", "g", "b")
+
+        def __init__(self, values):
+            self.all = values
+            self.r = values.get('r')
+            self.g = values.get('g')
+            self.b = values.get('b')
 
 
 class Steam:
