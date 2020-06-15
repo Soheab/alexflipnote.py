@@ -1,3 +1,5 @@
+import io
+import random
 import re
 
 import aiohttp
@@ -17,7 +19,6 @@ class SteamUserNotFound(Exception):
 
 
 class Client:
-    # SR API BASE PATH
     _BASE_URL = "https://api.alexflipnote.dev/"
 
     def __init__(self):
@@ -26,15 +27,25 @@ class Client:
     def api_url(self, path):
         return self._BASE_URL + path
 
-    async def achievement(self, text, icon: int = None):
-        icon = ""
+    async def to_bytes(self, url):
+        read_url = await self._http_client.get(str(url), res_method = "read")
+        bio = io.BytesIO(read_url)
+        bio.seek(0)
+        return bio
+
+    async def achievement(self, text, icon: int = "", return_bytes=False):
         if icon is not None:
-            "&icon={}".format(icon)
+            icon = "&icon={}".format(icon)
 
         url = self.api_url("achievement?text={}{}".format(text, icon))
+
+        if return_bytes:
+            image_bytes = await self.to_bytes(url)
+            return image_bytes
+
         return url
 
-    async def amiajoke(self, image: str):
+    async def amiajoke(self, image: str, return_bytes=False):
         get_url = url_regex.UrlRegex(str(image))
         if not get_url.detect:
             raise BadRequest("String passed is not a valid URL.")
@@ -42,9 +53,14 @@ class Client:
             raise BadRequest("Only Discord CDN URLs are allowed...")
 
         url = self.api_url("amiajoke?image={}".format(image))
+
+        if return_bytes:
+            image_bytes = await self.to_bytes(url)
+            return image_bytes
+
         return url
 
-    async def bad(self, image: str):
+    async def bad(self, image: str, return_bytes=False):
         get_url = url_regex.UrlRegex(str(image))
         if not get_url.detect:
             raise BadRequest("String passed is not a valid URL.")
@@ -52,58 +68,148 @@ class Client:
             raise BadRequest("Only Discord CDN URLs are allowed...")
 
         url = self.api_url("bad?image={}".format(image))
+
+        if return_bytes:
+            image_bytes = await self.to_bytes(url)
+            return image_bytes
+
         return url
 
     @property
-    async def birb(self):
+    async def birb(self, return_bytes=False):
         url = await self._http_client.get(self.api_url("bad"), res_method = "json")
+
+        if return_bytes:
+            get_url = (await self._http_client.get(str(url), res_method = "read"))['file']
+            read_url = await self._http_client.get(str(get_url), res_method = "read")
+            bio = io.BytesIO(read_url)
+            bio.seek(0)
+            return bio
+
         return url['file']
 
-    async def calling(self, text):
+    async def calling(self, text, return_bytes):
         text = text.replace(" ", "%20").replace("#", "%23")
         url = self.api_url("calling?text={}".format(text))
+
+        if return_bytes:
+            image_bytes = await self.to_bytes(url)
+            return image_bytes
+
         return url
 
-    async def captcha(self, text):
+    async def captcha(self, text, return_bytes):
         text = text.replace(" ", "%20").replace("#", "%23")
         url = self.api_url("captcha?text={}".format(text))
+
+        if return_bytes:
+            image_bytes = await self.to_bytes(url)
+            return image_bytes
+
         return url
 
     @property
-    async def cats(self):
+    async def cats(self, return_bytes=False):
         url = await self._http_client.get(self.api_url("cats"), res_method = "json")
+
+        if return_bytes:
+            get_url = (await self._http_client.get(str(url), res_method = "read"))['file']
+            image_bytes = await self.to_bytes(get_url)
+            return image_bytes
+
         return url['file']
 
-    async def challenge(self, text, icon: int = None):
+    async def challenge(self, text, icon: int = "", return_bytes=False):
+        if icon is not None:
+            icon = "&icon={}".format(icon)
+
         text = text.replace(" ", "%20").replace("#", "%23")
-        url = self.api_url("challenge?text={}&icon={}".format(text, icon))
+        url = self.api_url("challenge?text={}{}".format(text, icon))
+
+        if return_bytes:
+            image_bytes = await self.to_bytes(url)
+            return image_bytes
+
         return url
 
-    async def colour(self, colour):
+    async def colour(self, colour=None):
+        if colour is None:
+            colour = "%06x" % random.randint(0, 0xFFFFFF)
+
         if not re.search(r'^(?:[0-9a-fA-F]{3}){1,2}$', colour):
             raise BadRequest("Invalid HEX value. You're only allowed to enter HEX (0-9 & A-F)")
 
-        response = await self._http_client.get(str(self.api_url("colour/{}").format(colour)), res_method="json")
+        response = await self._http_client.get(
+            str(self.api_url("colour/{}").format(colour)),
+            res_method = "json"
+        )
         return Colour(response)
 
-    async def github_colour(self):
+    color = colour  # aliases to colour
+
+    async def github_colours(self):
+
         url = self.api_url("color/github")
+
         return url
 
-    async def colour_image(self, colour):
+    github_colour = github_colour  # aliases to github_colour
+
+    async def colour_image(self, colour=None, return_bytes=False):
+        if colour is None:
+            colour = "%06x" % random.randint(0, 0xFFFFFF)
+
+        if not re.search(r'^(?:[0-9a-fA-F]{3}){1,2}$', colour):
+            raise BadRequest("Invalid HEX value. You're only allowed to enter HEX (0-9 & A-F)")
+
         url = self.api_url("colour/image/{}".format(colour))
+
+        if return_bytes:
+            image_bytes = await self.to_bytes(url)
+            return image_bytes
+
         return url
 
-    async def colour_image_gradient(self, colour):
+    color_image = colour_image  # aliases to colour_image
+
+    async def colour_image_gradient(self, colour=None, return_bytes=False):
+        if colour is None:
+            colour = "%06x" % random.randint(0, 0xFFFFFF)
+
+        if not re.search(r'^(?:[0-9a-fA-F]{3}){1,2}$', colour):
+            raise BadRequest("Invalid HEX value. You're only allowed to enter HEX (0-9 & A-F)")
+
         url = self.api_url("colour/image/gradient/{}".format(colour))
+
+        if return_bytes:
+            image_bytes = await self.to_bytes(url)
+            return image_bytes
+
         return url
 
-    async def colourify(self, image, c=None, b=None):
+    async def colourify(self, image, c="", b="", return_bytes=False):
         get_url = url_regex.UrlRegex(str(image))
         if not get_url.detect:
             raise BadRequest("String passed is not a valid URL.")
 
-        url = self.api_url("colourify?image={}&c={}&b={}".format(image, c, b))
+        if c is not None:
+            if not re.search(r'^(?:[0-9a-fA-F]{3}){1,2}$', c):
+                raise BadRequest("Invalid HEX value. You're only allowed to enter HEX (0-9 & A-F)")
+
+            c = "&c={}".format(c)
+
+        if b is not None:
+            if not re.search(r'^(?:[0-9a-fA-F]{3}){1,2}$', b):
+                raise BadRequest("Invalid HEX value. You're only allowed to enter HEX (0-9 & A-F)")
+
+            b = "&b={}".format(b)
+
+        url = self.api_url("colourify?image={}{}{}".format(image, c, b))
+
+        if return_bytes:
+            image_bytes = await self.to_bytes(url)
+            return image_bytes
+
         return url
 
     async def didyoumean(self, top, bottom):
@@ -210,7 +316,7 @@ class Client:
 
     async def steam(self, profile):
         try:
-            response = await self._http_client.get(self.api_url("steam/user/{}".format(profile)), res_method="json")
+            response = await self._http_client.get(self.api_url("steam/user/{}".format(profile)), res_method = "json")
         except aiohttp.ContentTypeError:
             raise SteamUserNotFound("SteamUser user not found.")
 
@@ -242,5 +348,5 @@ class Client:
         if user2_url.links[0].domain != "cdn.discordapp.com":
             raise BadRequest("Only Discord CDN URLs are allowed...")
 
-        url = self.api_url("ship?user={}&user2={}".format(face, trash))
+        url = self.api_url("trash?user={}&user2={}".format(face, trash))
         return url

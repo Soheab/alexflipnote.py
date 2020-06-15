@@ -1,16 +1,17 @@
-# alexflipnote_api
- Wrapper for api: https://api.alexflipnote.dev/
+# alexflipnote.py
+ An easy to use Python Wrapper for the AlexFlipnote API
 
 # installation
-> pip install alexflipnote-api
+> pip install alexflipnote.py
 
 # Examples
 
-### Get random cat pics:
-```py
-import alexflipnote_api
+### Get a random cat pic:
 
-afa = alexflipnote-api.Client()
+```py
+import alexflipnote
+
+afa = alexflipnote.Client()
 
 print(await afa.cats)
 >>> https://api.alexflipnote.dev/cats/grRlHyi-AL8_cats.jpg
@@ -18,23 +19,22 @@ print(await afa.cats)
 
 ### Get supreme logo
 ```py
-import alexflipnote_api
+import alexflipnote
 
-afa = alexflipnote-api.Client()
+afa = alexflipnoteClient()
 
 print(await afa.supreme("#some text, yes", dark=True)) # making it dark, there is also light = True.
 >>> https://api.alexflipnote.dev/supreme?text=%23some%20text,%20yes&dark=true
 ``` 
 
-### Color info command in a discord.py Bot
+### Color info command in a discord.py Bot:
 
 ```py
-
-import alexflipnote_api as ap
+import alexflipnote
 from discord.ext import commands
 
 bot = commands.Bot(command_prefix="!")
-colour_api = ap.Client()
+colour_api = alexflipnote.Client()
 
 # source: https://github.com/AlexFlipnote/discord_bot.py/blob/6d1adc72e9c19bb4ca90718e5f6d335faf842dd9/cogs/fun.py#L114-L147
 
@@ -45,14 +45,13 @@ async def colourinfo(ctx, colour: str)):
         if not permissions.can_embed(ctx):
             return await ctx.send("I can't embed in this channel ;-;")
 
-        if colour == "random":
-            colour = "%06x" % random.randint(0, 0xFFFFFF)
-
         if colour[:1] == "#":
             colour = colour[1:]
 
         try:
-            get_colour = color_api.colour(colour)
+            if color.lower() == "random":
+                get_colour = await color_api.colour() # random color
+            get_colour = await color_api.colour(colour)
         except ap.BadRequest as e: # if not valid HEX
             return await ctx.send(e)
         except aiohttp.ClientConnectorError:
@@ -70,11 +69,10 @@ async def colourinfo(ctx, colour: str)):
         embed.add_field(name="Brightness", value=get_colour.brightness, inline=True)
 
         await ctx.send(embed=embed, content=f"{ctx.invoked_with.title()} name: **{get_colour.name}**")
-
 ```
 
 # Made by
 
 This wrapper is made Soheab_#6240, contact me for anything related to this wrapper.
 
-This was made for the AlexFlipnote api, link: https://api.alexflipnote.dev.
+This was made for the AlexFlipnote api. Link: https://api.alexflipnote.dev.
