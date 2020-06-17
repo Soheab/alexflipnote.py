@@ -5,10 +5,10 @@ with open('README.md') as f:
 
 setup(
     name = 'alexflipnote.py',
-    version = '1.0.1.2',
+    version = '1.1.0',
     packages = ['alexflipnote'],
     url = 'https://github.com/Soheab/Alexflipnote.py',
-    download_url = 'https://github.com/Soheab/alexflipnote.py/archive/1.0.1.2.tar.gz',
+    download_url = 'https://github.com/Soheab/alexflipnote.py/archive/1.1.0.tar.gz',
     license = 'MIT',
     author = 'Soheab',
     author_email = '',
