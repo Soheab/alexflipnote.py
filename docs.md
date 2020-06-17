@@ -320,7 +320,7 @@ Here is explained what attributes the returned objects have
 
 ### Image
 ---
-The object returned from `client.get_image()` and `client.get_gif()`
+The object returned from almost every endpoint.
 
 #### Image.url
 The url of the image
