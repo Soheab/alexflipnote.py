@@ -1,3 +1,21 @@
+import io
+
+
+class Image:
+    __slots__ = ("url", "_http_client")
+
+    def __init__(self, url, http_client):
+        self.url = url
+        self._http_client = http_client
+
+    def __str__(self):
+        return self.url if self.url is not None else ''
+
+    async def read(self):
+        _bytes = await self._http_client.get(str(self.url), res_method = "read")
+        return io.BytesIO(_bytes)
+
+
 class Colour:
     __slots__ = ("blackorwhite_text", "brightness", "hex", "image", "image_gradient",
                  "int", "name", "rgb", "rgb_values", "shade", "tint")
@@ -43,10 +61,10 @@ class Steam:
             self.custom_url = data.get('customurl')
 
     class SteamAvatar:
-        __slots__ = ("avatar_small", "avatar_medium", "avatar_full")
+        __slots__ = ("avatar", "avatar_medium", "avatar_full")
 
         def __init__(self, data):
-            self.avatar_small = data.get('avatar')
+            self.avatar = data.get('avatar')
             self.avatar_medium = data.get('avatarmedium')
             self.avatar_full = data.get('avatarfull')
 
