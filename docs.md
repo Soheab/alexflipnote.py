@@ -28,7 +28,7 @@ Generate a Minecraft achievement with custom text.
 **- text** `string` - Your text for the achievement.\
 **- icon** `integer` - Icon number, 1-39. [See them here](https://i.alexflipnote.dev/9ZXAP35.png)
    
-**Return type:** [Image](docs.md#-image "Image object attributes")
+**Return type:** [Image](docs.md#image "Image object attributes")
 
 ---
 
@@ -39,7 +39,7 @@ Get an "am i a joke" picture with your image.
 **Parameters:**\
 **- image** `url` - URL of image you want.
    
-**Return type:** [Image](docs.md#-image "Image object attributes")
+**Return type:** [Image](docs.md#image "Image object attributes")
 
 ---
 
@@ -58,7 +58,7 @@ Get a calling meme image with your text.
 **Parameters:**\
 **- text** `string` - Your text for the image.
 
-**Return type:** [Image](docs.md#-image "Image object attributes")
+**Return type:** [Image](docs.md#image "Image object attributes")
 
 ---
 
@@ -69,7 +69,7 @@ Make a ~~fake~~ captcha with your text.
 **Parameters:**\
 **- text** `string` - Your text for the image.
 
-**Return type:** [Image](docs.md#-image "Image object attributes")
+**Return type:** [Image](docs.md#image "Image object attributes")
 
 ---
 
@@ -89,7 +89,7 @@ Generate a Minecraft challenge with custom text.
 **- text** `string` - Your text for the achievement.\
 **- icon** `integer` - Icon number.
    
-**Return type:** [Image](docs.md#-image "Image object attributes")
+**Return type:** [Image](docs.md#image "Image object attributes")
 
 ---
 
@@ -102,7 +102,7 @@ Get info on provided colour.
 
 **Aliases**: color
 
-**Return type:** [Colour](docs.md#-colour "Image object attributes")
+**Return type:** [Colour](docs.md#colour "Image object attributes")
 
 ---
 
@@ -121,7 +121,7 @@ Get an image of provided colour.
 **Parameters:**\
 **- text** Optional[`string`] - The Colour. Defaults to random colour.
 
-**Return type:** [Image](docs.md#-image "Image object attributes")
+**Return type:** [Image](docs.md#image "Image object attributes")
 
 ---
 
@@ -132,7 +132,7 @@ Get an image gradients of provided colour.
 **Parameters:**\
 **- text** Optional[`string`] - The Colour. Defaults to random colour.
 
-**Return type:** [Image](docs.md#-image "Image object attributes")
+**Return type:** [Image](docs.md#image "Image object attributes")
 
 ---
 
@@ -144,7 +144,7 @@ Get a custom google "Did you mean" suggestion thing.
 **- top** `string` - What you search for.\
 **- bottom** `string` - The suggested search.
 
-**Return type:** [Image](docs.md#-image "Image object attributes")
+**Return type:** [Image](docs.md#image "Image object attributes")
 
 ---
 
@@ -164,7 +164,7 @@ Make a custom drake meme image.
 **- top** `string` - Bad thing.\
 **- bottom** `string` - Good thing.
 
-**Return type:** [Image](docs.md#-image "Image object attributes")
+**Return type:** [Image](docs.md#image "Image object attributes")
 
 ---
 
@@ -175,7 +175,7 @@ Get the facts book.
 **Parameters:**\
 **- text** `url` - The fact.
 
-**Return type:** [Image](docs.md#-image "Image object attributes")
+**Return type:** [Image](docs.md#image "Image object attributes")
 
 ---
 
@@ -189,7 +189,7 @@ Put a filter on an image.
 **- name** `string` - The filter name, see **Available options**.\
 **- image** `url` - The image to put the filter on.
 
-**Return type:** [Image](docs.md#-image "Image object attributes")
+**Return type:** [Image](docs.md#image "Image object attributes")
 
 ---
 
@@ -201,7 +201,7 @@ Get a "Don't touch the floor" meme with your text and image.
 **- text** `string` - The filter name, see **Available options**.\
 **- image** Optional[`url`] - The image to put the filter on.
 
-**Return type:** [Image](docs.md#-image "Image object attributes")
+**Return type:** [Image](docs.md#image "Image object attributes")
 
 ---
 
@@ -220,7 +220,7 @@ When da jokes goes over da head.
 **Parameters:**\
 **- image** `url` - The person's avatar.
 
-**Return type:** [Image](docs.md#-image "Image object attributes")
+**Return type:** [Image](docs.md#image "Image object attributes")
 
 ---
 
@@ -232,7 +232,7 @@ Make a custom Pornhub logo!
 **- text** `string` - The white part. ~~Porn~~\
 **- text2** `string` - The yellow part. ~~Hub~~
 
-**Return type:** [Image](docs.md#-image "Image object attributes")
+**Return type:** [Image](docs.md#image "Image object attributes")
 
 ---
 
@@ -251,7 +251,7 @@ When someone is being salty.
 **Parameters:**\
 **- image** `url` - The person's avatar.
 
-**Return type:** [Image](docs.md#-image "Image object attributes")
+**Return type:** [Image](docs.md#image "Image object attributes")
 
 ---
 
@@ -262,7 +262,7 @@ Make that scroll meme with your text.
 **Parameters:**\
 **- text** `url` - The scroll text.
 
-**Return type:** [Image](docs.md#-image "Image object attributes")
+**Return type:** [Image](docs.md#image "Image object attributes")
 
 ---
 
@@ -274,7 +274,7 @@ Ship someone or yourself with someone else.
 **- user** `url` - The user's avatar. \
 **- user2** `url` - Someone else's avatar.
 
-**Return type:** [Image](docs.md#-image "Image object attributes")
+**Return type:** [Image](docs.md#image "Image object attributes")
 
 ---
 
@@ -285,11 +285,11 @@ Get someones steam profile.
 **Parameters:**\
 **- profile** `string` - The user to look for.
 
-**Return type:** [Colour](docs.md#-steam "Image object attributes")
+**Return type:** [Steam](docs.md#steam "Image object attributes")
 
 ---
 
-### await alex_api.steam(text, dark, light)
+### await alex_api.supreme(text, dark, light)
 
 Make a custom supreme logo.
 
@@ -298,7 +298,7 @@ Make a custom supreme logo.
 **- dark** `bool` - Make the background dark. Defaults to False. \
 **- light** `bool` - Make the background light. Default to False.
 
-**Return type:** [Image](docs.md#-image "Image object attributes")
+**Return type:** [Image](docs.md#image "Image object attributes")
 
 ---
 
@@ -310,7 +310,7 @@ Throw someone in the trash bin 🚮
 **- face** `url` - Your avatar. \
 **- trash** `url` - Someone else's avatar.
 
-**Return type:** [Image](docs.md#-image "Image object attributes")
+**Return type:** [Image](docs.md#image "Image object attributes")
 
 ---
 
@@ -364,7 +364,7 @@ The name of colour
 The RGB values of colour
 
 #### Colour.rgb_values
-A [ColourRGB](docs.md#-colourrgb "ColourRGB object attributes") object
+A [ColourRGB](docs.md#colourrgb-1 "ColourRGB object attributes") object
 
 #### Colour.shade
 The colour's shades
@@ -398,13 +398,13 @@ The B values of the colour
 The object returned from `alex_api.steam()`
 
 #### Steam.id
-A [SteamID](docs.md#-steamid "SteamID object attributes") object
+A [SteamID](docs.md#steamid-1 "SteamID object attributes") object
 
 #### Steam.avatars
-A [SteamAvatar](docs.md#-steamavatar "SteamID object attributes") object
+A [SteamAvatar](docs.md#steamavatar "SteamID object attributes") object
 
 #### Steam.profile
-A [SteamProfile](docs.md#-steamprofile "SteamID object attributes") object
+A [SteamProfile](docs.md#steamprofile-1 "SteamID object attributes") object
 
 ---
 
