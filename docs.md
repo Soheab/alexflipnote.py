@@ -26,8 +26,8 @@ Generate a Minecraft achievement with custom text.
 
 **Parameters:**\
 **- text** `string` - Your text for the achievement.\
-**- icon**  - Optional[[int](docs.md#iconint)], Optional[[string](docs.md#iconstr)] 
-or Optional[[icon object](docs.md#iconobject)] - The icon you want
+**- icon**  - Optional[[int](docs.md#int-)], Optional[[string](docs.md#str-)] 
+or Optional[[icon object](docs.md#object-)] - The icon you want
    
 **Return type:** [Image](docs.md#image "Image object attributes")
 
@@ -88,7 +88,8 @@ Generate a Minecraft challenge with custom text.
 
 **Parameters:**\
 **- text** `string` - Your text for the achievement.\
-**- icon**  - Optional[[Icon](docs.md#icon "Icon object attributes")] - An Enum of the icon you want.
+**- icon**  - Optional[[int](docs.md#int-)], Optional[[string](docs.md#str-)] 
+or Optional[[icon object](docs.md#object-)] - The icon you want
    
 **Return type:** [Image](docs.md#image "Image object attributes")
 

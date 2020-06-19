@@ -62,6 +62,7 @@ async def achievement(ctx, text, icon: Union[int, str] = None):
     achivement_bytes = await achivement.read() # BytesIO
     await ctx.send(f"Rendered by {ctx.author}",
                     file=discord.File(achivement_bytes, filename="achievement.png")
+                    )
 
 # we did a Union[int, str] since the wrapper accepts a number or string for the icon, 
 see the icon section in docs to see what it accepts.
