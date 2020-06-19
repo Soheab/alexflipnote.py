@@ -1,3 +1,4 @@
+import enum
 import io
 
 
@@ -82,4 +83,51 @@ class Steam:
             self.state = data.get('state')
             self.privacy = data.get('privacy')
             self.time_created = data.get('timecreated')
-            self.vacbanned = data.get('vacbanned')
+
+
+class Icon(enum.Enum):
+    grass_block = 1
+    diamond = 2
+    diamond_sword = 3
+    creeper = 4
+    pig = 5
+    tnt = 6
+    cookie = 7
+    heart = 8
+    bed = 9
+    cake = 10
+    sign = 11
+    rail = 12
+    crafting_bench = 13
+    redstone = 14
+    fire = 15
+    cobweb = 16
+    chest = 17
+    furnace = 18
+    book = 19
+    stone_block = 20
+    wooden_plank_block = 21
+    iron_ingot = 22
+    gold_ingot = 23
+    wooden_door = 24
+    iron_door = 25
+    diamond_chestplate = 26
+    flint_and_steel = 27
+    glass_bottle = 28
+    splash_potion = 29
+    creeper_spawnegg = 30
+    coal = 31
+    iron_sword = 32
+    bow = 33
+    arrow = 34
+    iron_chestplate = 35
+    bucket = 36
+    bucket_with_water = 37
+    bucket_with_lava = 38
+    bucket_with_milk = 39
+    diamond_boots = 40
+    wooden_hoe = 41
+    bread = 42
+    wooden_sword = 43
+    bone = 44
+

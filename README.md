@@ -34,17 +34,42 @@ print(await afa.cats())
 >>> https://api.alexflipnote.dev/cats/grRlHyi-AL8_cats.jpg
 ``` 
 
-#### Get supreme logo:
+#### Make a custom supreme logo:
 
 ```py
 import alexflipnote
 
 afa = alexflipnote.Client()
 
-print(await afa.supreme("#some text, yes", dark=True)) # making it dark, there is also light = True.
+print(await afa.supreme("#some text, yes", dark=True)) # making it dark, there is also light option.
 >>> https://api.alexflipnote.dev/supreme?text=%23some%20text,%20yes&dark=true
 ``` 
 
+#### Minecraft achievement using [discord.py](https://github.com/Rapptz/discord.py)
+
+```py
+import alexflipnote
+from typing import Union
+
+# just a example, alexflipnote client doesn't have to be under bot.
+
+bot = commands.Bot(command_prefix="!")
+alex_api = alexflipnote.Client()
+
+@bot.command()
+async def achievement(ctx, text, icon: Union[int, str] = None): 
+    achivement = await alex_api.achievement(text=text, icon=icon)
+    achivement_bytes = await achivement.read() # BytesIO
+    await ctx.send(f"Rendered by {ctx.author}",
+                    file=discord.File(achivement_bytes, filename="achievement.png")
+
+# we did a Union[int, str] since the wrapper accepts a number or string for the icon, 
+see the icon section in docs to see what it accepts.
+
+# invoke: !achievement "nice job!" diamond_sword
+
+bot.run("TOKEN")
+```
 # Made by
 
 This wrapper is made Soheab_#6240, contact me for anything related to this wrapper.

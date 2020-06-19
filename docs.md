@@ -26,7 +26,8 @@ Generate a Minecraft achievement with custom text.
 
 **Parameters:**\
 **- text** `string` - Your text for the achievement.\
-**- icon** `integer` - Icon number, 1-39. [See them here](https://i.alexflipnote.dev/9ZXAP35.png)
+**- icon**  - Optional[[int](docs.md#iconint)], Optional[[string](docs.md#iconstr)] 
+or Optional[[icon object](docs.md#iconobject)] - The icon you want
    
 **Return type:** [Image](docs.md#image "Image object attributes")
 
@@ -87,7 +88,7 @@ Generate a Minecraft challenge with custom text.
 
 **Parameters:**\
 **- text** `string` - Your text for the achievement.\
-**- icon** `integer` - Icon number.
+**- icon**  - Optional[[Icon](docs.md#icon "Icon object attributes")] - An Enum of the icon you want.
    
 **Return type:** [Image](docs.md#image "Image object attributes")
 
@@ -468,3 +469,42 @@ Time when user profile was created.
 
 #### SteamProfile.vacbanned
 True or False if user is VAC Banned
+
+---
+
+### Icon
+---
+The object you pass to the icon arg for `alex_api.achievement()` and `alex_api.challenge()`
+
+#### int ::
+
+**1:** `grass_block`, **2:** `diamond`, **3:** `diamond_sword`, **4:** `creeper`, **5:** `pig`, \
+**6:** `tnt`, **7:** `cookie`, **8:** `heart`, **9:** `bed`, **10:** `cake`, \
+**11:** `sign` **12:** `rail` **13:** `crafting_bench` **14:** `redstone`, **15:** `fire`, \
+**16:** `cobweb`, **17:** `chest`, **18:** `furnace`, **19:** `book`, **20:** `stone_block`, \
+**21:** `wooden_plank_block`, **22:** `iron_ingot`, **23:** `gold_ingot`, **24:** `wooden_door`, **25:** `iron_door`, \
+**26:** `diamond_chestplate`, **27:** `flint_and_steel`, **28:** `glass_bottle`, **29:** `splash_potion`, **30:** `creeper_spawnegg`, \
+**31:** `coal`, **32:** `iron_sword`, **33:** `bow`, **34:** `arrow`, **35:** `iron_chestplate`, \
+**36:** `bucket`, **37:** `bucket_with_water`, **38:** `bucket_with_lava`, **39:** `bucket_with_milk`, **40:** `diamond_boots`, \
+**41:** `wooden_hoe`, **42:** `bread`, **43:** `wooden_sword`, **44:** `bone`
+
+#### str ::
+
+`grass_block`, `diamond`, `diamond_sword`, `creeper`, `pig`, `tnt`, `cookie`, `heart`, `bed`, `cake`,
+`sign`, `rail`, `crafting_bench`, `redstone`, `fire`, `cobweb`, `chest`, `furnace`, `book`, `stone_block`,
+`wooden_plank_block`, `iron_ingot`, `gold_ingot`, `wooden_door`, `iron_door`, `diamond_chestplate`, `flint_and_steel`, `glass_bottle`, `splash_potion`, `creeper_spawnegg`,
+`coal`, `iron_sword`, `bow`, `arrow`, `iron_chestplate`, `bucket`, `bucket_with_water`, `bucket_with_lava`, `bucket_with_milk`, `diamond_boots`,
+`wooden_hoe`, `bread`, `wooden_sword`, `bone`
+
+#### object ::
+
+`Icon.grass_block`, `Icon.diamond`, `Icon.diamond_sword`, `Icon.creeper`, `Icon.pig`, `Icon.tnt`,
+`Icon.cookie`, `Icon.heart`, `Icon.bed`, `Icon.cake`, `Icon.sign`, `Icon.rail`,
+`Icon.crafting_bench`, `Icon.redstone`, `Icon.fire`, `Icon.cobweb`, `Icon.chest`, `Icon.furnace`,
+`Icon.book`, `Icon.stone_block`, `Icon.wooden_plank_block`, `Icon.iron_ingot`, `Icon.gold_ingot`, `Icon.wooden_door`,
+`Icon.iron_door`, `Icon.diamond_chestplate`, `Icon.flint_and_steel`, `Icon.glass_bottle`, `Icon.splash_potion`, `Icon.creeper_spawnegg`,
+`Icon.coal`, `Icon.iron_sword`, `Icon.bow`, `Icon.arrow`, `Icon.iron_chestplate`, `Icon.bucket`,
+`Icon.bucket_with_water`, `Icon.bucket_with_lava`, `Icon.bucket_with_milk`, `Icon.diamond_boots`, `Icon.wooden_hoe`, `Icon.bread`,
+`Icon.wooden_sword`, `Icon.bone`,
+
+---

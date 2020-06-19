@@ -6,7 +6,8 @@ import aiohttp
 import url_regex
 
 from . import http
-from .classes import Colour, Steam, Image
+from .classes import Colour, Steam, Image, Icon
+from typing import Union
 
 
 class BadRequest(Exception):
@@ -26,11 +27,23 @@ class Client:
     def _api_url(self, path):
         return self._BASE_URL + path
 
-    async def achievement(self, text, icon: int = ""):
-        if icon != "":
-            icon = f"&icon={icon}"
+    async def achievement(self, text, icon: Union[int, str, Icon] = None):
+        text = text.replace(" ", "%20").replace("#", "%23")
+        actual_icon = ""
+        if icon is not None:
+            if isinstance(icon, int):
+                actual_icon = Icon(icon).value
 
-        url = self._api_url(f"achievement?text={text}{icon}")
+            elif isinstance(icon, str):
+                actual_icon = Icon[icon].value
+
+            elif isinstance(icon, Icon):
+                actual_icon = Icon.value
+
+        if icon is not None:
+            actual_icon = f"&icon={actual_icon}"
+
+        url = self._api_url(f"achievement?text={text}{actual_icon}")
 
         return Image(url, self._http_client)
 
@@ -78,12 +91,23 @@ class Client:
 
         return url['file']
 
-    async def challenge(self, text, icon: int = ""):
-        if icon is not None:
-            icon = f"&icon={icon}"
-
+    async def challenge(self, text, icon: Union[int, str, Icon] = None):
         text = text.replace(" ", "%20").replace("#", "%23")
-        url = self._api_url(f"challenge?text={text}{icon}")
+        actual_icon = ""
+        if icon is not None:
+            if isinstance(icon, int):
+                actual_icon = Icon(icon).value
+
+            elif isinstance(icon, str):
+                actual_icon = Icon[icon].value
+
+            elif isinstance(icon, Icon):
+                actual_icon = Icon.value
+
+        if icon is not None:
+            actual_icon = f"&icon={actual_icon}"
+
+        url = self._api_url(f"challenge?text={text}{actual_icon}")
 
         return Image(url, self._http_client)
 
@@ -103,7 +127,7 @@ class Client:
     color = colour  # aliases to colour
 
     async def github_colours(self):
-        response = await self._http_client.get(str(self._api_url("color/github")), res_method="json")
+        response = await self._http_client.get(str(self._api_url("color/github")), res_method = "json")
 
         return response
 
