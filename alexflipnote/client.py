@@ -54,7 +54,7 @@ class Client:
         if get_url.links[0].domain != "cdn.discordapp.com":
             raise BadRequest("Only Discord CDN URLs are allowed...")
 
-        url = self._api_url("amiajoke?image={image}")
+        url = self._api_url(f"amiajoke?image={image}")
 
         return Image(url, self._http_client)
 
@@ -65,7 +65,7 @@ class Client:
         if get_url.links[0].domain != "cdn.discordapp.com":
             raise BadRequest("Only Discord CDN URLs are allowed...")
 
-        url = self._api_url("bad?image={image}")
+        url = self._api_url(f"bad?image={image}")
 
         return Image(url, self._http_client)
 
@@ -140,7 +140,7 @@ class Client:
         if not re.search(r'^(?:[0-9a-fA-F]{3}){1,2}$', colour):
             raise BadRequest("Invalid HEX value. You're only allowed to enter HEX (0-9 & A-F)")
 
-        url = self._api_url(f"colour/image/colour")
+        url = self._api_url(f"colour/image/{colour}")
 
         return Image(url, self._http_client)
 
