@@ -83,6 +83,7 @@ class Steam:
             self.state = data.get('state')
             self.privacy = data.get('privacy')
             self.time_created = data.get('timecreated')
+            self.vacbanned = data.get('vacbanned')
 
 
 class Icon(enum.Enum):
