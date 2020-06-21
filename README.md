@@ -20,7 +20,8 @@ Install the package by doing one of the following commands:
 
 # Documentation
 ---
-See the full and detailed [docs here](docs.md)
+See the full and detailed [docs here](https://github.com/Soheab/alexflipnote.py/blob/master/docs.md)
+
 # Examples
 
 #### Get a random cat pic:
