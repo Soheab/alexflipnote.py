@@ -1,5 +1,7 @@
 [![PyPi Version](https://img.shields.io/pypi/v/alexflipnote.py.svg)](https://pypi.python.org/pypi/alexflipnote.py/)
+[![Downloads](https://pepy.tech/badge/alexflipnote-py)](https://pepy.tech/project/alexflipnote-py)
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
+
 
 # Alexflipnote.py
  An easy to use Python Wrapper for the AlexFlipnote API
@@ -20,7 +22,8 @@ Install the package by doing one of the following commands:
 
 # Documentation
 ---
-See the full and detailed [docs here](docs.md)
+See the full and detailed [docs here](https://github.com/Soheab/alexflipnote.py/blob/master/docs.md)
+
 # Examples
 
 #### Get a random cat pic:
