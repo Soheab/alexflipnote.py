@@ -28,7 +28,7 @@ Generate a Minecraft achievement with custom text.
 **- text** `string` - Your text for the achievement.\
 **- icon**  - Optional[[int](docs.md#int-)], Optional[[string](docs.md#str-)] 
 or Optional[[icon object](docs.md#object-)] - The icon you want
-   
+
 **Return type:** [Image](docs.md#image "Image object attributes")
 
 ---
@@ -39,7 +39,7 @@ Get an "am i a joke" picture with your image.
   
 **Parameters:**\
 **- image** `url` - URL of image you want.
-   
+
 **Return type:** [Image](docs.md#image "Image object attributes")
 
 ---
