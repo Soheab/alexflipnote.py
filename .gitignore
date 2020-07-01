@@ -1,6 +1,7 @@
 # Customm
 .idea
-
+test_api.py
+.github/workflows/python-publish.yml
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -127,3 +128,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+!/test_api.py
+!/test_api.py
+test_api.py
+test_api.py

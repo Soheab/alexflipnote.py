@@ -1,13 +1,12 @@
-import io
 import random
 import re
+from typing import Union
 
 import aiohttp
 import url_regex
 
-from . import http
 from .classes import Colour, Steam, Image, Icon
-from typing import Union
+from . import http
 
 
 class BadRequest(Exception):
@@ -39,6 +38,8 @@ class Client:
 
             elif isinstance(icon, Icon):
                 actual_icon = Icon.value
+            else:
+                raise BadRequest("Invalid icon. Icon can only be int, str or instance of Icon")
 
         if icon is not None:
             actual_icon = f"&icon={actual_icon}"
@@ -129,9 +130,9 @@ class Client:
     async def github_colours(self):
         response = await self._http_client.get(str(self._api_url("color/github")), res_method = "json")
 
-        return response
+        return dict(response)
 
-    github_color = github_colours  # aliases to github_colour
+    github_colors = github_colours  # aliases to github_colours
 
     async def colour_image(self, colour=None):
         if colour is None:
@@ -256,7 +257,7 @@ class Client:
     async def sadcat(self):
         url = await self._http_client.get(self._api_url("sadcat"), res_method = "json")
 
-        return url['file']
+        return url.get('file')
 
     async def salty(self, image: str):
         get_url = url_regex.UrlRegex(str(image))
@@ -331,4 +332,6 @@ class Client:
         return Image(url, self._http_client)
 
     async def close(self):
-        await self._http_client.close()
+        if not self._http_client.session.closed:
+            await self._http_client.close()
+        return

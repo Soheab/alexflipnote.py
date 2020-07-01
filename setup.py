@@ -5,6 +5,9 @@ with open('README.md') as f:
 
 setup(
     name = 'alexflipnote.py',
+    description = 'An easy to use Python Wrapper for the AlexFlipnote API',
+    long_description = readme,
+    long_description_content_type = 'text/markdown',
     version = '1.2.6',
     packages = ['alexflipnote'],
     url = 'https://github.com/Soheab/Alexflipnote.py',
@@ -12,9 +15,8 @@ setup(
     license = 'MIT',
     author = 'Soheab',
     author_email = '',
-    install_requires=['aiohttp', 'url_regex'],
-    description = 'An easy to use Python Wrapper for the AlexFlipnote API',
-    long_description=readme,
-    long_description_content_type='text/markdown',
-    python_requires='>=3.6',
+    install_requires = ['aiohttp', 'url_regex'],
+    keywords = ['alexflipnote', 'discord'],
+
+    python_requires = '>=3.6',
 )
