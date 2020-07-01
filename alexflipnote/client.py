@@ -314,19 +314,19 @@ class Client:
         return Image(url, self._http_client)
 
     async def trash(self, face: str, trash: str):
-        user_url = url_regex.UrlRegex(str(face))
-        if not user_url.detect:
+        face_url = url_regex.UrlRegex(str(face))
+        if not face_url.detect:
             raise BadRequest("String passed is not a valid URL.")
-        if user_url.links[0].domain != "cdn.discordapp.com":
+        if face_url.links[0].domain != "cdn.discordapp.com":
             raise BadRequest("Only Discord CDN URLs are allowed...")
 
-        user2_url = url_regex.UrlRegex(str(trash))
-        if not user2_url.detect:
+        trash_url = url_regex.UrlRegex(str(trash))
+        if not trash_url.detect:
             raise BadRequest("String passed is not a valid URL.")
-        if user2_url.links[0].domain != "cdn.discordapp.com":
+        if trash_url.links[0].domain != "cdn.discordapp.com":
             raise BadRequest("Only Discord CDN URLs are allowed...")
 
-        url = self._api_url(f"trash?user={face}&user2={trash}")
+        url = self._api_url(f"trash?face={face}&trash={trash}")
 
         return Image(url, self._http_client)
 
