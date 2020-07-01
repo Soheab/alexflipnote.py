@@ -13,10 +13,15 @@ setup(
     url = 'https://github.com/Soheab/Alexflipnote.py',
     download_url = 'https://github.com/Soheab/alexflipnote.py/archive/1.2.6.tar.gz',
     license = 'MIT',
-    author = 'Soheab',
-    author_email = '',
+    author = 'Soheab_',
     install_requires = ['aiohttp', 'url_regex'],
     keywords = ['alexflipnote', 'discord'],
+    project_urls = {
+        "Discord": "https://discord.gg/alexflipnote",
+        "Source": "https://github.com/Soheab/alexflipnote.py",
+        "Documentation": "https://github.com/Soheab/alexflipnote.py/blob/master/docs.md",
+        "Issue tracker": "https://github.com/Soheab/alexflipnote.py/issues",
+    },
 
     python_requires = '>=3.6',
 )
