@@ -2,10 +2,13 @@
 
 import asyncio
 
-import aiohttp
+import aiohttp  # type: ignore
 
 
 # Removes the aiohttp ClientSession instance warning.
+import typing
+
+
 class HTTPSession(aiohttp.ClientSession):
     """ Abstract class for aiohttp. """
 
@@ -16,13 +19,11 @@ class HTTPSession(aiohttp.ClientSession):
 
 session = HTTPSession()
 
-#try:
-  #  session.my_loop.run_until_complete(session.close())
-#except RuntimeError:
-   # pass
+
+# session.my_loop.run_until_complete(session.close())
 
 
-async def query(url, method="get", res_method="text", *args, **kwargs):
+async def query(url, method: str = "get", res_method: str = "text", *args, **kwargs):
     async with getattr(session, method.lower())(url, *args, **kwargs) as res:
         return await getattr(res, res_method)()
 
@@ -35,7 +36,7 @@ async def post(url, *args, **kwargs):
     return await query(url, "post", *args, **kwargs)
 
 
-async def close():
+async def close() -> None:
     if not session.closed:
         await session.close()
     return

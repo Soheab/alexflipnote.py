@@ -1,12 +1,12 @@
 import random
 import re
-from typing import Union
+from typing import Dict, Union
 
-import aiohttp
 import url_regex
+from aiohttp import ContentTypeError
 
+from alexflipnote import http
 from .classes import Colour, Steam, Image, Icon
-from . import http
 
 
 class BadRequest(Exception):
@@ -20,46 +20,45 @@ class NotFound(Exception):
 class Client:
     _BASE_URL = "https://api.alexflipnote.dev/"
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._http_client = http
 
-    def _api_url(self, path):
+    def _api_url(self, path: str) -> str:
         return self._BASE_URL + path
 
-    async def achievement(self, text, icon: Union[int, str, Icon] = None):
+    def _check_url(self, path: str, url: str):
+        get_url = url_regex.UrlRegex(str(url))
+        valid_domains = ["cdn.discordapp.com", "media.discordapp.net"]
+        if get_url.links[0].domain not in valid_domains:
+            raise BadRequest("Only Discord CDN URLs are allowed...")
+        return self._api_url(path + url)
+
+    async def achievement(self, text: str, icon: Union[int, str, Icon] = None) -> Image:
         text = text.replace(" ", "%20").replace("#", "%23")
         actual_icon = ""
         if icon is not None:
             if isinstance(icon, int):
-                actual_icon = Icon(icon).value
-
+                actual_icon = Icon(int(icon)).value
             elif isinstance(icon, str):
-                actual_icon = Icon[icon].value
-
+                actual_icon = Icon[str(icon)].value
             elif isinstance(icon, Icon):
                 actual_icon = Icon.value
             else:
                 raise BadRequest("Invalid icon. Icon can only be int, str or instance of Icon")
 
-        if icon is not None:
+        if icon is not None and actual_icon != "":
             actual_icon = f"&icon={actual_icon}"
 
         url = self._api_url(f"achievement?text={text}{actual_icon}")
 
         return Image(url, self._http_client)
 
-    async def amiajoke(self, image: str):
-        get_url = url_regex.UrlRegex(str(image))
-        if not get_url.detect:
-            raise BadRequest("String passed is not a valid URL.")
-        if get_url.links[0].domain != "cdn.discordapp.com":
-            raise BadRequest("Only Discord CDN URLs are allowed...")
-
-        url = self._api_url(f"amiajoke?image={image}")
+    async def amiajoke(self, image: str) -> Image:
+        url = self._check_url("amiajoke?image=", image)
 
         return Image(url, self._http_client)
 
-    async def bad(self, image: str):
+    async def bad(self, image: str) -> Image:
         get_url = url_regex.UrlRegex(str(image))
         if not get_url.detect:
             raise BadRequest("String passed is not a valid URL.")
@@ -70,49 +69,49 @@ class Client:
 
         return Image(url, self._http_client)
 
-    async def birb(self):
-        url = await self._http_client.get(self._api_url("birb"), res_method = "json")
+    async def birb(self) -> str:
+        url: Dict = await self._http_client.get(self._api_url("birb"), res_method = "json")
 
         return url['file']
 
-    async def calling(self, text):
+    async def calling(self, text: str) -> Image:
         text = text.replace(" ", "%20").replace("#", "%23")
         url = self._api_url(f"calling?text={text}")
 
         return Image(url, self._http_client)
 
-    async def captcha(self, text):
+    async def captcha(self, text: str) -> Image:
         text = text.replace(" ", "%20").replace("#", "%23")
         url = self._api_url(f"captcha?text={text}")
 
         return Image(url, self._http_client)
 
-    async def cats(self):
-        url = await self._http_client.get(self._api_url("cats"), res_method = "json")
+    async def cats(self) -> str:
+        url: Dict = await self._http_client.get(self._api_url("cats"), res_method = "json")
 
         return url['file']
 
-    async def challenge(self, text, icon: Union[int, str, Icon] = None):
+    async def challenge(self, text: str, icon: Union[int, str, Icon] = None) -> Image:
         text = text.replace(" ", "%20").replace("#", "%23")
         actual_icon = ""
         if icon is not None:
             if isinstance(icon, int):
-                actual_icon = Icon(icon).value
-
+                actual_icon = Icon(int(icon)).value
             elif isinstance(icon, str):
-                actual_icon = Icon[icon].value
-
+                actual_icon = Icon[str(icon)].value
             elif isinstance(icon, Icon):
                 actual_icon = Icon.value
+            else:
+                raise BadRequest("Invalid icon. Icon can only be int, str or instance of Icon")
 
-        if icon is not None:
+        if icon is not None and actual_icon != "":
             actual_icon = f"&icon={actual_icon}"
 
         url = self._api_url(f"challenge?text={text}{actual_icon}")
 
         return Image(url, self._http_client)
 
-    async def colour(self, colour=None):
+    async def colour(self, colour=None) -> Colour:
         if colour is None:
             colour = "%06x" % random.randint(0, 0xFFFFFF)
 
@@ -127,14 +126,14 @@ class Client:
 
     color = colour  # aliases to colour
 
-    async def github_colours(self):
+    async def github_colours(self) -> dict:
         response = await self._http_client.get(str(self._api_url("color/github")), res_method = "json")
 
         return dict(response)
 
     github_colors = github_colours  # aliases to github_colours
 
-    async def colour_image(self, colour=None):
+    async def colour_image(self, colour=None) -> Image:
         if colour is None:
             colour = "%06x" % random.randint(0, 0xFFFFFF)
 
@@ -147,7 +146,7 @@ class Client:
 
     color_image = colour_image  # aliases to colour_image
 
-    async def colour_image_gradient(self, colour=None):
+    async def colour_image_gradient(self, colour=None) -> Image:
         if colour is None:
             colour = "%06x" % random.randint(0, 0xFFFFFF)
 
@@ -158,7 +157,7 @@ class Client:
 
         return Image(url, self._http_client)
 
-    async def colourify(self, image, colour="", background=""):
+    async def colourify(self, image: str, colour="", background="") -> Image:
         get_url = url_regex.UrlRegex(str(image))
         if not get_url.detect:
             raise BadRequest("String passed is not a valid URL.")
@@ -179,7 +178,7 @@ class Client:
 
         return Image(url, self._http_client)
 
-    async def didyoumean(self, top, bottom):
+    async def didyoumean(self, top: str, bottom: str) -> Image:
         top = top.replace(" ", "%20").replace("#", "%23")
         bottom = bottom.replace(" ", "%20").replace("#", "%23")
 
@@ -187,25 +186,25 @@ class Client:
 
         return Image(url, self._http_client)
 
-    async def dogs(self):
-        url = await self._http_client.get(self._api_url("dogs"), res_method = "json")
+    async def dogs(self) -> str:
+        url: Dict = await self._http_client.get(self._api_url("dogs"), res_method = "json")
 
         return url['file']
 
-    async def drake(self, top, bottom):
+    async def drake(self, top: str, bottom: str) -> Image:
         top = top.replace(" ", "%20").replace("#", "%23")
         bottom = bottom.replace(" ", "%20").replace("#", "%23")
         url = self._api_url(f"drake?top={top}&bottom={bottom}")
 
         return Image(url, self._http_client)
 
-    async def facts(self, text):
+    async def facts(self, text: str) -> Image:
         text = text.replace(" ", "%20").replace("#", "%23")
         url = self._api_url(f"facts?text={text}")
 
         return Image(url, self._http_client)
 
-    async def filter(self, name, image: str):
+    async def filter(self, name: str, image: str) -> Image:
         options = ['blur', 'invert', 'b&w', 'deepfry', 'snow', 'gay',
                    'pixelate', 'jpegify', 'magik', 'communist']
         if name not in options:
@@ -221,7 +220,7 @@ class Client:
 
         return Image(url, self._http_client)
 
-    async def floor(self, text, image: str = None):
+    async def floor(self, text: str, image: str = None) -> Image:
         text = text.replace(" ", "%20").replace("#", "%23")
         if image is not None:
             get_url = url_regex.UrlRegex(str(image))
@@ -232,12 +231,12 @@ class Client:
 
         return Image(url, self._http_client)
 
-    async def fml(self):
-        url = await self._http_client.get(self._api_url("fml"), res_method = "json")
+    async def fml(self) -> str:
+        url: Dict = await self._http_client.get(self._api_url("fml"), res_method = "json")
 
-        return url.get("text")
+        return url["text"]
 
-    async def jokeoverhead(self, image: str):
+    async def jokeoverhead(self, image: str) -> Image:
         get_url = url_regex.UrlRegex(str(image))
         if not get_url.detect:
             raise BadRequest("String passed is not a valid URL.")
@@ -247,19 +246,19 @@ class Client:
 
         return Image(url, self._http_client)
 
-    async def pornhub(self, text, text2):
+    async def pornhub(self, text: str, text2: str) -> Image:
         text = text.replace(" ", "%20").replace("#", "%23")
         text2 = text2.replace(" ", "%20").replace("#", "%23")
         url = self._api_url(f"pornhub?text={text}&text2={text2}")
 
         return Image(url, self._http_client)
 
-    async def sadcat(self):
-        url = await self._http_client.get(self._api_url("sadcat"), res_method = "json")
+    async def sadcat(self) -> str:
+        url: Dict = await self._http_client.get(self._api_url("sadcat"), res_method = "json")
 
-        return url.get('file')
+        return url['file']
 
-    async def salty(self, image: str):
+    async def salty(self, image: str) -> Image:
         get_url = url_regex.UrlRegex(str(image))
         if not get_url.detect:
             raise BadRequest("String passed is not a valid URL.")
@@ -269,13 +268,14 @@ class Client:
 
         return Image(url, self._http_client)
 
-    async def scroll(self, text):
+    async def scroll(self, text: str) -> Image:
         text = text.replace(" ", "%20").replace("#", "%23")
         url = self._api_url(f"scroll?text={text}")
 
         return Image(url, self._http_client)
+    # create a subclass and override the handler methods
 
-    async def ship(self, user: str, user2: str):
+    async def ship(self, user: str, user2: str) -> Image:
         user_url = url_regex.UrlRegex(str(user))
         if not user_url.detect:
             raise BadRequest("String passed is not a valid URL.")
@@ -292,15 +292,15 @@ class Client:
 
         return Image(url, self._http_client)
 
-    async def steam(self, profile):
+    async def steam(self, profile: str) -> Steam:
         try:
             response = await self._http_client.get(self._api_url(f"steam/user/{profile}"), res_method = "json")
-        except aiohttp.ContentTypeError:
+        except ContentTypeError:
             raise NotFound("User not found on steam.")
 
         return Steam(response)
 
-    async def supreme(self, text, dark=False, light=False):
+    async def supreme(self, text: str, dark: bool = False, light: bool = False) -> Image:
         text = text.replace(" ", "%20").replace("#", "%23")
         darkorlight = ""
         if dark:
@@ -314,7 +314,7 @@ class Client:
 
         return Image(url, self._http_client)
 
-    async def trash(self, face: str, trash: str):
+    async def trash(self, face: str, trash: str) -> Image:
         face_url = url_regex.UrlRegex(str(face))
         if not face_url.detect:
             raise BadRequest("String passed is not a valid URL.")
@@ -331,7 +331,7 @@ class Client:
 
         return Image(url, self._http_client)
 
-    async def close(self):
+    async def close(self) -> None:
         if not self._http_client.session.closed:
             await self._http_client.close()
         return

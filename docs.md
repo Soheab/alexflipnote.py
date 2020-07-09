@@ -1,4 +1,4 @@
-# AlexFlipnote.py Official Docs
+# AlexFlipnote.py | Docs
 
 For any questions and support for the wrapper, you can visit the [AlexFlipnote server](https://discord.gg/alexflipnote "AlexFlipnote")
  
