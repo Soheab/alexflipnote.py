@@ -1,9 +1,6 @@
 import enum
 from io import BytesIO
 
-import typing
-from alexflipnote.http import HTTPSession
-
 
 class Image:
     __slots__ = ("url", "_http_client")
@@ -24,72 +21,72 @@ class Colour:
     __slots__ = ("blackorwhite_text", "brightness", "hex", "image", "image_gradient",
                  "int", "name", "rgb", "rgb_values", "shade", "tint")
 
-    def __init__(self, data: typing.Dict[str, typing.Any]) -> None:
+    def __init__(self, data) -> None:
         self.blackorwhite_text = data.get('blackorwhite_text')
-        self.brightness = data['brightness']
-        self.hex = data['hex']
-        self.image = data['image']
-        self.image_gradient = data['image_gradient']
-        self.int = data['int']
-        self.name = data['name']
-        self.rgb = data['rgb']
-        self.rgb_values = self.ColourRGB(data)
-        self.shade = data['shade']
-        self.tint = data['tint']
+        self.brightness = data.get('brightness')
+        self.hex = data.get('hex')
+        self.image = data.get('image')
+        self.image_gradient = data.get('image_gradient')
+        self.int = data.get('int')
+        self.name = data.get('name')
+        self.rgb = data.get('rgb')
+        self.rgb_values = self.ColourRGB(data.get('rgb_values'))
+        self.shade = data.get('shade')
+        self.tint = data.get('tint')
 
     class ColourRGB:
         __slots__ = ("all", "r", "g", "b")
 
-        def __init__(self, data: typing.Dict[str, typing.Any]) -> None:
-            self.all = data['rgb_values']
-            self.r = self.all['r']
-            self.g = self.all['g']
-            self.b = self.all['b']
+        def __init__(self, data) -> None:
+            self.all = data
+            self.r = data.get('r')
+            self.g = data.get('g')
+            self.b = data.get('b')
 
 
 class Steam:
     __slots__ = ("id", "avatars", "profile")
 
-    def __init__(self, data: typing.Dict[str, typing.Any]) -> None:
-        self.id = self.SteamID(data)
-        self.avatars = self.SteamAvatar(data)
-        self.profile = self.SteamProfile(data)
+    def __init__(self, data) -> None:
+        self.id = self.SteamID(data.get('id'))
+        self.avatars = self.SteamAvatar(data.get('avatars'))
+        self.profile = self.SteamProfile(data.get('profile'))
 
     class SteamID:
-        __slots__ = ("steamid3", "steamid32", "steamid64", "custom_url")
+        __slots__ = ("all", "steamid3", "steamid32", "steamid64", "custom_url")
 
-        def __init__(self, data: typing.Dict[str, typing.Any]) -> None:
-            _data = data['id']
-            self.steamid3 = _data['steamid3']
-            self.steamid32 = _data['steamid32']
-            self.steamid64 = _data['steamid64']
-            self.custom_url = _data['customurl']
+        def __init__(self, data) -> None:
+            self.all = dict(data)
+            self.steamid3 = data.get('steamid3')
+            self.steamid32 = data.get('steamid32')
+            self.steamid64 = data.get('steamid64')
+            self.custom_url = data.get('customurl')
 
     class SteamAvatar:
-        __slots__ = ("avatar", "avatar_medium", "avatar_full")
+        __slots__ = ("all", "avatar", "avatar_medium", "avatar_full")
 
-        def __init__(self, data: typing.Dict[str, typing.Any]) -> None:
-            _data = data['avatars']
-            self.avatar = _data['avatar']
-            self.avatar_medium = _data['avatarmedium']
-            self.avatar_full = _data['avatarfull']
+        def __init__(self, data) -> None:
+            self.all = dict(data)
+            self.avatar = data.get('avatar')
+            self.avatar_medium = data.get('avatarmedium')
+            self.avatar_full = data.get('avatarfull')
 
     class SteamProfile:
-        __slots__ = ("username", "real_name", "url", "summary", "background",
+        __slots__ = ("all", "username", "real_name", "url", "summary", "background",
                      "location", "state", "privacy", "time_created", "vacbanned")
 
-        def __init__(self, data: typing.Dict[str, typing.Any]) -> None:
-            _data = data['profile']
-            self.username = _data['username']
-            self.real_name = _data['realname']
-            self.url = _data['url']
-            self.summary = _data['summary']
-            self.background = _data['background']
-            self.location = _data['location']
-            self.state = _data['state']
-            self.privacy = _data['privacy']
-            self.time_created = _data['timecreated']
-            self.vacbanned: bool = _data['vacbanned']
+        def __init__(self, data) -> None:
+            self.all = dict(data)
+            self.username = data.get('username')
+            self.real_name = data.get('realname')
+            self.url = data.get('url')
+            self.summary = data.get('summary')
+            self.background = data.get('background')
+            self.location = data.get('location')
+            self.state = data.get('state')
+            self.privacy = data.get('privacy')
+            self.time_created = data.get('timecreated')
+            self.vacbanned = data.get('vacbanned')
 
 
 class Icon(enum.Enum):

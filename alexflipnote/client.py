@@ -1,4 +1,4 @@
-from random import randint as rand
+from random import randint
 from re import search
 from typing import Union
 
@@ -47,12 +47,12 @@ class Client:
     def _api_url(self, path: str) -> str:
         return self._BASE_URL + path
 
-    def _check_url(self, image_url: str, path: str = None, only_image=False):
+    def _check_url(self, image_url: str, path: str = None):
         get_url = UrlRegex(str(image_url))
         valid_domains = ["cdn.discordapp.com", "media.discordapp.net"]
         if get_url.links[0].domain not in valid_domains:
             raise BadRequest("Only Discord CDN URLs are allowed...")
-        if path is None and only_image is True:
+        if path is None:
             return image_url
         return self._api_url(path + image_url)
 
@@ -87,7 +87,7 @@ class Client:
 
     async def colour(self, colour=None) -> Colour:
         if colour is None:
-            colour = "%06x" % rand(0, 0xFFFFFF)
+            colour = "%06x" % randint(0, 0xFFFFFF)
 
         if not search(r'^(?:[0-9a-fA-F]{3}){1,2}$', colour):
             raise BadRequest("Invalid HEX value. You're only allowed to enter HEX (0-9 & A-F)")
@@ -181,7 +181,7 @@ class Client:
 
     async def colour_image(self, colour=None) -> Image:
         if colour is None:
-            colour = "%06x" % rand(0, 0xFFFFFF)
+            colour = "%06x" % randint(0, 0xFFFFFF)
 
         if not search(r'^(?:[0-9a-fA-F]{3}){1,2}$', colour):
             raise BadRequest("Invalid HEX value. You're only allowed to enter HEX (0-9 & A-F)")
@@ -192,7 +192,7 @@ class Client:
 
     async def colour_image_gradient(self, colour=None) -> Image:
         if colour is None:
-            colour = "%06x" % rand(0, 0xFFFFFF)
+            colour = "%06x" % randint(0, 0xFFFFFF)
 
         if not search(r'^(?:[0-9a-fA-F]{3}){1,2}$', colour):
             raise BadRequest("Invalid HEX value. You're only allowed to enter HEX (0-9 & A-F)")
@@ -282,8 +282,8 @@ class Client:
         return Image(url, self._http_client)
 
     async def ship(self, user: str, user2: str) -> Image:
-        user_url = self._check_url(user, only_image = True)
-        user2_url = self._check_url(user2, only_image = True)
+        user_url = self._check_url(user)
+        user2_url = self._check_url(user2)
         url = self._api_url(f"ship?user={user_url}&user2={user2_url}")
 
         return Image(url, self._http_client)
@@ -303,8 +303,8 @@ class Client:
         return Image(url, self._http_client)
 
     async def trash(self, face: str, trash: str) -> Image:
-        face_url = self._check_url(face, only_image = True)
-        trash_url = self._check_url(trash, only_image = True)
+        face_url = self._check_url(face)
+        trash_url = self._check_url(trash)
 
         url = self._api_url(f"trash?face={face_url}&trash={trash_url}")
 

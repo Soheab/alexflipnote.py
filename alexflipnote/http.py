@@ -5,10 +5,6 @@ import asyncio
 import aiohttp  # type: ignore
 
 
-# Removes the aiohttp ClientSession instance warning.
-import typing
-
-
 class HTTPSession(aiohttp.ClientSession):
     """ Abstract class for aiohttp. """
 
@@ -18,9 +14,6 @@ class HTTPSession(aiohttp.ClientSession):
 
 
 session = HTTPSession()
-
-
-# session.my_loop.run_until_complete(session.close())
 
 
 async def query(url, method: str = "get", res_method: str = "text", *args, **kwargs):

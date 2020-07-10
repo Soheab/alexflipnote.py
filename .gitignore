@@ -2,7 +2,7 @@
 .idea
 test_api.py
 changelog.md
-
+.dmypy.json
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
