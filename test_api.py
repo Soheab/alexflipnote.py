@@ -9,7 +9,7 @@ async def lmao():
     lol = "https://cdn.discordapp.com/avatars/150665783268212746/48003cb74f0c32bcdd3cd18c1a2bfe2c.png?size=1024"
     lol2 = "https://google.com/"
     #return print(await alex.amiajoke(lol))
-    print(await alex.achievement("ahahahahah"))
+    print(await alex.achievement("kjansdjksandjs da!ad d wd#$%*@ADADD:;ADASDA^ADAD_©"))
     print(await alex.amiajoke(lol))
     print(await alex.challenge("ah yes"))
     print(await alex.trash(
