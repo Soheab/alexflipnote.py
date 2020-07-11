@@ -3,7 +3,7 @@ from random import randint
 from re import search
 from typing import Union
 
-from aiohttp import ClientSession, ContentTypeError
+from aiohttp import ClientSession
 
 from .classes import Colour, Steam, Image, Icon
 
@@ -47,6 +47,10 @@ class Client:
             text = await response.text()
             get_error = (search('<p>(.+?)</p>', text).group()).strip('</p>')
             raise BadRequest(get_error)
+        if response.status == 404:
+            text = await response.text()
+            get_error = (search('<p>(.+?)</p>', text).group()).strip('</p>')
+            raise NotFound(get_error)
         return url
 
     # Json/URL
@@ -98,11 +102,11 @@ class Client:
     # Steam
 
     async def steam(self, profile: str) -> Steam:
-        try:
-            response = await self._session.get(f"{self._api_url}/steam/user/{profile}")
-            profile = await response.json()
-        except ContentTypeError:
+        response = await self._session.get(f"{self._api_url}/steam/user/{profile}")
+        if response.status == 404:  # maybe remove and let _check_url handle it.
             raise NotFound("User not found on steam.")
+
+        profile = await response.json()
 
         return Steam(profile)
 

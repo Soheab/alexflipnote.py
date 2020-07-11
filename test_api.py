@@ -16,7 +16,7 @@ async def lmao():
         "https://cdn.discordapp.com/avatars/150665783268212746/48003cb74f0c32bcdd3cd18c1a2bfe2c.png?size=1024",
         "https://cdn.discordapp.com/avatars/374913578655809548/970b349e16461d81e15f2b81296a43d6.png?size=1024"
     ))
-    print((await alex.steam('alexflipnote')))
+    print((await alex.steam('alexfldddipnote')))
     print(await alex.captcha('ah yes'))
     print((await alex.color('666666')))
     print(await alex.colourify(
