@@ -1,8 +1,8 @@
 # Customm
 .idea
 test_api.py
-changelog.md
 .dmypy.json
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -123,12 +123,9 @@ venv.bak/
 
 # mypy
 .mypy_cache/
-.dmypy.json
 dmypy.json
 
 # Pyre type checker
 .pyre/
 !/test_api.py
-!/test_api.py
-test_api.py
-test_api.py
+!/alexflipnote/http.py

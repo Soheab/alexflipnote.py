@@ -3,17 +3,16 @@ from io import BytesIO
 
 
 class Image:
-    __slots__ = ("url", "_http_client")
 
-    def __init__(self, url: str, http_client) -> None:
+    def __init__(self, url: str, session) -> None:
         self.url = url
-        self._http_client = http_client
+        self._session = session
 
     def __str__(self) -> str:
         return self.url if self.url is not None else ''
 
     async def read(self) -> BytesIO:
-        _bytes = await self._http_client.get(str(self.url), res_method = "read")
+        _bytes = await self._session.get(str(self.url), res_method = "read")
         return BytesIO(_bytes)
 
 
@@ -53,30 +52,27 @@ class Steam:
         self.profile = self.SteamProfile(data.get('profile'))
 
     class SteamID:
-        __slots__ = ("all", "steamid3", "steamid32", "steamid64", "custom_url")
+        __slots__ = ("steamid3", "steamid32", "steamid64", "custom_url")
 
         def __init__(self, data) -> None:
-            self.all = dict(data)
             self.steamid3 = data.get('steamid3')
             self.steamid32 = data.get('steamid32')
             self.steamid64 = data.get('steamid64')
             self.custom_url = data.get('customurl')
 
     class SteamAvatar:
-        __slots__ = ("all", "avatar", "avatar_medium", "avatar_full")
+        __slots__ = ("avatar", "avatar_medium", "avatar_full")
 
         def __init__(self, data) -> None:
-            self.all = dict(data)
             self.avatar = data.get('avatar')
             self.avatar_medium = data.get('avatarmedium')
             self.avatar_full = data.get('avatarfull')
 
     class SteamProfile:
-        __slots__ = ("all", "username", "real_name", "url", "summary", "background",
+        __slots__ = ("username", "real_name", "url", "summary", "background",
                      "location", "state", "privacy", "time_created", "vacbanned")
 
         def __init__(self, data) -> None:
-            self.all = dict(data)
             self.username = data.get('username')
             self.real_name = data.get('realname')
             self.url = data.get('url')

@@ -1,15 +1,12 @@
+import asyncio
 from random import randint
 from re import search
 from typing import Union
 
-from aiohttp import ContentTypeError
-from url_regex import UrlRegex
+from aiohttp import ClientSession, ContentTypeError
 
-from alexflipnote import http
 from .classes import Colour, Steam, Image, Icon
 
-
-# Exceptions
 
 class BadRequest(Exception):
     pass
@@ -39,49 +36,50 @@ def _parse_text(text: str) -> str:
 
 
 class Client:
-    _BASE_URL = "https://api.alexflipnote.dev/"
 
     def __init__(self) -> None:
-        self._http_client = http
+        self._session = ClientSession(loop = asyncio.get_event_loop())
+        self._api_url = "https://api.alexflipnote.dev"
 
-    def _api_url(self, path: str) -> str:
-        return self._BASE_URL + path
-
-    def _check_url(self, image_url: str, path: str = None):
-        get_url = UrlRegex(str(image_url))
-        valid_domains = ["cdn.discordapp.com", "media.discordapp.net"]
-        if get_url.links[0].domain not in valid_domains:
-            raise BadRequest("Only Discord CDN URLs are allowed...")
-        if path is None:
-            return image_url
-        return self._api_url(path + image_url)
+    async def _check_url(self, url: str):
+        response = await self._session.get(url)
+        if response.status == 400:
+            text = await response.text()
+            get_error = (search('<p>(.+?)</p>', text).group()).strip('</p>')
+            raise BadRequest(get_error)
+        return url
 
     # Json/URL
 
     async def birb(self) -> str:
-        url = await self._http_client.get(self._api_url("birb"), res_method = "json")
+        response = await self._session.get(f"{self._api_url}/birb")
+        url = (await response.json()).get('file')
 
-        return url.get('file')
+        return url
 
     async def cats(self) -> str:
-        url = await self._http_client.get(self._api_url("cats"), res_method = "json")
+        response = await self._session.get(f"{self._api_url}/cats")
+        url = (await response.json()).get('file')
 
-        return url.get('file')
+        return url
 
     async def sadcat(self) -> str:
-        url = await self._http_client.get(self._api_url("sadcat"), res_method = "json")
+        response = await self._session.get(f"{self._api_url}/sadcat")
+        url = (await response.json()).get('file')
 
-        return url.get('file')
+        return url
 
     async def fml(self) -> str:
-        url = await self._http_client.get(self._api_url("fml"), res_method = "json")
+        response = await self._session.get(f"{self._api_url}/fml")
+        url = (await response.json()).get('file')
 
-        return url.get("text")
+        return url
 
     async def dogs(self) -> str:
-        url = await self._http_client.get(self._api_url("dogs"), res_method = "json")
+        response = await self._session.get(f"{self._api_url}/dogs")
+        url = (await response.json()).get('file')
 
-        return url.get('file')
+        return url
 
     # Colour
 
@@ -92,28 +90,29 @@ class Client:
         if not search(r'^(?:[0-9a-fA-F]{3}){1,2}$', colour):
             raise BadRequest("Invalid HEX value. You're only allowed to enter HEX (0-9 & A-F)")
 
-        response = await self._http_client.get(
-            str(self._api_url(f"colour/{colour}")),
-            res_method = "json"
-        )
-        return Colour(response)
+        response = await self._session.get(f"{self._api_url}/colour/{colour}")
+        color = await response.json()
+
+        return Colour(color)
 
     # Steam
 
     async def steam(self, profile: str) -> Steam:
         try:
-            response = await self._http_client.get(self._api_url(f"steam/user/{profile}"), res_method = "json")
+            response = await self._session.get(f"{self._api_url}/steam/user/{profile}")
+            profile = await response.json()
         except ContentTypeError:
             raise NotFound("User not found on steam.")
 
-        return Steam(response)
+        return Steam(profile)
 
     # Dict
 
     async def github_colours(self) -> dict:
-        response = await self._http_client.get(str(self._api_url("color/github")), res_method = "json")
+        response = await self._session.get(f"{self._api_url}/color/github")
+        colors = await response.json()
 
-        return dict(response)
+        return dict(colors)
 
     # Image
 
@@ -133,31 +132,35 @@ class Client:
         if icon is not None and actual_icon != "":
             actual_icon = f"&icon={actual_icon}"
 
-        url = self._api_url(f"achievement?text={text}{actual_icon}")
+        url = f"{self._api_url}/achievement?text={text}{actual_icon}"
 
-        return Image(url, self._http_client)
+        return Image(url, self._session)
 
     async def amiajoke(self, image: str) -> Image:
-        url = self._check_url(image, "amiajoke?image=")
+        url = await self._check_url(
+            f"{self._api_url}/amiajoke?image={image}"
+        )
 
-        return Image(url, self._http_client)
+        return Image(url, self._session)
 
     async def bad(self, image: str) -> Image:
-        url = self._check_url(image, "bad?image=")
+        url = await self._check_url(
+            f"{self._api_url}/bad?image={image}"
+        )
 
-        return Image(url, self._http_client)
+        return Image(url, self._session)
 
     async def calling(self, text: str) -> Image:
         text = _parse_text(text)
-        url = self._api_url(f"calling?text={text}")
+        url = f"{self._api_url}/calling?text={text}"
 
-        return Image(url, self._http_client)
+        return Image(url, self._session)
 
     async def captcha(self, text: str) -> Image:
         text = _parse_text(text)
-        url = self._api_url(f"captcha?text={text}")
+        url = f"{self._api_url}/captcha?text={text}"
 
-        return Image(url, self._http_client)
+        return Image(url, self._session)
 
     async def challenge(self, text: str, icon: Union[int, str, Icon] = None) -> Image:
         text = _parse_text(text)
@@ -175,9 +178,9 @@ class Client:
         if icon is not None and actual_icon != "":
             actual_icon = f"&icon={actual_icon}"
 
-        url = self._api_url(f"challenge?text={text}{actual_icon}")
+        url = f"{self._api_url}/challenge?text={text}{actual_icon}"
 
-        return Image(url, self._http_client)
+        return Image(url, self._session)
 
     async def colour_image(self, colour=None) -> Image:
         if colour is None:
@@ -186,9 +189,9 @@ class Client:
         if not search(r'^(?:[0-9a-fA-F]{3}){1,2}$', colour):
             raise BadRequest("Invalid HEX value. You're only allowed to enter HEX (0-9 & A-F)")
 
-        url = self._api_url(f"colour/image/{colour}")
+        url = f"{self._api_url}/colour/image/{colour}"
 
-        return Image(url, self._http_client)
+        return Image(url, self._session)
 
     async def colour_image_gradient(self, colour=None) -> Image:
         if colour is None:
@@ -197,9 +200,9 @@ class Client:
         if not search(r'^(?:[0-9a-fA-F]{3}){1,2}$', colour):
             raise BadRequest("Invalid HEX value. You're only allowed to enter HEX (0-9 & A-F)")
 
-        url = self._api_url(f"colour/image/gradient/{colour}")
+        url = f"{self._api_url}/colour/image/gradient/{colour}"
 
-        return Image(url, self._http_client)
+        return Image(url, self._session)
 
     async def colourify(self, image: str, colour="", background="") -> Image:
         if colour != "":
@@ -214,30 +217,30 @@ class Client:
 
             background = f"&b={background}"
 
-        url = self._api_url(f"colourify?image={image}{colour}{background}")
+        url = f"{self._api_url}/colourify?image={image}{colour}{background}"
 
-        return Image(url, self._http_client)
+        return Image(url, self._session)
 
     async def didyoumean(self, top: str, bottom: str) -> Image:
         top = top.replace(" ", "%20").replace("#", "%23")
         bottom = bottom.replace(" ", "%20").replace("#", "%23")
 
-        url = self._api_url(f"didyoumean?top={top}&bottom={bottom}")
+        url = f"{self._api_url}/didyoumean?top={top}&bottom={bottom}"
 
-        return Image(url, self._http_client)
+        return Image(url, self._session)
 
     async def drake(self, top: str, bottom: str) -> Image:
         top = top.replace(" ", "%20").replace("#", "%23")
         bottom = bottom.replace(" ", "%20").replace("#", "%23")
-        url = self._api_url(f"drake?top={top}&bottom={bottom}")
+        url = f"{self._api_url}/drake?top={top}&bottom={bottom}"
 
-        return Image(url, self._http_client)
+        return Image(url, self._session)
 
     async def facts(self, text: str) -> Image:
         text = _parse_text(text)
-        url = self._api_url(f"facts?text={text}")
+        url = f"{self._api_url}/facts?text={text}"
 
-        return Image(url, self._http_client)
+        return Image(url, self._session)
 
     async def filter(self, name: str, image: str) -> Image:
         options = ['blur', 'invert', 'b&w', 'deepfry', 'snow', 'gay',
@@ -245,48 +248,53 @@ class Client:
         if name not in options:
             raise NotFound("Filter not found. Valid options: " + ", ".join(options))
 
-        url = self._check_url(image, f"filter/{name}?image=")
-
-        return Image(url, self._http_client)
+        url = await self._check_url(
+            f"{self._api_url}/filter/{name}?image={image}"
+        )
+        return Image(url, self._session)
 
     async def floor(self, text: str, image: str = None) -> Image:
         text = _parse_text(text)
         if image is not None:
             image = f"&image={image}"
 
-        url = self._api_url(f"floor?text={text}{image}")
+        url = f"{self._api_url}/floor?text={text}{image}"
 
-        return Image(url, self._http_client)
+        return Image(url, self._session)
 
     async def jokeoverhead(self, image: str) -> Image:
-        url = self._check_url(image, "jokeoverhead?image=")
+        url = await self._check_url(
+            f"{self._api_url}/jokeoverhead?image={image}"
+        )
 
-        return Image(url, self._http_client)
+        return Image(url, self._session)
 
     async def pornhub(self, text: str, text2: str) -> Image:
         text = _parse_text(text)
         text2 = _parse_text(text2)
-        url = self._api_url(f"pornhub?text={text}&text2={text2}")
+        url = f"{self._api_url}/pornhub?text={text}&text2={text2}"
 
-        return Image(url, self._http_client)
+        return Image(url, self._session)
 
     async def salty(self, image: str) -> Image:
-        url = self._check_url(image, "salty?image=")
+        url = await self._check_url(
+            f"{self._api_url}/salty?image={image}"
+        )
 
-        return Image(url, self._http_client)
+        return Image(url, self._session)
 
     async def scroll(self, text: str) -> Image:
         text = _parse_text(text)
-        url = self._api_url(f"scroll?text={text}")
+        url = f"{self._api_url}/scroll?text={text}"
 
-        return Image(url, self._http_client)
+        return Image(url, self._session)
 
     async def ship(self, user: str, user2: str) -> Image:
-        user_url = self._check_url(user)
-        user2_url = self._check_url(user2)
-        url = self._api_url(f"ship?user={user_url}&user2={user2_url}")
+        url = await self._check_url(
+            f"{self._api_url}/ship?user={user}&user2={user2}"
+        )
 
-        return Image(url, self._http_client)
+        return Image(url, self._session)
 
     async def supreme(self, text: str, dark: bool = False, light: bool = False) -> Image:
         text = _parse_text(text)
@@ -298,17 +306,16 @@ class Client:
         if dark and light:
             raise BadRequest("You can only choose either light or dark, not both.")
 
-        url = self._api_url(f"supreme?text={text}{darkorlight}")
+        url = f"{self._api_url}/supreme?text={text}{darkorlight}"
 
-        return Image(url, self._http_client)
+        return Image(url, self._session)
 
     async def trash(self, face: str, trash: str) -> Image:
-        face_url = self._check_url(face)
-        trash_url = self._check_url(trash)
+        url = await self._check_url(
+            f"{self._api_url}/trash?face={face}&trash={trash}"
+        )
 
-        url = self._api_url(f"trash?face={face_url}&trash={trash_url}")
-
-        return Image(url, self._http_client)
+        return Image(url, self._session)
 
     # aliases
 
@@ -317,6 +324,6 @@ class Client:
     color_image = colour_image
 
     async def close(self) -> None:
-        if not self._http_client.session.closed:
-            await self._http_client.close()
-        return
+        if not self._session.closed:
+            await self._session.close()
+        pass
