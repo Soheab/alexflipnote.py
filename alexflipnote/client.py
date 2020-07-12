@@ -75,9 +75,9 @@ class Client:
 
     async def fml(self) -> str:
         response = await self._session.get(f"{self._api_url}/fml")
-        url = (await response.json()).get('file')
+        text = (await response.json()).get('text')
 
-        return url
+        return text
 
     async def dogs(self) -> str:
         response = await self._session.get(f"{self._api_url}/dogs")
@@ -125,13 +125,19 @@ class Client:
         actual_icon = ""
         if icon is not None:
             if isinstance(icon, int):
-                actual_icon = Icon(int(icon)).value
+                try:
+                    actual_icon = Icon(int(icon)).value
+                except ValueError:
+                    icon = None
             elif isinstance(icon, str):
-                actual_icon = Icon[str(icon)].value
+                try:
+                    actual_icon = Icon[str(icon)].value
+                except KeyError:
+                    icon = None
             elif isinstance(icon, Icon):
-                actual_icon = Icon.value
+                actual_icon = icon.value
             else:
-                raise BadRequest("Invalid icon. Icon can only be int, str or instance of Icon")
+                actual_icon = ""
 
         if icon is not None and actual_icon != "":
             actual_icon = f"&icon={actual_icon}"
@@ -171,13 +177,22 @@ class Client:
         actual_icon = ""
         if icon is not None:
             if isinstance(icon, int):
-                actual_icon = Icon(int(icon)).value
+                try:
+                    actual_icon = Icon(int(icon)).value
+                except ValueError:
+                    icon = None
             elif isinstance(icon, str):
-                actual_icon = Icon[str(icon)].value
+                try:
+                    actual_icon = Icon[str(icon)].value
+                except KeyError:
+                    icon = None
             elif isinstance(icon, Icon):
-                actual_icon = Icon.value
+                actual_icon = icon.value
             else:
-                raise BadRequest("Invalid icon. Icon can only be int, str or instance of Icon")
+                actual_icon = ""
+
+        if icon is not None and actual_icon != "":
+            actual_icon = f"&icon={actual_icon}"
 
         if icon is not None and actual_icon != "":
             actual_icon = f"&icon={actual_icon}"

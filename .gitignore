@@ -1,6 +1,5 @@
 # Customm
 .idea
-test_api.py
 .dmypy.json
 
 # Byte-compiled / optimized / DLL files
@@ -129,3 +128,4 @@ dmypy.json
 .pyre/
 !/test_api.py
 !/alexflipnote/http.py
+!/test_api.py

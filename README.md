@@ -11,16 +11,22 @@ An easy to use Python Wrapper for the AlexFlipnote API
 # Requirements
 - Python 3.6 or above
 - aiohttp (python3 -m pip install -U aiohttp)
-- url_regex (python3 -m pip install -U url_regex)
+
+# Documentation
+See the full and detailed [docs here](https://github.com/Soheab/alexflipnote.py/blob/master/docs.md)
 
 # Installation
 Install the package by doing one of the following commands:
 
-- `pip install alexflipnote.py`
-- `python -m pip -U install alexflipnote.py`
+##### Using pip (recommended):
+- `pip install alexflipnote.py -U`
+- `python -m pip install alexflipnote.py -U`
 
-# Documentation
-See the full and detailed [docs here](https://github.com/Soheab/alexflipnote.py/blob/master/docs.md)
+##### Or install the testing branch:
+which can be unstable or have breaking changes:
+
+- `pip install git+https://github.com/Soheab/alexflipnote.py@testing -U`
+- `python -m pip install git+https://github.com/Soheab/alexflipnote.py@testing -U`
 
 # Examples
 
@@ -32,6 +38,8 @@ afa = alexflipnote.Client()
 
 print(await afa.cats())
 # output: https://api.alexflipnote.dev/cats/grRlHyi-AL8_cats.jpg
+
+await afa.close() # closing the session to prevent the "Unclosed client session" warning
 ``` 
 
 Make a custom supreme logo:
@@ -42,6 +50,8 @@ afa = alexflipnote.Client()
 
 print(await afa.supreme('#some text, yes', dark=True)) # making it dark, there is also light option.
 # output: https://api.alexflipnote.dev/supreme?text=%23some%20text,%20yes&dark=true
+
+await afa.close() # closing the session to prevent the "Unclosed client session" warning
 ```
 
 Minecraft achievement using [discord.py](https://github.com/Rapptz/discord.py):
@@ -56,9 +66,10 @@ bot = commands.Bot(command_prefix="!")
 alex_api = alexflipnote.Client()
 
 @bot.command()
-async def achievement(ctx, text, icon: Union[int, str] = None): 
+async def achievement(ctx, text: str, icon: Union[int, str] = None): 
     image = await (await alex_api.achievement(text=text, icon=icon)).read() # BytesIO
     await ctx.send(f"Rendered by {ctx.author}", file=discord.File(image, filename="achievement.png"))
+    await alex_api.close() # closing the session to prevent the "Unclosed client session" warning
 
 # we did a Union[int, str] since the wrapper accepts a number or string for the icon, see the icon section in docs to see what it accepts.
 
@@ -69,7 +80,7 @@ bot.run("TOKEN")
 
 # Made by
 
-This wrapper is made Soheab_#6240, contact me on discord for anything related to this wrapper.
+This wrapper is made by Soheab_#6240, contact me on discord for anything related to this wrapper.
 
 You can join my [discord server here](https://discord.gg/yCzcfju) or 
 AlexFlipnote's [server here](https://discord.gg/alexflipnote) (recommended)

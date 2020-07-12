@@ -8,6 +8,8 @@ A complete rewrite which also removed the required package "url_regex".
 Remove unnecessary things to make code smaller, 
 Added type annotations & typings, better error handeling.
 
+oh, and passing an Icon object to achievement and challenge now actually works.
+
 I hope its faster and easier to use than ever with no breaking changes (hopefully)
 
 ## 1.2.6

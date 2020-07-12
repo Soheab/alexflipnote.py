@@ -9,6 +9,7 @@ To begin with, you'll have to install the package by doing one of the following 
 - `python -m pip -U install alexflipnote.py`
  
 After that, you will have to create the client:
+
 ```python
 import alexflipnote
 
@@ -25,7 +26,7 @@ Generate a Minecraft achievement with custom text.
 
 **Parameters**:
 - text `string` | our text for the achievement.
-- icon `Optional[string, int, Icon]` | The icon you want
+- icon `Optional[string, int, Icon]` | The icon you want, ignored if invalid.
 
 **Return type**: [Image](docs.md#image "Image object attributes")
 
@@ -74,7 +75,7 @@ Generate a Minecraft challenge with custom text.
 
 **Parameters**:
 - text `string` | our text for the challenge.
-- icon `Optional[string, int, Icon]` | The icon you want
+- icon `Optional[string, int, Icon]` | The icon you want, ignored if invalid.
 
 **Return type**: [Image](docs.md#image "Image object attributes")
 
@@ -402,7 +403,7 @@ True or False if user is VAC Banned
 
 ## Icon
 ---
-The object you pass to the icon arg for `alex_api.achievement()` and `alex_api.challenge()`
+The object you pass to the icon param for `alex_api.achievement()` and `alex_api.challenge()`
 
 #### int:
 
