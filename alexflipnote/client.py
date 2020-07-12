@@ -3,6 +3,7 @@ from random import randint
 from re import search
 from typing import Union
 
+import typing
 from aiohttp import ClientSession
 
 from .classes import Colour, Steam, Image, Icon
@@ -54,6 +55,14 @@ class Client:
         return url
 
     # Json/URL
+
+    async def support_server(self, creator: bool = False) -> typing.Tuple[typing.Any, str]:
+        api = await self._session.get(self._api_url)
+        support_server = (await api.json()).get("support_server")
+        if creator:
+            return support_server, "https://discord.gg/yCzcfju"
+
+        return support_server
 
     async def birb(self) -> str:
         response = await self._session.get(f"{self._api_url}/birb")

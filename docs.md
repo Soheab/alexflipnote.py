@@ -25,8 +25,8 @@ All available endpoints you can use.
 Generate a Minecraft achievement with custom text.
 
 **Parameters**:
-- text `string` | our text for the achievement.
-- icon `Optional[string, int, Icon]` | The icon you want, ignored if invalid.
+- text `string` | Text for the achievement.
+- icon `string, int, Icon` | The icon you want, ignored if invalid.
 
 **Return type**: [Image](docs.md#image "Image object attributes")
 
@@ -75,7 +75,7 @@ Generate a Minecraft challenge with custom text.
 
 **Parameters**:
 - text `string` | our text for the challenge.
-- icon `Optional[string, int, Icon]` | The icon you want, ignored if invalid.
+- icon `string, int, Icon` | The icon you want, ignored if invalid.
 
 **Return type**: [Image](docs.md#image "Image object attributes")
 
@@ -86,7 +86,7 @@ Get info on provided colour.
 **Aliases**: color
 
 **Parameters**:
-- text `Optional[string]` | The Colour. Defaults to random colour.
+- text `string` | The Colour. Defaults to random colour.
 
 **Return type:** [Colour](docs.md#colour "Image object attributes")
 
@@ -101,7 +101,7 @@ Get all github colours, per language.
 Get an image of provided colour.
 
 **Parameters**:
-- text `Optional[string]` | The Colour. Defaults to random colour.
+- text `string` | The Colour. Defaults to random colour.
 
 **Return type:** [Image](docs.md#image "Image object attributes")
 
@@ -110,7 +110,7 @@ Get an image of provided colour.
 Get an image gradients of provided colour.
 
 **Parameters**:
-- text `Optional[string]` | The Colour. Defaults to random colour.
+- text `string` | The Colour. Defaults to random colour.
 
 **Return type:** [Image](docs.md#image "Image object attributes")
 
@@ -156,8 +156,8 @@ Put a filter on an image.
 **Available options:** `blur`, `invert`, `b&w`, `deepfry`, `snow`, `gay`, `pixelate`, `jpegify`, `magik`, `communist`
   
 **Parameters**:
-- name `string` - The filter name, see **Available options**.
-- image `string` - The image to put the filter on.
+- name `string` | The filter name, see **Available options**.
+- image `string` | The image to put the filter on.
 
 **Return type:** [Image](docs.md#image "Image object attributes")
 
@@ -167,7 +167,7 @@ Get a "Don't touch the floor" meme with your text and image.
 
 **Parameters**:
 - text `string` | The text you want.
-- image `Optional[string]` | The image you want.
+- image `string` | The image you want.
 
 **Return type:** [Image](docs.md#image "Image object attributes")
 
@@ -251,7 +251,7 @@ Make a custom supreme logo.
 **Return type:** [Image](docs.md#image "Image object attributes")
 
 ---
-## await alex_api.trash(face, trash)
+### await alex_api.trash(face, trash)
 Throw someone in the trash bin 🚮
 
 **Parameters**:
@@ -260,6 +260,14 @@ Throw someone in the trash bin 🚮
 
 **Return type:** [Image](docs.md#image "Image object attributes")
 
+---
+### await alex_api.support_server(creator)
+Get an invitation to the AlexFlipnote server (or and the creator of this wrapper.)
+
+**Parameters**:
+- creator `boolean` | To also get an invitation to the server of creator of this wrapper.
+
+**Return type**: string or tuple
 
 # Objects
 Here is explained what attributes the returned objects have
