@@ -7,6 +7,7 @@ A complete rewrite which also removed the required package "url_regex".
 
 New icon for `.achievement()` and `.challenge()` "Oak log" at number 45,
 Added new support_server method to get an invitation to the alexflipnote's server,
+Added changelog and docs look a little better,
 Removed unnecessary things to make code smaller, 
 Added type annotations & typehints for autocomplete things..?, better error handeling.
 
