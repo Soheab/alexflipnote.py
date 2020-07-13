@@ -13,7 +13,7 @@ An easy to use Python Wrapper for the AlexFlipnote API
 - aiohttp (python3 -m pip install -U aiohttp)
 
 # Documentation
-See the full and detailed [docs here](https://github.com/Soheab/alexflipnote.py/blob/testing/docs.md)
+See the full and detailed [docs here](https://github.com/Soheab/alexflipnote.py/blob/master/docs.md)
 
 # Installation
 Install the package by doing one of the following commands:
@@ -27,6 +27,9 @@ which can be unstable or have breaking changes:
 
 - `pip install git+https://github.com/Soheab/alexflipnote.py@testing -U`
 - `python -m pip install git+https://github.com/Soheab/alexflipnote.py@testing -U`
+
+# Changelog
+See the changelog for each [version here](https://github.com/Soheab/alexflipnote.py/blob/master/changelog.md)
 
 # Examples
 
