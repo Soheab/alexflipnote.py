@@ -2,7 +2,7 @@
 See here what changed or broke each version. \
 For any questions and support, you can join the [AlexFlipnote server](https://discord.gg/alexflipnote)
 
-## 2.0
+## 1.3.0
 A complete rewrite which also removed the required package "url_regex". 
 
 New icon for `.achievement()` and `.challenge()` "Oak log" at number 45,
