@@ -1,33 +1,32 @@
 import enum
-import io
+from io import BytesIO
 
 
 class Image:
-    __slots__ = ("url", "_http_client")
 
-    def __init__(self, url, http_client):
+    def __init__(self, url: str, session) -> None:
         self.url = url
-        self._http_client = http_client
+        self._session = session
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.url if self.url is not None else ''
 
-    async def read(self):
-        _bytes = await self._http_client.get(str(self.url), res_method = "read")
-        return io.BytesIO(_bytes)
+    async def read(self) -> BytesIO:
+        _bytes = await self._session.get(str(self.url), res_method = "read")
+        return BytesIO(_bytes)
 
 
 class Colour:
     __slots__ = ("blackorwhite_text", "brightness", "hex", "image", "image_gradient",
                  "int", "name", "rgb", "rgb_values", "shade", "tint")
 
-    def __init__(self, data):
+    def __init__(self, data) -> None:
         self.blackorwhite_text = data.get('blackorwhite_text')
-        self.brightness = int(data.get('brightness'))
+        self.brightness = data.get('brightness')
         self.hex = data.get('hex')
         self.image = data.get('image')
         self.image_gradient = data.get('image_gradient')
-        self.int = int(data.get('int'))
+        self.int = data.get('int')
         self.name = data.get('name')
         self.rgb = data.get('rgb')
         self.rgb_values = self.ColourRGB(data.get('rgb_values'))
@@ -37,17 +36,17 @@ class Colour:
     class ColourRGB:
         __slots__ = ("all", "r", "g", "b")
 
-        def __init__(self, values):
-            self.all = values
-            self.r = values.get('r')
-            self.g = values.get('g')
-            self.b = values.get('b')
+        def __init__(self, data) -> None:
+            self.all = data
+            self.r = data.get('r')
+            self.g = data.get('g')
+            self.b = data.get('b')
 
 
 class Steam:
     __slots__ = ("id", "avatars", "profile")
 
-    def __init__(self, data):
+    def __init__(self, data) -> None:
         self.id = self.SteamID(data.get('id'))
         self.avatars = self.SteamAvatar(data.get('avatars'))
         self.profile = self.SteamProfile(data.get('profile'))
@@ -55,7 +54,7 @@ class Steam:
     class SteamID:
         __slots__ = ("steamid3", "steamid32", "steamid64", "custom_url")
 
-        def __init__(self, data):
+        def __init__(self, data) -> None:
             self.steamid3 = data.get('steamid3')
             self.steamid32 = data.get('steamid32')
             self.steamid64 = data.get('steamid64')
@@ -64,7 +63,7 @@ class Steam:
     class SteamAvatar:
         __slots__ = ("avatar", "avatar_medium", "avatar_full")
 
-        def __init__(self, data):
+        def __init__(self, data) -> None:
             self.avatar = data.get('avatar')
             self.avatar_medium = data.get('avatarmedium')
             self.avatar_full = data.get('avatarfull')
@@ -73,7 +72,7 @@ class Steam:
         __slots__ = ("username", "real_name", "url", "summary", "background",
                      "location", "state", "privacy", "time_created", "vacbanned")
 
-        def __init__(self, data):
+        def __init__(self, data) -> None:
             self.username = data.get('username')
             self.real_name = data.get('realname')
             self.url = data.get('url')
@@ -131,4 +130,4 @@ class Icon(enum.Enum):
     bread = 42
     wooden_sword = 43
     bone = 44
-
+    oak_log = 45

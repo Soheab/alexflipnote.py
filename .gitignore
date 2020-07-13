@@ -1,6 +1,6 @@
 # Customm
 .idea
-
+.dmypy.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -122,8 +122,11 @@ venv.bak/
 
 # mypy
 .mypy_cache/
-.dmypy.json
 dmypy.json
 
 # Pyre type checker
 .pyre/
+!/test_api.py
+!/alexflipnote/http.py
+!/test_api.py
+test_api.py

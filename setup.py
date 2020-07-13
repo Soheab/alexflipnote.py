@@ -1,20 +1,27 @@
-from setuptools import setup
+from setuptools import setup  # type: ignore
 
 with open('README.md') as f:
     readme = f.read()
 
 setup(
     name = 'alexflipnote.py',
-    version = '1.2.6',
+    description = 'An easy to use Python Wrapper for the AlexFlipnote API',
+    long_description = readme,
+    long_description_content_type = 'text/markdown',
+    version = '1.3.0',
     packages = ['alexflipnote'],
     url = 'https://github.com/Soheab/Alexflipnote.py',
-    download_url = 'https://github.com/Soheab/alexflipnote.py/archive/1.2.6.tar.gz',
+    download_url = 'https://github.com/Soheab/alexflipnote.py/archive/1.3.0.tar.gz',
     license = 'MIT',
-    author = 'Soheab',
-    author_email = '',
-    install_requires=['aiohttp', 'url_regex'],
-    description = 'An easy to use Python Wrapper for the AlexFlipnote API',
-    long_description=readme,
-    long_description_content_type='text/markdown',
-    python_requires='>=3.6',
+    author = 'Soheab_',
+    install_requires = ['aiohttp'],
+    keywords = ['alexflipnote', 'discord', 'api'],
+    project_urls = {
+        "Discord": "https://discord.gg/alexflipnote",
+        "Source": "https://github.com/Soheab/alexflipnote.py",
+        "Documentation": "https://github.com/Soheab/alexflipnote.py/blob/master/docs.md",
+        "Issue tracker": "https://github.com/Soheab/alexflipnote.py/issues",
+    },
+
+    python_requires = '>=3.6',
 )
