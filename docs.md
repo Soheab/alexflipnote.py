@@ -391,7 +391,7 @@ The username of user
 The real name of user
 
 #### SteamProfile.summary
-A link to user's profile
+The summary user has on their profile
 
 #### SteamProfile.background
 User profile's background
@@ -431,7 +431,7 @@ The object you pass to the icon param for `alex_api.achievement()` and `alex_api
 `sign`, `rail`, `crafting_bench`, `redstone`, `fire`, `cobweb`, `chest`, `furnace`, `book`, `stone_block`,
 `wooden_plank_block`, `iron_ingot`, `gold_ingot`, `wooden_door`, `iron_door`, `diamond_chestplate`, `flint_and_steel`, `glass_bottle`, `splash_potion`, `creeper_spawnegg`,
 `coal`, `iron_sword`, `bow`, `arrow`, `iron_chestplate`, `bucket`, `bucket_with_water`, `bucket_with_lava`, `bucket_with_milk`, `diamond_boots`,
-`wooden_hoe`, `bread`, `wooden_sword`, `bone`, 'oak_log'
+`wooden_hoe`, `bread`, `wooden_sword`, `bone`, `oak_log`
 
 #### object:
 
@@ -442,4 +442,4 @@ The object you pass to the icon param for `alex_api.achievement()` and `alex_api
 `Icon.iron_door`, `Icon.diamond_chestplate`, `Icon.flint_and_steel`, `Icon.glass_bottle`, `Icon.splash_potion`, `Icon.creeper_spawnegg`,
 `Icon.coal`, `Icon.iron_sword`, `Icon.bow`, `Icon.arrow`, `Icon.iron_chestplate`, `Icon.bucket`,
 `Icon.bucket_with_water`, `Icon.bucket_with_lava`, `Icon.bucket_with_milk`, `Icon.diamond_boots`, `Icon.wooden_hoe`, `Icon.bread`,
-`Icon.wooden_sword`, `Icon.bone`, 'Icon.oak_log'
+`Icon.wooden_sword`, `Icon.bone`, `Icon.oak_log`
