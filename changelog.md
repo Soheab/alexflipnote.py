@@ -5,9 +5,10 @@ For any questions and support, you can join the [AlexFlipnote server](https://di
 ## 2.0
 A complete rewrite which also removed the required package "url_regex". 
 
-Added new support_server method to get to alexflipnote's server,
+New icon for `.achievement()` and `.challenge()` "Oak log" at number 45,
+Added new support_server method to get an invitation to the alexflipnote's server,
 Removed unnecessary things to make code smaller, 
-Added type annotations & typings, better error handeling.
+Added type annotations & typehints for autocomplete things..?, better error handeling.
 
 oh, and passing an Icon object to achievement and challenge now actually works.
 

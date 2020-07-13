@@ -130,3 +130,4 @@ class Icon(enum.Enum):
     bread = 42
     wooden_sword = 43
     bone = 44
+    oak_log = 45
