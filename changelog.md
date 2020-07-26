@@ -2,6 +2,9 @@
 See here what changed or broke each version. \
 For any questions and support, you can join the [AlexFlipnote server](https://discord.gg/alexflipnote)
 
+## 1.3.1
+This one fixed `alexflipnote.Image.read()` raising a TypeError instead of returning BytesIO.
+ 
 ## 1.3.0
 A complete rewrite which also removed the required package "url_regex". 
 

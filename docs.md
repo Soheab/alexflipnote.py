@@ -273,20 +273,22 @@ Get an invitation to the AlexFlipnote server (or and the creator of this wrapper
 Here is explained what attributes the returned objects have
 
 ## Image
-The object returned from almost every endpoint.
-
+The object returned from `alex_api.achievement()`, `alex_api.amiajoke()`, `alex_api.bad()`, `alex_api.calling()`, `alex_api.captcha()`,
+    `alex_api.challenge()`, `alex_api.colour_image()`, `alex_api.colour_image_gradient()`, `alex_api.colourify()`, `alex_api.didyoumean()`,
+    `alex_api.drake()`, `alex_api.facts()`, `alex_api.filter()`, `alex_api.floor()`, `alex_api.jokeoverhead()`, `alex_api.pornhub()`,
+    `alex_api.salty()`, `alex_api.scroll()`, `alex_api.ship()`, `alex_api.supreme()` and `alex_api.trash()`
+    
 #### Image.url
 The url of the image
 
 #### await Image.read()
-This will return BytesIO object, which can be passed to discord.File() 
-with a filename. **Here's an example**:
+This will return a BytesIO object, which can be passed to discord.File() with a filename 
+for [discord.py](https://github.com/Rapptz/discord.py):
 ```py
 supreme_logo = await alex_api.supreme("ah yes")
-supreme_bytes = await supreme_logo.read()
-await ctx.send(file=discord.File(cat_bytes, filename="supreme.png"))
+supreme_bytes = await supreme_logo.read() # <_io.BytesIO object at 0x0438DFC8> - BytesIO object.
+await ctx.send(file=discord.File(supreme_bytes, filename="supreme.png"))
 ```
-
 
 ## Colour
 The object returned from `alex_api.colour()`
@@ -325,7 +327,7 @@ The colour's shades
 The colour's tints
 
 ## ColourRGB
-The object returned from `alex_api.colour()`
+The object returned from `alex_api.colour().rgb_values`
 
 #### ColourRGB.all
 All RGB values of the colour in a dict 
@@ -353,7 +355,7 @@ A [SteamAvatar](docs.md#steamavatar "SteamID object attributes") object
 A [SteamProfile](docs.md#steamprofile-1 "SteamID object attributes") object
 
 ## SteamID
-The object returned from `Steam.id`
+The object returned from `alex_api.steam().id`
 
 #### SteamID.steamid3
 The steam id3 of user
@@ -369,7 +371,7 @@ The custom url of user
 
 
 ## SteamAvatar
-The object returned from `Steam.avatar`
+The object returned from `alex_api.steam().avatar`
 
 #### SteamAvatar.avatar
 The avatar of user
@@ -382,7 +384,7 @@ The full version of user's avatar
 
 
 ## SteamProfile
-The object returned from `Steam.profile`. Some things can be None.
+The object returned from `alex_api.steam().profile`. Some things can be None.
 
 #### SteamProfile.username
 The username of user
@@ -411,7 +413,7 @@ True or False if user is VAC Banned
 
 ## Icon
 ---
-The object you pass to the icon param for `alex_api.achievement()` and `alex_api.challenge()`
+The objects you can pass to the icon param for `alex_api.achievement()` and `alex_api.challenge()`
 
 #### int:
 
