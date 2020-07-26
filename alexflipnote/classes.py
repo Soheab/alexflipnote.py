@@ -12,7 +12,7 @@ class Image:
         return self.url if self.url is not None else ''
 
     async def read(self) -> BytesIO:
-        _bytes = await self._session.get(str(self.url), res_method = "read")
+        _bytes = await (await self._session.get(str(self.url))).read()
         return BytesIO(_bytes)
 
 
