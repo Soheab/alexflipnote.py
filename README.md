@@ -6,7 +6,7 @@
 # Alexflipnote.py
 An easy to use Python Wrapper for the AlexFlipnote API
 
-![image](https://alexflipnote.dev/branding/assets/avatar.png)
+<img src="https://alexflipnote.dev/branding/assets/avatar.png" alt="drawing" width="300"/>
 
 # Requirements
 - Python 3.6 or above
@@ -75,10 +75,10 @@ import discord
 import alexflipnote
 from discord.ext import commands
 from typing import Union
-# just a example, alexflipnote client doesn't have to be under bot.
+
 
 bot = commands.Bot(command_prefix="!")
-alex_api = alexflipnote.Client()
+alex_api = alexflipnote.Client() # just a example, the client doesn't have to be under bot.
 
 @bot.command()
 async def achievement(ctx, text: str, icon: Union[int, str] = None): 
