@@ -35,27 +35,39 @@ See the changelog for each [version here](https://github.com/Soheab/alexflipnote
 
 Get a random cat pic:
 ```python
+import asyncio
 import alexflipnote
 
-afa = alexflipnote.Client()
+alex_api = alexflipnote.Client()
 
-print(await afa.cats())
-# output: https://api.alexflipnote.dev/cats/grRlHyi-AL8_cats.jpg
 
-await afa.close() # closing the session to prevent the "Unclosed client session" warning
+async def get_cat_pic():
+    cat = await alex_api.cats()
+    print(cat)
+    # prints: https://api.alexflipnote.dev/cats/grRlHyi-AL8_cats.jpg
+    await alex_api.close()  # preventing the "Unclosed client session" warning.
+
+
+asyncio.get_event_loop().run_until_complete(get_cat_pic())
 ``` 
 
 Make a custom supreme logo:
 ```python
+import asyncio
 import alexflipnote
 
-afa = alexflipnote.Client()
+alex_api = alexflipnote.Client()
 
-print(await afa.supreme('#some text, yes', dark=True)) # making it dark, there is also light option.
-# output: https://api.alexflipnote.dev/supreme?text=%23some%20text,%20yes&dark=true
 
-await afa.close() # closing the session to prevent the "Unclosed client session" warning
-```
+async def custom_supreme_logo(text, dark=False, light=False):
+    supreme = await alex_api.supreme(text, dark, light)
+    print(supreme)
+    # prints: https://api.alexflipnote.dev/supreme?text=%23some%20text,%20yes&dark=true
+    await alex_api.close()  # preventing the "Unclosed client session" warning.
+
+
+asyncio.get_event_loop().run_until_complete(custom_supreme_logo('#some text, yes', dark=True))
+``` 
 
 Minecraft achievement using [discord.py](https://github.com/Rapptz/discord.py):
 ```python
@@ -72,12 +84,15 @@ alex_api = alexflipnote.Client()
 async def achievement(ctx, text: str, icon: Union[int, str] = None): 
     image = await (await alex_api.achievement(text=text, icon=icon)).read() # BytesIO
     await ctx.send(f"Rendered by {ctx.author}", file=discord.File(image, filename="achievement.png"))
-    await alex_api.close() # closing the session to prevent the "Unclosed client session" warning
+    
+# have this where you close the bot or somewhere to close the session and prevent the "Unclosed client session" warning.
+await alex_api.close()
 
 # we did a Union[int, str] since the wrapper accepts a number or string for the icon, see the icon section in docs to see what it accepts.
 
 # invoke: !achievement "nice job!" diamond_sword
-# output: https://api.alexflipnote.dev/achievement?text=nice%20job&icon=3
+# see output here: https://i.imgur.com/l9OcQNw.png
+
 bot.run("TOKEN")
 ```
 
