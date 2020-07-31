@@ -271,7 +271,7 @@ class Client:
         return Image(url, self._session)
 
     async def filter(self, name: str, image: str) -> Image:
-        options = ['blur', 'invert', 'b&w', 'deepfry', 'snow', 'gay',
+        options = ['blur', 'invert', 'b&w', 'deepfry', 'wide', 'snow', 'gay',
                    'pixelate', 'jpegify', 'magik', 'communist']
         if name not in options:
             raise NotFound("Filter not found. Valid options: " + ", ".join(options))
