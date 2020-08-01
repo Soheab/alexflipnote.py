@@ -1,9 +1,8 @@
-import asyncio
+from asyncio import get_event_loop
 from random import randint
 from re import search
-from typing import Union
+from typing import Union, Tuple, Any
 
-import typing
 from aiohttp import ClientSession
 
 from .classes import Colour, Steam, Image, Icon
@@ -24,6 +23,7 @@ def _parse_text(text: str) -> str:
         "#": "%23",
         "$": "%24",
         "%": "%25",
+        "&": "%26",
         "*": "%2A",
         "=": "%3D",
         "@": "%40",
@@ -56,7 +56,7 @@ class Client:
 
     # Json/URL
 
-    async def support_server(self, creator: bool = False) -> typing.Tuple[typing.Any, str]:
+    async def support_server(self, creator: bool = False) -> Tuple[Any, str]:
         api = await self._session.get(self._api_url)
         support_server = (await api.json()).get("support_server")
         if creator:
@@ -130,7 +130,7 @@ class Client:
     # Image
 
     async def achievement(self, text: str, icon: Union[int, str, Icon] = None) -> Image:
-        text = _parse_text(text)
+        text = _parse_text(str(text))
         actual_icon = ""
         if icon is not None:
             if isinstance(icon, int):
@@ -203,9 +203,6 @@ class Client:
         if icon is not None and actual_icon != "":
             actual_icon = f"&icon={actual_icon}"
 
-        if icon is not None and actual_icon != "":
-            actual_icon = f"&icon={actual_icon}"
-
         url = f"{self._api_url}/challenge?text={text}{actual_icon}"
 
         return Image(url, self._session)
@@ -250,16 +247,15 @@ class Client:
         return Image(url, self._session)
 
     async def didyoumean(self, top: str, bottom: str) -> Image:
-        top = top.replace(" ", "%20").replace("#", "%23")
-        bottom = bottom.replace(" ", "%20").replace("#", "%23")
-
+        top = _parse_text(top)
+        bottom = _parse_text(bottom)
         url = f"{self._api_url}/didyoumean?top={top}&bottom={bottom}"
 
         return Image(url, self._session)
 
     async def drake(self, top: str, bottom: str) -> Image:
-        top = top.replace(" ", "%20").replace("#", "%23")
-        bottom = bottom.replace(" ", "%20").replace("#", "%23")
+        top = _parse_text(top)
+        bottom = _parse_text(bottom)
         url = f"{self._api_url}/drake?top={top}&bottom={bottom}"
 
         return Image(url, self._session)

@@ -2,8 +2,8 @@
 See here what changed or broke each version. \
 For any questions and support, you can join the [AlexFlipnote server](https://discord.gg/alexflipnote)
 
-## 1.3.1
-Added support for the new `wide` filter.
+## 1.4.0
+- Added support for the new `wide` filter.
 
 ## 1.3.1
 This one fixed `alexflipnote.Image.read()` raising a TypeError instead of returning BytesIO.
