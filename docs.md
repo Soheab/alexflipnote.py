@@ -153,7 +153,7 @@ Get the facts book.
 ### await alex_api.filter(name, image)
 Put a filter on an image.
 
-**Available options:** `blur`, `invert`, `b&w`, `deepfry`, `snow`, `gay`, `pixelate`, `jpegify`, `magik`, `communist`
+**Available options:** `blur`, `invert`, `b&w`, `deepfry`, `wide`, `snow`, `gay`, `pixelate`, `jpegify`, `magik`, `communist`
   
 **Parameters**:
 - name `string` | The filter name, see **Available options**.
