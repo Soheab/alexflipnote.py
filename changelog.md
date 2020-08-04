@@ -1,6 +1,10 @@
 # AlexFlipnote.py | Changelog
 See here what changed or broke each version.
 
+
+## 1.5.1
+- Now these: `"`, `'`, `(`, `)`, `+`, `,`, `-`, `.`, `/` also get replaced for methods that require text.
+
 ## 1.5.0
 - Added support for the new `sepia` filter.
 - `snow` filter is more appealing (according to AlexFlipnote)
