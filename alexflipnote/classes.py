@@ -47,9 +47,9 @@ class Steam:
     __slots__ = ("id", "avatars", "profile")
 
     def __init__(self, data) -> None:
-        self.id = self.SteamID(data.get('id'))
-        self.avatars = self.SteamAvatar(data.get('avatars'))
-        self.profile = self.SteamProfile(data.get('profile'))
+        self.id = Steam.SteamID(data.get('id'))
+        self.avatars = Steam.SteamAvatar(data.get('avatars'))
+        self.profile = Steam.SteamProfile(data.get('profile'))
 
     class SteamID:
         __slots__ = ("steamid3", "steamid32", "steamid64", "custom_url")

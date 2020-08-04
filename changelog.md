@@ -1,6 +1,12 @@
 # AlexFlipnote.py | Changelog
-See here what changed or broke each version. \
-For any questions and support, you can join the [AlexFlipnote server](https://discord.gg/alexflipnote)
+See here what changed or broke each version.
+
+## 1.5.0
+- Added support for the new `sepia` filter.
+- `snow` filter is more appealing (according to AlexFlipnote)
+- Added `random` choice for `.filter()`.
+- Added new Exception `InternalServerError` to handle.. internal server errors.
+- Exceptions don't return any message anymore since it's impossible to get, for now.
 
 ## 1.4.0
 - Added support for the new `wide` filter.
@@ -12,7 +18,7 @@ This one fixed `alexflipnote.Image.read()` raising a TypeError instead of return
 A complete rewrite which also removed the required package "url_regex". 
 
 New icon for `.achievement()` and `.challenge()` "Oak log" at number 45,
-Added new support_server method to get an invitation to the alexflipnote's server,
+Added new support_server method to get an invitation to the AlexFlipnote's server,
 Added changelog and docs look a little better,
 Removed unnecessary things to make code smaller, 
 Added type annotations & typehints for autocomplete things..?, better error handeling.

@@ -1,6 +1,6 @@
 # AlexFlipnote.py | Docs
 An easy to use Python Wrapper for the [AlexFlipnote API](https://api.alexflipnote.dev)\
-For any questions and support, you can join the [AlexFlipnote server](https://discord.gg/alexflipnote)
+For any questions and support, you can join the [AlexFlipnote server](https://discord.gg/DpxkY3x)
 
 ## Getting Started:
 
@@ -153,10 +153,11 @@ Get the facts book.
 ### await alex_api.filter(name, image)
 Put a filter on an image.
 
-**Available options:** `blur`, `invert`, `b&w`, `deepfry`, `wide`, `snow`, `gay`, `pixelate`, `jpegify`, `magik`, `communist`
+**Available options:** `blur`, `invert`, `b&w`, `deepfry`, `sepia`, `pixelate`,
+                    `magik`, `jpegify`, `wide`, `snow`, `gay`, `communist`, `random`
   
 **Parameters**:
-- name `string` | The filter name, see **Available options**.
+- name `string` | The filter name, see **Available options**. `random` will be a random filter from options above.
 - image `string` | The image to put the filter on.
 
 **Return type:** [Image](docs.md#image "Image object attributes")

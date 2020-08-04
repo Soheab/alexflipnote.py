@@ -1,2 +1,2 @@
-from .classes import Image, Colour, Steam, Icon
-from .client import BadRequest, NotFound, Client
+from .classes import Colour, Icon, Image, Steam
+from .client import BadRequest, Client, InternalServerError, NotFound

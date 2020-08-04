@@ -1,11 +1,11 @@
 from asyncio import get_event_loop
-from random import randint
+from random import choice, randint
 from re import search
-from typing import Union, Tuple, Any
+from typing import Any, Tuple, Union
 
 from aiohttp import ClientSession
 
-from .classes import Colour, Steam, Image, Icon
+from .classes import Colour, Icon, Image, Steam
 
 
 class BadRequest(Exception):
@@ -13,6 +13,10 @@ class BadRequest(Exception):
 
 
 class NotFound(Exception):
+    pass
+
+
+class InternalServerError(Exception):
     pass
 
 
@@ -32,27 +36,39 @@ def _parse_text(text: str) -> str:
         "^": "%CB%86",
         "_": "%5F",
         "©": "%C2%A9"
-    }
+        }
     return text.translate(str.maketrans(replacements))
 
 
 class Client:
 
     def __init__(self) -> None:
-        self._session = ClientSession(loop = asyncio.get_event_loop())
+        self._session = ClientSession(loop = get_event_loop())
         self._api_url = "https://api.alexflipnote.dev"
 
-    async def _check_url(self, url: str):
+    # will be rewritten when json errors are a thing.
+    async def _check_url(self, url: str):  # return_response=False):
         response = await self._session.get(url)
-        if response.status == 400:
-            text = await response.text()
-            get_error = (search('<p>(.+?)</p>', text).group()).strip('</p>')
-            raise BadRequest(get_error)
-        if response.status == 404:
-            text = await response.text()
-            get_error = (search('<p>(.+?)</p>', text).group()).strip('</p>')
-            raise NotFound(get_error)
+        # print(response.status, await response.text())
+        # error.group().strip("</p>")
+        if response.status in [400, 404, 500]:
+            # text = await response.text()
+            # error = search('<p>(.+?)</p>', str(text))
+            if response.status == 400:
+                raise BadRequest()
+            if response.status == 404:
+                raise NotFound()
+            if response.status == 500:
+                raise InternalServerError()
         return url
+        # else:
+        # raise HTTPException(response, await response.json().get("msg"))
+
+    # else:
+    # if return_response:
+    # return response
+    # return url
+    # can anyone improve this? PRs are more than welcome.
 
     # Json/URL
 
@@ -66,37 +82,28 @@ class Client:
 
     async def birb(self) -> str:
         response = await self._session.get(f"{self._api_url}/birb")
-        url = (await response.json()).get('file')
 
-        return url
+        return (await response.json()).get('file')
 
     async def cats(self) -> str:
         response = await self._session.get(f"{self._api_url}/cats")
-        url = (await response.json()).get('file')
-
-        return url
+        return (await response.json()).get('file')
 
     async def sadcat(self) -> str:
         response = await self._session.get(f"{self._api_url}/sadcat")
-        url = (await response.json()).get('file')
-
-        return url
+        return (await response.json()).get('file')
 
     async def fml(self) -> str:
         response = await self._session.get(f"{self._api_url}/fml")
-        text = (await response.json()).get('text')
-
-        return text
+        return (await response.json()).get('text')
 
     async def dogs(self) -> str:
         response = await self._session.get(f"{self._api_url}/dogs")
-        url = (await response.json()).get('file')
-
-        return url
+        return (await response.json()).get('file')
 
     # Colour
 
-    async def colour(self, colour=None) -> Colour:
+    async def colour(self, colour = None) -> Colour:
         if colour is None:
             colour = "%06x" % randint(0, 0xFFFFFF)
 
@@ -158,14 +165,14 @@ class Client:
     async def amiajoke(self, image: str) -> Image:
         url = await self._check_url(
             f"{self._api_url}/amiajoke?image={image}"
-        )
+            )
 
         return Image(url, self._session)
 
     async def bad(self, image: str) -> Image:
         url = await self._check_url(
             f"{self._api_url}/bad?image={image}"
-        )
+            )
 
         return Image(url, self._session)
 
@@ -207,7 +214,7 @@ class Client:
 
         return Image(url, self._session)
 
-    async def colour_image(self, colour=None) -> Image:
+    async def colour_image(self, colour = None) -> Image:
         if colour is None:
             colour = "%06x" % randint(0, 0xFFFFFF)
 
@@ -218,7 +225,7 @@ class Client:
 
         return Image(url, self._session)
 
-    async def colour_image_gradient(self, colour=None) -> Image:
+    async def colour_image_gradient(self, colour = None) -> Image:
         if colour is None:
             colour = "%06x" % randint(0, 0xFFFFFF)
 
@@ -229,7 +236,7 @@ class Client:
 
         return Image(url, self._session)
 
-    async def colourify(self, image: str, colour="", background="") -> Image:
+    async def colourify(self, image: str, colour = "", background = "") -> Image:
         if colour != "":
             if not search(r'^(?:[0-9a-fA-F]{3}){1,2}$', colour):
                 raise BadRequest("Invalid HEX value for colour. You're only allowed to enter HEX (0-9 & A-F)")
@@ -267,14 +274,16 @@ class Client:
         return Image(url, self._session)
 
     async def filter(self, name: str, image: str) -> Image:
-        options = ['blur', 'invert', 'b&w', 'deepfry', 'wide', 'snow', 'gay',
-                   'pixelate', 'jpegify', 'magik', 'communist']
-        if name not in options:
-            raise NotFound("Filter not found. Valid options: " + ", ".join(options))
+        options = ['blur', 'invert', 'b&w', 'deepfry', 'sepia', 'pixelate',
+                   'magik', 'jpegify', 'wide', 'snow', 'gay', 'communist',
+                   'random']
 
-        url = await self._check_url(
-            f"{self._api_url}/filter/{name}?image={image}"
-        )
+        if name.lower() not in options:
+            raise NotFound("Filter not found. Valid options: " + ", ".join(options))
+        if name.lower() == "random":
+            name = choice(options)
+
+        url = await self._check_url(f"{self._api_url}/filter/{name}?image={image}")
         return Image(url, self._session)
 
     async def floor(self, text: str, image: str = None) -> Image:
@@ -289,7 +298,7 @@ class Client:
     async def jokeoverhead(self, image: str) -> Image:
         url = await self._check_url(
             f"{self._api_url}/jokeoverhead?image={image}"
-        )
+            )
 
         return Image(url, self._session)
 
@@ -303,7 +312,7 @@ class Client:
     async def salty(self, image: str) -> Image:
         url = await self._check_url(
             f"{self._api_url}/salty?image={image}"
-        )
+            )
 
         return Image(url, self._session)
 
@@ -316,7 +325,7 @@ class Client:
     async def ship(self, user: str, user2: str) -> Image:
         url = await self._check_url(
             f"{self._api_url}/ship?user={user}&user2={user2}"
-        )
+            )
 
         return Image(url, self._session)
 
@@ -337,7 +346,7 @@ class Client:
     async def trash(self, face: str, trash: str) -> Image:
         url = await self._check_url(
             f"{self._api_url}/trash?face={face}&trash={trash}"
-        )
+            )
 
         return Image(url, self._session)
 
@@ -350,4 +359,3 @@ class Client:
     async def close(self) -> None:
         if not self._session.closed:
             await self._session.close()
-        pass

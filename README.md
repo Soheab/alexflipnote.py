@@ -100,10 +100,5 @@ bot.run("TOKEN")
 
 This wrapper is made by Soheab_#6240, contact me on discord for anything related to this wrapper.
 
-You can join my [discord server here](https://discord.gg/yCzcfju) or 
-AlexFlipnote's [server here](https://discord.gg/alexflipnote) (recommended)
-
-Please report any bugs in the servers above or dm.
-
-Suggestions are also welcome.
-
+You can join my [Discord server here](https://discord.gg/yCzcfju) or 
+AlexFlipnote's [server here](https://discord.gg/DpxkY3x) to report any bugs or suggestions.
