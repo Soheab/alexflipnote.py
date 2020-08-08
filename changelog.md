@@ -1,6 +1,9 @@
 # AlexFlipnote.py | Changelog
 See here what changed or broke each version.
 
+## 1.5.2
+- Added an optional `session` param to `alexflipnote.Client()`.
+- Renamed `_session` to `session`
 
 ## 1.5.1
 - Now these: `"`, `'`, `(`, `)`, `+`, `,`, `-`, `.`, `/` also get replaced for methods that require text.

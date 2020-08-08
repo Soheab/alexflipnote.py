@@ -15,6 +15,9 @@ import alexflipnote
 
 alex_api = alexflipnote.Client()
 ```
+Client has an optional session param:
+- session | This is if you want to provide a session to make the requests to the api with.
+
 For future reference in this documentation: when referring to 'alex_api' we refer to that above!
  
   

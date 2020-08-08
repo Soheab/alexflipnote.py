@@ -3,7 +3,7 @@
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
 
 
-# Alexflipnote.py
+# AlexFlipnote.py
 An easy to use Python Wrapper for the AlexFlipnote API
 
 <img src="https://alexflipnote.dev/branding/assets/avatar.png" alt="drawing" width="300"/>
