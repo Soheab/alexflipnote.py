@@ -22,18 +22,12 @@ Install the package by doing one of the following commands:
 - `pip install alexflipnote.py -U`
 - `python -m pip install alexflipnote.py -U`
 
-##### Or install the testing branch:
-which can be unstable or have breaking changes:
-
-- `pip install git+https://github.com/Soheab/alexflipnote.py@testing -U`
-- `python -m pip install git+https://github.com/Soheab/alexflipnote.py@testing -U`
-
 # Changelog
-See the changelog for each [version here](https://github.com/Soheab/alexflipnote.py/blob/master/changelog.md)
+See the changelog for each [version here](changelog.md)
 
 # Examples
 
-Get a random cat pic:
+Get a random [cat](docs.md#await-alex_apicats) pic:
 ```python
 import asyncio
 import alexflipnote
@@ -51,7 +45,7 @@ async def get_cat_pic():
 asyncio.get_event_loop().run_until_complete(get_cat_pic())
 ``` 
 
-Make a custom supreme logo:
+Make a custom [supreme](docs.md#await-alex_apisupremetext-dark-light) logo:
 ```python
 import asyncio
 import alexflipnote
@@ -69,7 +63,7 @@ async def custom_supreme_logo(text, dark=False, light=False):
 asyncio.get_event_loop().run_until_complete(custom_supreme_logo('#some text, yes', dark=True))
 ``` 
 
-Minecraft achievement using [discord.py](https://github.com/Rapptz/discord.py):
+Minecraft [achievement](docs.md#await-alex_apiachievementtext-icon) using [discord.py](https://github.com/Rapptz/discord.py):
 ```python
 import discord
 import alexflipnote
@@ -96,9 +90,10 @@ await alex_api.close()
 bot.run("TOKEN")
 ```
 
+
 # Made by
 
-This wrapper is made by Soheab_#6240, contact me on discord for anything related to this wrapper.
-
-You can join my [Discord server here](https://discord.gg/yCzcfju) or 
-AlexFlipnote's [server here](https://discord.gg/DpxkY3x) to report any bugs or suggestions.
+This wrapper is made by **Soheab#6240**, DM me on Discord or [join my Server](https://discord.gg/yCzcfju) for anything 
+related to this wrapper.
+ 
+You can join AlexFlipnote's [server here](https://discord.gg/DpxkY3x) to suggests something for the API.

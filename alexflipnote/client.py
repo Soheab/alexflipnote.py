@@ -45,7 +45,7 @@ def _parse_text(text: str) -> str:
         "^": "%CB%86",
         "_": "%5F",
         "©": "%C2%A9"
-        }
+    }
     return text.translate(str.maketrans(replacements))
 
 
@@ -112,7 +112,7 @@ class Client:
 
     # Colour
 
-    async def colour(self, colour = None) -> Colour:
+    async def colour(self, colour=None) -> Colour:
         if colour is None:
             colour = "%06x" % randint(0, 0xFFFFFF)
 
@@ -174,14 +174,14 @@ class Client:
     async def amiajoke(self, image: str) -> Image:
         url = await self._check_url(
             f"{self._api_url}/amiajoke?image={image}"
-            )
+        )
 
         return Image(url, self.session)
 
     async def bad(self, image: str) -> Image:
         url = await self._check_url(
             f"{self._api_url}/bad?image={image}"
-            )
+        )
 
         return Image(url, self.session)
 
@@ -223,7 +223,7 @@ class Client:
 
         return Image(url, self.session)
 
-    async def colour_image(self, colour = None) -> Image:
+    async def colour_image(self, colour=None) -> Image:
         if colour is None:
             colour = "%06x" % randint(0, 0xFFFFFF)
 
@@ -234,7 +234,7 @@ class Client:
 
         return Image(url, self.session)
 
-    async def colour_image_gradient(self, colour = None) -> Image:
+    async def colour_image_gradient(self, colour=None) -> Image:
         if colour is None:
             colour = "%06x" % randint(0, 0xFFFFFF)
 
@@ -245,7 +245,7 @@ class Client:
 
         return Image(url, self.session)
 
-    async def colourify(self, image: str, colour = "", background = "") -> Image:
+    async def colourify(self, image: str, colour="", background="") -> Image:
         if colour != "":
             if not search(r'^(?:[0-9a-fA-F]{3}){1,2}$', colour):
                 raise BadRequest("Invalid HEX value for colour. You're only allowed to enter HEX (0-9 & A-F)")
@@ -307,7 +307,7 @@ class Client:
     async def jokeoverhead(self, image: str) -> Image:
         url = await self._check_url(
             f"{self._api_url}/jokeoverhead?image={image}"
-            )
+        )
 
         return Image(url, self.session)
 
@@ -321,7 +321,7 @@ class Client:
     async def salty(self, image: str) -> Image:
         url = await self._check_url(
             f"{self._api_url}/salty?image={image}"
-            )
+        )
 
         return Image(url, self.session)
 
@@ -334,7 +334,7 @@ class Client:
     async def ship(self, user: str, user2: str) -> Image:
         url = await self._check_url(
             f"{self._api_url}/ship?user={user}&user2={user2}"
-            )
+        )
 
         return Image(url, self.session)
 
@@ -355,7 +355,7 @@ class Client:
     async def trash(self, face: str, trash: str) -> Image:
         url = await self._check_url(
             f"{self._api_url}/trash?face={face}&trash={trash}"
-            )
+        )
 
         return Image(url, self.session)
 
