@@ -20,7 +20,7 @@ class InternalServerError(Exception):
     pass
 
 
-def _parse_text(text: str) -> str:
+def _replace_characters(text: str) -> str:
     replacements = {
         " ": "%20",
         "!": "%21",
@@ -56,7 +56,7 @@ class Client:
         self._api_url = "https://api.alexflipnote.dev"
 
     # will be rewritten when json errors are a thing.
-    async def _check_url(self, url: str):  # return_response=False):
+    async def _check_url(self, url: str):
         response = await self.session.get(url)
         # print(response.status, await response.text())
         # error.group().strip("</p>")
@@ -146,7 +146,7 @@ class Client:
     # Image
 
     async def achievement(self, text: str, icon: Union[int, str, Icon] = None) -> Image:
-        text = _parse_text(str(text))
+        text = _replace_characters(str(text))
         actual_icon = ""
         if icon is not None:
             if isinstance(icon, int):
@@ -186,19 +186,19 @@ class Client:
         return Image(url, self.session)
 
     async def calling(self, text: str) -> Image:
-        text = _parse_text(text)
+        text = _replace_characters(text)
         url = f"{self._api_url}/calling?text={text}"
 
         return Image(url, self.session)
 
     async def captcha(self, text: str) -> Image:
-        text = _parse_text(text)
+        text = _replace_characters(text)
         url = f"{self._api_url}/captcha?text={text}"
 
         return Image(url, self.session)
 
     async def challenge(self, text: str, icon: Union[int, str, Icon] = None) -> Image:
-        text = _parse_text(text)
+        text = _replace_characters(text)
         actual_icon = ""
         if icon is not None:
             if isinstance(icon, int):
@@ -263,21 +263,21 @@ class Client:
         return Image(url, self.session)
 
     async def didyoumean(self, top: str, bottom: str) -> Image:
-        top = _parse_text(top)
-        bottom = _parse_text(bottom)
+        top = _replace_characters(top)
+        bottom = _replace_characters(bottom)
         url = f"{self._api_url}/didyoumean?top={top}&bottom={bottom}"
 
         return Image(url, self.session)
 
     async def drake(self, top: str, bottom: str) -> Image:
-        top = _parse_text(top)
-        bottom = _parse_text(bottom)
+        top = _replace_characters(top)
+        bottom = _replace_characters(bottom)
         url = f"{self._api_url}/drake?top={top}&bottom={bottom}"
 
         return Image(url, self.session)
 
     async def facts(self, text: str) -> Image:
-        text = _parse_text(text)
+        text = _replace_characters(text)
         url = f"{self._api_url}/facts?text={text}"
 
         return Image(url, self.session)
@@ -292,11 +292,11 @@ class Client:
         if name.lower() == "random":
             name = choice(options)
 
-        url = await self._check_url(f"{self._api_url}/filter/{name}?image={image}")
+        url = await self._check_url(f"{self._api_url}/filter/{name.lower()}?image={image}")
         return Image(url, self.session)
 
     async def floor(self, text: str, image: str = None) -> Image:
-        text = _parse_text(text)
+        text = _replace_characters(text)
         if image is not None:
             image = f"&image={image}"
 
@@ -312,8 +312,8 @@ class Client:
         return Image(url, self.session)
 
     async def pornhub(self, text: str, text2: str) -> Image:
-        text = _parse_text(text)
-        text2 = _parse_text(text2)
+        text = _replace_characters(text)
+        text2 = _replace_characters(text2)
         url = f"{self._api_url}/pornhub?text={text}&text2={text2}"
 
         return Image(url, self.session)
@@ -326,7 +326,7 @@ class Client:
         return Image(url, self.session)
 
     async def scroll(self, text: str) -> Image:
-        text = _parse_text(text)
+        text = _replace_characters(text)
         url = f"{self._api_url}/scroll?text={text}"
 
         return Image(url, self.session)
@@ -339,7 +339,7 @@ class Client:
         return Image(url, self.session)
 
     async def supreme(self, text: str, dark: bool = False, light: bool = False) -> Image:
-        text = _parse_text(text)
+        text = _replace_characters(text)
         darkorlight = ""
         if dark:
             darkorlight = "&dark=true"

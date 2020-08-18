@@ -1,6 +1,9 @@
 # AlexFlipnote.py | Changelog
 See here what changed or broke each version.
 
+## v1.5.4
+- Added missing `.lower()` for `.filter()`
+
 ## v1.5.3
 - docs.md and README.md improvements. New version to update it on PyPi.
 

@@ -27,24 +27,6 @@ See the changelog for each [version here](changelog.md)
 
 # Examples
 
-Get a random [cat](docs.md#await-alex_apicats) pic:
-```python
-import asyncio
-import alexflipnote
-
-alex_api = alexflipnote.Client()
-
-
-async def get_cat_pic():
-    cat = await alex_api.cats()
-    print(cat)
-    # prints: https://api.alexflipnote.dev/cats/grRlHyi-AL8_cats.jpg
-    await alex_api.close()  # preventing the "Unclosed client session" warning.
-
-
-asyncio.get_event_loop().run_until_complete(get_cat_pic())
-``` 
-
 Make a custom [supreme](docs.md#await-alex_apisupremetext-dark-light) logo:
 ```python
 import asyncio
