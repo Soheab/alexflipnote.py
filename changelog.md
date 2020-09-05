@@ -1,4 +1,4 @@
-# AlexFlipnote.py | Changelog
+## AlexFlipnote.py | Changelog
 See here what changed or broke each version.
 
 ---
@@ -53,7 +53,7 @@ This fixed the link to docs from the long description on pypi.
 ### v1.2.3 - June 20, 2020
 Some missing f-strings were added for `.amiajoke()`, `.bad()` and `.colour_image()` oops.
 
-## v1.2.2 - June 20, 2020
+### v1.2.2 - June 20, 2020
 `Steam.SteamProfile.vacbanned` was added back.
 
 ### v1.2.1 - June 19, 2020
