@@ -21,7 +21,7 @@ setup(
     license = 'MIT',
     author = 'Soheab_',
     install_requires = ['aiohttp'],
-    keywords = ['alexflipnote', 'discord', 'api'],
+    keywords = ['alexflipnote', 'discord', 'api', 'wrapper', 'memes', 'image', 'discord.py'],
     project_urls = {
         "Discord": "https://discord.gg/DpxkY3x",
         "Source": "https://github.com/Soheab/alexflipnote.py",

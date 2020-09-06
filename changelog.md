@@ -3,6 +3,12 @@ See here what changed or broke each version.
 
 ---
 
+### v1.5.5 - September 6, 2020
+- Added "User-Agent"
+- Better README.md
+- Added examples to docs.md and fixed typo
+- Added dates to changelog.md
+
 ### v1.5.4 - August 18, 2020
 - Added missing `.lower()` for `.filter()`
 
@@ -27,7 +33,7 @@ See here what changed or broke each version.
 - Added support for the new `wide` filter.
 
 ### v1.3.1 - July 26, 2020
-This one fixed `alexflipnote.Image.read()` raising a TypeError instead of returning BytesIO.
+- Fixed `alexflipnote.Image.read()` raising a TypeError instead of returning BytesIO.
  
 ### v1.3.0 - July 13, 2020
 A complete rewrite which also removed the required package "url_regex". 
@@ -42,39 +48,39 @@ A complete rewrite which also removed the required package "url_regex".
 I hope its faster and easier to use than ever with no breaking changes (hopefully)
 
 ### v1.2.6 - July 1, 2020
-This one fixed `.trash()` having the wrong url format.
+- Fixed `.trash()` having the wrong url format.
 
 ### v1.2.5 - June 30, 2020
-This fixed `.colourify()` not checking properly if color and background were `None`
+- Fixed `.colourify()` not checking properly if color and background were `None`
 
 ### v1.2.4 - June 21, 2020
-This fixed the link to docs from the long description on pypi.
+- Link to docs.md fix on PyPi
 
 ### v1.2.3 - June 20, 2020
-Some missing f-strings were added for `.amiajoke()`, `.bad()` and `.colour_image()` oops.
+- Added missing f-strings for `.amiajoke()`, `.bad()` and `.colour_image()`
 
 ### v1.2.2 - June 20, 2020
-`Steam.SteamProfile.vacbanned` was added back.
+- Added back `Steam.SteamProfile.vacbanned`
 
 ### v1.2.1 - June 19, 2020
-In here `alexflipnote.Icon` enum was added for the icons for `.achievement()` & `.challenge()`
-to easily give an icon. Oh, and `.Steam.SteamProfile.vacbanned` was accidentally 
-removed in this version.
+- Enum for `.achievement()` & `.challenge()`
+- Removed `.Steam.SteamProfile.vacbanned`
 
 ### v1.2 - June 17, 2020
-This was almost a rewrite. `return_bytes` which was added in 1.0.0 is removed so 
-almost everything now returns a `alexflipnote.Image` object now. 
+This was almost a rewrite. 
 
-And docs were added in this one.
+- Remove `return_bytes`
+- Most methods now return a `alexlfipnote.Image` object.
+- Added docs.md
 
 ### v1.0.1.2 - June 15, 2020
-In this version `.Colour.rgb_values` was introduced to get r/g/b values separate for Color.
+- Added `.Colour.rgb_values` to get r/g/b values separate for Color
  
 ### v1.0.1.1 - June 15, 2020
-c and b parameters of `.color()` change to colour and background.
+- c and b parameters of `.color()` change to colour and background
 
 ### v1.0.1 - June 15, 2020
-`.steam()` and `.filter()` now raise `alexflipnote.NotFound` when user or filter isn't found.
+- `.steam()` and `.filter()` now raise `alexflipnote.NotFound` when user or filter isn't found
 
 ### v1.0.0 - June 15, 2020
-Let's not talk about this one.
+Let's not talk about this one

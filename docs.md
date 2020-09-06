@@ -214,7 +214,7 @@ When someone is being salty.
 **Return type:** [Image](docs.md#image "Image object attributes")
 
 ---
-### await alex_api.facts(text)
+### await alex_api.scroll(text)
 Make that scroll meme with your text.
 
 **Parameters**:
@@ -269,7 +269,55 @@ Get an invitation to the AlexFlipnote server (or and the creator of this wrapper
 **Parameters**:
 - creator `boolean` | To also get an invitation to the server of creator of this wrapper.
 
-**Return type**: string or tuple
+**Return type**: string or tuple when `creator` is True
+
+# Examples
+See here some examples
+
+##### Make a custom [supreme](docs.md#await-alex_apisupremetext-dark-light) logo:
+```python
+import asyncio
+import alexflipnote
+
+alex_api = alexflipnote.Client()
+
+
+async def custom_supreme_logo(text, dark=False, light=False):
+    supreme = await alex_api.supreme(text, dark, light)
+    print(supreme)
+    # prints: https://api.alexflipnote.dev/supreme?text=%23some%20text,%20yes&dark=true
+    await alex_api.close()  # preventing the "Unclosed client session" warning.
+
+
+asyncio.get_event_loop().run_until_complete(custom_supreme_logo('#some text, yes', dark=True))
+``` 
+
+##### Minecraft [achievement](docs.md#await-alex_apiachievementtext-icon) using [discord.py](https://github.com/Rapptz/discord.py):
+```python
+import discord
+import alexflipnote
+from discord.ext import commands
+from typing import Union
+
+
+bot = commands.Bot(command_prefix="!")
+alex_api = alexflipnote.Client() # just a example, the client doesn't have to be under bot.
+
+@bot.command()
+async def achievement(ctx, text: str, icon: Union[int, str] = None): 
+    image = await (await alex_api.achievement(text=text, icon=icon)).read() # BytesIO
+    await ctx.send(f"Rendered by {ctx.author}", file=discord.File(image, filename="achievement.png"))
+    
+# have this where you close the bot or somewhere to close the session and prevent the "Unclosed client session" warning.
+await alex_api.close()
+
+# we did a Union[int, str] since the wrapper accepts a number or string for the icon, see the icon section in docs to see what it accepts.
+
+# invoke: !achievement "nice job!" diamond_sword
+# see output here: https://i.imgur.com/l9OcQNw.png
+
+bot.run("TOKEN")
+```
 
 # Objects
 Here is explained what attributes the returned objects have

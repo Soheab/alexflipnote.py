@@ -1,6 +1,6 @@
 from asyncio import get_event_loop
 from random import choice, randint
-from re import search
+from re import search, MULTILINE
 from typing import Any, Tuple, Union
 
 from aiohttp import ClientSession
@@ -49,6 +49,13 @@ def _replace_characters(text: str) -> str:
     return text.translate(str.maketrans(replacements))
 
 
+with open('alexflipnote/__init__.py') as f:
+    version = search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(), MULTILINE).group(1)
+
+_hex_regex = r'^(?:[0-9a-fA-F]{3}){1,2}$'
+_hex_regex_failed = "Invalid HEX value. You're only allowed to enter HEX (0-9 & A-F)"
+
+
 class Client:
 
     def __init__(self, session: ClientSession = None) -> None:
@@ -57,7 +64,12 @@ class Client:
 
     # will be rewritten when json errors are a thing.
     async def _check_url(self, url: str):
-        response = await self.session.get(url)
+        response = await self.session.get(
+            str(url),
+            headers = {
+                "User-Agent": f"AlexFlipnote.py {version}"
+            }
+        )
         # print(response.status, await response.text())
         # error.group().strip("</p>")
         if response.status in [400, 404, 500]:
@@ -116,8 +128,8 @@ class Client:
         if colour is None:
             colour = "%06x" % randint(0, 0xFFFFFF)
 
-        if not search(r'^(?:[0-9a-fA-F]{3}){1,2}$', colour):
-            raise BadRequest("Invalid HEX value. You're only allowed to enter HEX (0-9 & A-F)")
+        if not search(_hex_regex, colour):
+            raise BadRequest(_hex_regex_failed)
 
         response = await self.session.get(f"{self._api_url}/colour/{colour}")
         color = await response.json()
@@ -227,8 +239,8 @@ class Client:
         if colour is None:
             colour = "%06x" % randint(0, 0xFFFFFF)
 
-        if not search(r'^(?:[0-9a-fA-F]{3}){1,2}$', colour):
-            raise BadRequest("Invalid HEX value. You're only allowed to enter HEX (0-9 & A-F)")
+        if not search(_hex_regex, colour):
+            raise BadRequest(_hex_regex_failed)
 
         url = f"{self._api_url}/colour/image/{colour}"
 
@@ -238,8 +250,8 @@ class Client:
         if colour is None:
             colour = "%06x" % randint(0, 0xFFFFFF)
 
-        if not search(r'^(?:[0-9a-fA-F]{3}){1,2}$', colour):
-            raise BadRequest("Invalid HEX value. You're only allowed to enter HEX (0-9 & A-F)")
+        if not search(_hex_regex, colour):
+            raise BadRequest(_hex_regex_failed)
 
         url = f"{self._api_url}/colour/image/gradient/{colour}"
 
@@ -253,7 +265,7 @@ class Client:
             colour = f"&c={colour}"
 
         if background != "":
-            if not search(r'^(?:[0-9a-fA-F]{3}){1,2}$', background):
+            if not search(_hex_regex, background):
                 raise BadRequest("Invalid HEX value for background. You're only allowed to enter HEX (0-9 & A-F)")
 
             background = f"&b={background}"
