@@ -214,7 +214,7 @@ When someone is being salty.
 **Return type:** [Image](docs.md#image "Image object attributes")
 
 ---
-### await alex_api.facts(text)
+### await alex_api.scroll(text)
 Make that scroll meme with your text.
 
 **Parameters**:
