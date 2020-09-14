@@ -1,6 +1,6 @@
 from asyncio import get_event_loop
 from random import choice, randint
-from re import search, MULTILINE
+from re import search
 from typing import Any, Tuple, Union
 
 from aiohttp import ClientSession
@@ -38,8 +38,7 @@ def _replace_characters(text: str) -> str:
     return text.translate(str.maketrans(replacements))
 
 
-with open('__init__.py') as f:
-    version = search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(), MULTILINE).group(1)
+version = "1.6.2"
 
 _hex_regex = r'^(?:[0-9a-fA-F]{3}){1,2}$'
 _hex_regex_failed = "Invalid HEX value. You're only allowed to enter HEX (0-9 & A-F)"
