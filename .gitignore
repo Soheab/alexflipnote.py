@@ -128,3 +128,4 @@ dmypy.json
 .pyre/
 !/test.py
 test.py
+test.py
