@@ -126,5 +126,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-!/test_api.py
-test_api.py
+!/test.py
+test.py

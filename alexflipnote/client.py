@@ -5,19 +5,8 @@ from typing import Any, Tuple, Union
 
 from aiohttp import ClientSession
 
-from .classes import Colour, Icon, Image, Steam
-
-
-class BadRequest(Exception):
-    pass
-
-
-class NotFound(Exception):
-    pass
-
-
-class InternalServerError(Exception):
-    pass
+from .classes import Colour, Icon, Image
+from .errors import BadRequest, HTTPException, InternalServerError, NotFound
 
 
 def _replace_characters(text: str) -> str:
@@ -62,34 +51,26 @@ class Client:
         self.session = ClientSession(loop = get_event_loop()) or session
         self._api_url = "https://api.alexflipnote.dev"
 
-    # will be rewritten when json errors are a thing.
     async def _check_url(self, url: str):
-        response = await self.session.get(
-            str(url),
-            headers = {
-                "User-Agent": f"AlexFlipnote.py {version}"
-            }
-        )
-        # print(response.status, await response.text())
-        # error.group().strip("</p>")
-        if response.status in [400, 404, 500]:
-            # text = await response.text()
-            # error = search('<p>(.+?)</p>', str(text))
-            if response.status == 400:
-                raise BadRequest()
-            if response.status == 404:
-                raise NotFound()
-            if response.status == 500:
-                raise InternalServerError()
-        return url
-        # else:
-        # raise HTTPException(response, await response.json().get("msg"))
+        url = str(url)
+        headers = {"User-Agent": f"AlexFlipnote.py by Soheab_#6240 | Version: {version}"}
+        response = await self.session.get(url = url, headers = headers)
+        if response.status == 200:
+            return url
+        elif response.status == 400:
+            raise BadRequest((await response.json()).get("description"))
+        elif response.status == 404:
+            raise NotFound((await response.json()).get("description"))
+        elif response.status == 500:
+            raise InternalServerError((await response.json()).get("description"))
+        else:
+            raise HTTPException(response, (await response.json()).get("description"))
 
-    # else:
-    # if return_response:
-    # return response
-    # return url
     # can anyone improve this? PRs are more than welcome.
+
+    # remove next version.
+    async def steam(self, profile: str) -> str:
+        return "This endpoint is removed from the API, sorry."
 
     # Json/URL
 
@@ -135,17 +116,6 @@ class Client:
         color = await response.json()
 
         return Colour(color)
-
-    # Steam
-
-    async def steam(self, profile: str) -> Steam:
-        response = await self.session.get(f"{self._api_url}/steam/user/{profile}")
-        if response.status == 404:  # maybe remove and let _check_url handle it.
-            raise NotFound("User not found on steam.")
-
-        profile = await response.json()
-
-        return Steam(profile)
 
     # Dict
 
@@ -257,20 +227,19 @@ class Client:
 
         return Image(url, self.session)
 
-    async def colourify(self, image: str, colour="", background="") -> Image:
-        if colour != "":
+    async def colourify(self, image: str, colour=None, background=None) -> Image:
+        url = f"{self._api_url}/colourify?image={image}"
+        if colour is not None:
             if not search(r'^(?:[0-9a-fA-F]{3}){1,2}$', colour):
                 raise BadRequest("Invalid HEX value for colour. You're only allowed to enter HEX (0-9 & A-F)")
 
-            colour = f"&c={colour}"
+            url += f"&c={colour}"
 
-        if background != "":
+        if background is not None:
             if not search(_hex_regex, background):
                 raise BadRequest("Invalid HEX value for background. You're only allowed to enter HEX (0-9 & A-F)")
 
-            background = f"&b={background}"
-
-        url = f"{self._api_url}/colourify?image={image}{colour}{background}"
+            url += f"&b={background}"
 
         return Image(url, self.session)
 
@@ -309,10 +278,9 @@ class Client:
 
     async def floor(self, text: str, image: str = None) -> Image:
         text = _replace_characters(text)
+        url = f"{self._api_url}/floor?text={text}"
         if image is not None:
-            image = f"&image={image}"
-
-        url = f"{self._api_url}/floor?text={text}{image}"
+            url += f"&image={image}"
 
         return Image(url, self.session)
 

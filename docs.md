@@ -233,15 +233,6 @@ Ship someone or yourself with someone else.
 **Return type:** [Image](docs.md#image "Image object attributes")
 
 ---
-### await alex_api.steam(profile)
-Get someones steam profile.
-
-**Parameters**:
-- profile `string` | The user to look for.
-
-**Return type:** [Steam](docs.md#steam "Image object attributes")
-
----
 ### await alex_api.supreme(text, dark, light)
 Make a custom supreme logo.
 
@@ -390,76 +381,6 @@ The G values of the colour
 
 #### ColourRGB.b
 The B values of the colour
-
-
-## Steam
-The object returned from `alex_api.steam()`
-
-#### Steam.id
-A [SteamID](docs.md#steamid-1 "SteamID object attributes") object
-
-#### Steam.avatars
-A [SteamAvatar](docs.md#steamavatar "SteamID object attributes") object
-
-#### Steam.profile
-A [SteamProfile](docs.md#steamprofile-1 "SteamID object attributes") object
-
-## SteamID
-The object returned from `alex_api.steam().id`
-
-#### SteamID.steamid3
-The steam id3 of user
-
-#### SteamID.steamid32
-The steam id32 of user
-
-#### SteamID.steamid64
-The steam id64 of user
-
-#### SteamID.custom_url
-The custom url of user
-
-
-## SteamAvatar
-The object returned from `alex_api.steam().avatar`
-
-#### SteamAvatar.avatar
-The avatar of user
-
-#### SteamAvatar.avatar_medium
-The medium version of user's avatar
-
-#### SteamAvatar.avatar_full
-The full version of user's avatar
-
-
-## SteamProfile
-The object returned from `alex_api.steam().profile`. Some things can be None.
-
-#### SteamProfile.username
-The username of user
-
-#### SteamProfile.real_name
-The real name of user
-
-#### SteamProfile.summary
-The summary user has on their profile
-
-#### SteamProfile.background
-User profile's background
-
-#### SteamProfile.location
-User's provided location
-
-#### SteamProfile.privacy
-User's privacy type, Public or Private
-
-#### SteamProfile.time_created
-Time when user profile was created.
-
-#### SteamProfile.vacbanned
-True or False if user is VAC Banned
-
 
 ## Icon
 ---

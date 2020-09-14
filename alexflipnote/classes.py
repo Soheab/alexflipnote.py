@@ -43,48 +43,6 @@ class Colour:
             self.b = data.get('b')
 
 
-class Steam:
-    __slots__ = ("id", "avatars", "profile")
-
-    def __init__(self, data) -> None:
-        self.id = Steam.SteamID(data.get('id'))
-        self.avatars = Steam.SteamAvatar(data.get('avatars'))
-        self.profile = Steam.SteamProfile(data.get('profile'))
-
-    class SteamID:
-        __slots__ = ("steamid3", "steamid32", "steamid64", "custom_url")
-
-        def __init__(self, data) -> None:
-            self.steamid3 = data.get('steamid3')
-            self.steamid32 = data.get('steamid32')
-            self.steamid64 = data.get('steamid64')
-            self.custom_url = data.get('customurl')
-
-    class SteamAvatar:
-        __slots__ = ("avatar", "avatar_medium", "avatar_full")
-
-        def __init__(self, data) -> None:
-            self.avatar = data.get('avatar')
-            self.avatar_medium = data.get('avatarmedium')
-            self.avatar_full = data.get('avatarfull')
-
-    class SteamProfile:
-        __slots__ = ("username", "real_name", "url", "summary", "background",
-                     "location", "state", "privacy", "time_created", "vacbanned")
-
-        def __init__(self, data) -> None:
-            self.username = data.get('username')
-            self.real_name = data.get('realname')
-            self.url = data.get('url')
-            self.summary = data.get('summary')
-            self.background = data.get('background')
-            self.location = data.get('location')
-            self.state = data.get('state')
-            self.privacy = data.get('privacy')
-            self.time_created = data.get('timecreated')
-            self.vacbanned = data.get('vacbanned')
-
-
 class Icon(enum.Enum):
     grass_block = 1
     diamond = 2

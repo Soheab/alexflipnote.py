@@ -7,7 +7,10 @@ with open('README.md') as f:
 
 # source: https://github.com/Rapptz/discord.py/blob/master/setup.py#L9-L10
 with open('alexflipnote/__init__.py') as f:
-    version = search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(), MULTILINE).group(1)
+    content = f.read()
+    version = search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', content, MULTILINE).group(1)
+    author = search(r'^__author__\s*=\s*[\'"]([^\'"]*)[\'"]', content, MULTILINE).group(1)
+    _license = search(r'^__license__\s*=\s*[\'"]([^\'"]*)[\'"]', content, MULTILINE).group(1)
 
 setup(
     name = 'alexflipnote.py',
@@ -18,8 +21,8 @@ setup(
     packages = ['alexflipnote'],
     url = 'https://github.com/Soheab/Alexflipnote.py',
     download_url = f'https://github.com/Soheab/alexflipnote.py/archive/v{version}.tar.gz',
-    license = 'MIT',
-    author = 'Soheab_',
+    license = _license,
+    author = author,
     install_requires = ['aiohttp'],
     keywords = ['alexflipnote', 'discord', 'api', 'wrapper', 'memes', 'image', 'discord.py'],
     project_urls = {

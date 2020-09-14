@@ -3,8 +3,11 @@ See here what changed or broke each version.
 
 ---
 
-### v1.5.5 - September 6, 2020
+### v1.6.0 - September 6, 2020
+- Removed `.steam()`. Reason: ratelimited too much - AlexFlipnote
+- All errors now have text, finally json errors!
 - Added "User-Agent"
+- Added `__author__` & `__license__` next to `__version__`
 - Better README.md
 - Added examples to docs.md and fixed typo
 - Added dates to changelog.md
