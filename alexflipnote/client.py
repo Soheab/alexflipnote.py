@@ -38,7 +38,7 @@ def _replace_characters(text: str) -> str:
     return text.translate(str.maketrans(replacements))
 
 
-with open('alexflipnote/__init__.py') as f:
+with open('__init__.py') as f:
     version = search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', f.read(), MULTILINE).group(1)
 
 _hex_regex = r'^(?:[0-9a-fA-F]{3}){1,2}$'
