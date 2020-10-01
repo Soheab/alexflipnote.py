@@ -1,3 +1,4 @@
+import urllib.parse
 from asyncio import get_event_loop
 from random import choice, randint
 from re import search
@@ -10,32 +11,7 @@ from .errors import BadRequest, HTTPException, InternalServerError, NotFound
 
 
 def _replace_characters(text: str) -> str:
-    replacements = {
-        " ": "%20",
-        "!": "%21",
-        '"': "%22",
-        "#": "%23",
-        "$": "%24",
-        "%": "%25",
-        "&": "%26",
-        "'": "%27",
-        "(": "%28",
-        ")": "%29",
-        "*": "%2A",
-        "+": "%2B",
-        ",": "%2C",
-        "-": "%2D",
-        ".": "%2E",
-        "/": "%2F",
-        "=": "%3D",
-        "@": "%40",
-        ":": "%3A",
-        ";": "%3B",
-        "^": "%CB%86",
-        "_": "%5F",
-        "©": "%C2%A9"
-    }
-    return text.translate(str.maketrans(replacements))
+    return urllib.parse.quote(text)
 
 
 version = "1.6.2"
