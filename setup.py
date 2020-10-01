@@ -1,4 +1,4 @@
-from re import search, MULTILINE
+from re import MULTILINE, search
 
 from setuptools import setup  # type: ignore
 
