@@ -1,5 +1,5 @@
 [![PyPi Version](https://img.shields.io/pypi/v/alexflipnote.py.svg)](https://pypi.python.org/pypi/alexflipnote.py/)
-[![Downloads](https://pepy.tech/badge/alexflipnote-py)](https://pepy.tech/project/alexflipnote-py)
+[![Downloads](https://static.pepy.tech/personalized-badge/alexflipnote-py?period=total&units=none&left_color=black&right_color=red&left_text=Total Downloads)](https://pepy.tech/project/alexflipnote-py)
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
 
 # AlexFlipnote.py
