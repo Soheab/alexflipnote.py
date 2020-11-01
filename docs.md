@@ -81,13 +81,13 @@ Generate a Minecraft challenge with custom text.
 **Return type**: [Image](docs.md#image "Image object attributes")
 
 ---
-### await alex_api.colour(Optional[colour])
+### await alex_api.colour(colour = None)
 Get info on provided colour.
 
 **Aliases**: color
 
 **Parameters**:
-- text `string` | The Colour. Defaults to random colour.
+- text `string` | The Colour. `Defaults to random colour.`
 
 **Return type:** [Colour](docs.md#colour "Image object attributes")
 
@@ -100,7 +100,7 @@ Get all github colours, per language.
 **Return type:** JSON
 
 ---
-### await alex_api.colour_image(colour)
+### await alex_api.colour_image(colour = None)
 Get an image of provided colour.
 
 **Aliases**: color_image
@@ -111,7 +111,7 @@ Get an image of provided colour.
 **Return type:** [Image](docs.md#image "Image object attributes")
 
 ---
-### await alex_api.colour_image_gradient(colour)
+### await alex_api.colour_image_gradient(colour = None)
 Get an image gradients of provided colour.
 
 **Aliases**: color_image_gradient
