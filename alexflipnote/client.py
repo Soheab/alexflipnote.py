@@ -36,7 +36,7 @@ class Client:
 
     async def _check_url(self, url: str):
         url = str(url)
-        headers = {"User-Agent": f"AlexFlipnote.py by Soheab_#6240 | Version: 1.7.0"}
+        headers = {"User-Agent": f"AlexFlipnote.py"}
         response = await self.session.get(url = url, headers = headers)
         if (
                 response.content_type == "application/json"
