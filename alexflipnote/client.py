@@ -119,7 +119,7 @@ class Client:
     ) -> Image:
         colour = str(colour).replace("#", "") if colour else None
         background = str(background).replace("#", "") if background else None
-        url = f"{self._api_url}/colourify?image={image}"
+        url = f"{self._api_url}/colourify?image={str(image)}"
         if colour:
             if not search(r"^(?:[0-9a-fA-F]{3}){1,2}$", colour):
                 raise BadRequest(
@@ -173,11 +173,11 @@ class Client:
     # Image
 
     async def amiajoke(self, image: str) -> Image:
-        url = await self._check_url(f"{self._api_url}/amiajoke?image={image}")
+        url = await self._check_url(f"{self._api_url}/amiajoke?image={str(image)}")
         return Image(url, self.session)
 
     async def bad(self, image: str) -> Image:
-        url = await self._check_url(f"{self._api_url}/bad?image={image}")
+        url = await self._check_url(f"{self._api_url}/bad?image={str(image)}")
         return Image(url, self.session)
 
     async def calling(self, text: str) -> Image:
@@ -220,19 +220,19 @@ class Client:
         name = name.replace("BLACK_AND_WHITE", "b&w")
 
         url = await self._check_url(
-            f"{self._api_url}/filter/{name.lower()}?image={image}"
+            f"{self._api_url}/filter/{name.lower()}?image={str(image)}"
         )
         return Image(url, self.session)
 
     async def floor(self, text: str, image: str = None) -> Image:
         url = f"{self._api_url}/floor?text={quote(str(text))}"
         if image:
-            url += f"&image={image}"
+            url += f"&image={str(image)}"
 
         return Image(url, self.session)
 
     async def jokeoverhead(self, image: str) -> Image:
-        url = await self._check_url(f"{self._api_url}/jokeoverhead?image={image}")
+        url = await self._check_url(f"{self._api_url}/jokeoverhead?image={str(image)}")
         return Image(url, self.session)
 
     async def pornhub(self, text: str, text2: str) -> Image:
@@ -242,7 +242,7 @@ class Client:
         return Image(url, self.session)
 
     async def salty(self, image: str) -> Image:
-        url = await self._check_url(f"{self._api_url}/salty?image={image}")
+        url = await self._check_url(f"{self._api_url}/salty?image={str(image)}")
         return Image(url, self.session)
 
     async def scroll(self, text: str) -> Image:
@@ -251,7 +251,7 @@ class Client:
 
     async def ship(self, user: str, user2: str) -> Image:
         url = await self._check_url(
-            f"{self._api_url}/ship?user={quote(user)}&user2={quote(user2)}"
+            f"{self._api_url}/ship?user={str(user)}&user2={str(user2)}"
         )
         return Image(url, self.session)
 
@@ -268,11 +268,11 @@ class Client:
         return Image(url, self.session)
 
     async def trash(self, face: str, trash: str) -> Image:
-        url = await self._check_url(f"{self._api_url}/trash?face={face}&trash={trash}")
+        url = await self._check_url(f"{self._api_url}/trash?face={str(face)}&trash={str(trash)}")
         return Image(url, self.session)
 
     async def what(self, image: str) -> Image:
-        url = await self._check_url(f"{self._api_url}/what?image={image}")
+        url = await self._check_url(f"{self._api_url}/what?image={str(image)}")
         return Image(url, self.session)
 
     # Other
