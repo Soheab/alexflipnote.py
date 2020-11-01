@@ -6,4 +6,4 @@ Icon = MinecraftIcons  # if anyone was using the enum directly for some reason..
 
 __license__ = "MIT"
 __author__ = "Soheab_"
-__version__ = "1.7.0"
+__version__ = "1.7.1"
