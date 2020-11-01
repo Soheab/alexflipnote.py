@@ -13,7 +13,7 @@ _hex_regex = r"^(?:[0-9a-fA-F]{3}){1,2}$"
 _hex_regex_failed = "Invalid HEX value. You're only allowed to enter HEX (0-9 & A-F)"
 
 
-async def _get_from_enum(enum_class, value: Union[str, int]) -> Any:
+def _get_from_enum(enum_class, value: Union[str, int]) -> Any:
     try:
         if isinstance(value, str):
             val = enum_class[str(value.upper())]
@@ -149,7 +149,7 @@ class Client:
     async def achievement(
             self, text: str, icon: Union[str, int, MinecraftIcons] = MinecraftIcons.RANDOM
     ) -> Image:
-        get_icon = await _get_from_enum(MinecraftIcons, icon)
+        get_icon = _get_from_enum(MinecraftIcons, icon)
         if get_icon is MinecraftIcons.RANDOM or not get_icon:
             icon = choice(list(MinecraftIcons)).value
         else:
@@ -161,7 +161,7 @@ class Client:
     async def challenge(
             self, text: str, icon: Union[str, int, MinecraftIcons] = MinecraftIcons.RANDOM
     ) -> Image:
-        get_icon = await _get_from_enum(MinecraftIcons, icon)
+        get_icon = _get_from_enum(MinecraftIcons, icon)
         if get_icon is MinecraftIcons.RANDOM or not get_icon:
             icon = choice(list(MinecraftIcons)).value
         else:
@@ -204,7 +204,7 @@ class Client:
         if isinstance(name, str):
             if name == "b&w":  # any better way ?
                 name = Filters.BLACK_AND_WHITE
-        get_filter = await _get_from_enum(Filters, name)
+        get_filter = _get_from_enum(Filters, name)
         if not get_filter:
             #              want people to use the actual name (b&w) and all lower instead.
             all_filters = [
