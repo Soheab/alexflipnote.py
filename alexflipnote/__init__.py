@@ -1,7 +1,9 @@
-from .classes import Colour, Icon, Image
+from .classes import Colour, MinecraftIcons, Image, Filters
 from .client import BadRequest, Client, InternalServerError, NotFound
 from .errors import BadRequest, HTTPException, InternalServerError, NotFound
 
-__license__ = 'MIT'
-__author__ = 'Soheab_'
-__version__ = '1.6.2'
+Icon = MinecraftIcons  # if anyone was using the enum directly for some reason..
+
+__license__ = "MIT"
+__author__ = "Soheab_"
+__version__ = "1.7.0"

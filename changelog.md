@@ -3,6 +3,18 @@ See here what changed or broke each version.
 
 ---
 
+### v1.7.0 - November 1, 2020
+- Added support for new endpoint: `.what()` [See more in docs](docs.md#await-alex_apiwhatimage)
+- Now using urllib.parse to parse text.
+- Added `bytesio=True` to `Image.read()` set it to False if you want the bytes returned instead of an io.BytesIO object.
+- Removed `.steam()`.
+- Added alias for `.colourify()` -> `colorify`
+- Added alias for `.colour_image_gradient()` -> `color_image_gradient`
+- Added [Filters enum](docs.md#filters) for `.filter()`
+- Changed Icon enum for `.achievement()` and `.challenge()` to [MinecraftIcons](docs.md#minecrafticons) with better
+ docs.
+- Added an optional `loop` param to `alexflipnote.Client()`
+
 ### v1.6.0 - September 6, 2020
 - Removed `.steam()`. Reason: ratelimited too much - AlexFlipnote
 - All errors now have text, finally json errors!

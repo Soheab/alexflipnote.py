@@ -22,12 +22,12 @@ For future reference in this documentation: when referring to 'alex_api' we refe
 ## Using the wrapper:
 All available endpoints you can use.
 
-### await alex_api.achievement(text, icon)
+### await alex_api.achievement(text, icon = MinecraftIcons.RANDOM)
 Generate a Minecraft achievement with custom text.
 
 **Parameters**:
 - text `string` | Text for the achievement.
-- icon `string, int, Icon` | The icon you want, ignored if invalid.
+- icon `string, int or MinecraftIcons` | The icon you want from [here](docs.md#MinecraftIcons). `defaults to random`
 
 **Return type**: [Image](docs.md#image "Image object attributes")
 
@@ -71,17 +71,17 @@ Get a random cat picture.
 **Return type:** String
 
 ---
-### await alex_api.challenge(text, icon)
+### await alex_api.challenge(text, icon = MinecraftIcons.RANDOM)
 Generate a Minecraft challenge with custom text.
 
 **Parameters**:
-- text `string` | our text for the challenge.
-- icon `string, int, Icon` | The icon you want, ignored if invalid.
+- text `string` | Text for the challenge.
+- icon `string, int or MinecraftIcons` | The icon you want from [here](docs.md#MinecraftIcons). `defaults to random`
 
 **Return type**: [Image](docs.md#image "Image object attributes")
 
 ---
-### await alex_api.colour(colour)
+### await alex_api.colour(Optional[colour])
 Get info on provided colour.
 
 **Aliases**: color
@@ -95,14 +95,18 @@ Get info on provided colour.
 ### await alex_api.github_colours()
 Get all github colours, per language.
 
+**Aliases**: github_color
+
 **Return type:** JSON
 
 ---
 ### await alex_api.colour_image(colour)
 Get an image of provided colour.
 
+**Aliases**: color_image
+
 **Parameters**:
-- text `string` | The Colour. Defaults to random colour.
+- text `string` | The Colour. `Defaults to random colour.`
 
 **Return type:** [Image](docs.md#image "Image object attributes")
 
@@ -110,8 +114,10 @@ Get an image of provided colour.
 ### await alex_api.colour_image_gradient(colour)
 Get an image gradients of provided colour.
 
+**Aliases**: color_image_gradient
+
 **Parameters**:
-- text `string` | The Colour. Defaults to random colour.
+- text `string` | The Colour. `Defaults to random colour.`
 
 **Return type:** [Image](docs.md#image "Image object attributes")
 
@@ -155,16 +161,17 @@ Get the facts book.
 Put a filter on an image.
 
 **Available options:** `blur`, `invert`, `b&w`, `deepfry`, `sepia`, `pixelate`,
-                    `magik`, `jpegify`, `wide`, `snow`, `gay`, `communist`, `random`
+                    `magik`, `jpegify`, `wide`, `snow`, `gay`, `communist`, `random`,
+                       [Filters enum](docs.md#Filters), number from 1 to 13.
   
 **Parameters**:
-- name `string` | The filter name, see **Available options**. `random` will be a random filter from options above.
+- name `string, int or Filters` | The filter name from [here](docs.md#Filters) or see Available options. `random` will be a random filter from options above.
 - image `string` | The image to put the filter on.
 
 **Return type:** [Image](docs.md#image "Image object attributes")
 
 ---
-### await alex_api.floor(text, image)
+### await alex_api.floor(text, image = None)
 Get a "Don't touch the floor" meme with your text and image.
 
 **Parameters**:
@@ -233,13 +240,13 @@ Ship someone or yourself with someone else.
 **Return type:** [Image](docs.md#image "Image object attributes")
 
 ---
-### await alex_api.supreme(text, dark, light)
+### await alex_api.supreme(text, dark = False, light = False)
 Make a custom supreme logo.
 
 **Parameters**:
 - text `string` | Text for the logo.
-- dark `boolean` | Make the background dark.
-- light `boolean` | Make the background light.
+- dark `boolean` | Make the background dark. `Defaults to False`
+- light `boolean` | Make the background light. `Defaults to False`
 
 **Return type:** [Image](docs.md#image "Image object attributes")
 
@@ -254,18 +261,28 @@ Throw someone in the trash bin 🚮
 **Return type:** [Image](docs.md#image "Image object attributes")
 
 ---
-### await alex_api.support_server(creator)
+### await alex_api.what(image)
+Create an image with "what" and an image.
+
+**Parameters**:
+- image `url` | A discord avatar URL.
+
+**Return type:** [Image](docs.md#image "Image object attributes")
+
+---
+### await alex_api.support_server(creator = False)
 Get an invitation to the AlexFlipnote server (or and the creator of this wrapper.)
 
 **Parameters**:
 - creator `boolean` | To also get an invitation to the server of creator of this wrapper.
 
-**Return type**: string or tuple when `creator` is True
+**Return type**: string or tuple when `creator` is True. `Defaults to False`
 
 # Examples
 See here some examples
 
 ##### Make a custom [supreme](docs.md#await-alex_apisupremetext-dark-light) logo:
+[Output](https://api.alexflipnote.dev/supreme?text=%23some%20text,%20yes&dark=true)
 ```python
 import asyncio
 import alexflipnote
@@ -276,36 +293,32 @@ alex_api = alexflipnote.Client()
 async def custom_supreme_logo(text, dark=False, light=False):
     supreme = await alex_api.supreme(text, dark, light)
     print(supreme)
-    # prints: https://api.alexflipnote.dev/supreme?text=%23some%20text,%20yes&dark=true
     await alex_api.close()  # preventing the "Unclosed client session" warning.
 
 
 asyncio.get_event_loop().run_until_complete(custom_supreme_logo('#some text, yes', dark=True))
 ``` 
 
-##### Minecraft [achievement](docs.md#await-alex_apiachievementtext-icon) using [discord.py](https://github.com/Rapptz/discord.py):
+##### Minecraft [achievement](docs.md#await-alex_apiachievementtext-icon) (same for `alex_api.challenge()`) using [discord.py](https://github.com/Rapptz/discord.py):
+[Output](https://api.alexflipnote.dev/achievement?text=nice%20job&icon=3)
 ```python
 import discord
 import alexflipnote
 from discord.ext import commands
-from typing import Union
-
 
 bot = commands.Bot(command_prefix="!")
 alex_api = alexflipnote.Client() # just a example, the client doesn't have to be under bot.
 
 @bot.command()
-async def achievement(ctx, text: str, icon: Union[int, str] = None): 
+async def achievement(ctx, text: str, icon = None): 
     image = await (await alex_api.achievement(text=text, icon=icon)).read() # BytesIO
     await ctx.send(f"Rendered by {ctx.author}", file=discord.File(image, filename="achievement.png"))
     
 # have this where you close the bot or somewhere to close the session and prevent the "Unclosed client session" warning.
 await alex_api.close()
 
-# we did a Union[int, str] since the wrapper accepts a number or string for the icon, see the icon section in docs to see what it accepts.
 
 # invoke: !achievement "nice job!" diamond_sword
-# see output here: https://i.imgur.com/l9OcQNw.png
 
 bot.run("TOKEN")
 ```
@@ -317,19 +330,22 @@ Here is explained what attributes the returned objects have
 The object returned from `alex_api.achievement()`, `alex_api.amiajoke()`, `alex_api.bad()`, `alex_api.calling()`, `alex_api.captcha()`,
     `alex_api.challenge()`, `alex_api.colour_image()`, `alex_api.colour_image_gradient()`, `alex_api.colourify()`, `alex_api.didyoumean()`,
     `alex_api.drake()`, `alex_api.facts()`, `alex_api.filter()`, `alex_api.floor()`, `alex_api.jokeoverhead()`, `alex_api.pornhub()`,
-    `alex_api.salty()`, `alex_api.scroll()`, `alex_api.ship()`, `alex_api.supreme()` and `alex_api.trash()`
+    `alex_api.salty()`, `alex_api.scroll()`, `alex_api.ship()`, `alex_api.supreme()`, `alex_api.trash()`, `alex_api.what()`
     
 #### Image.url
 The url of the image
 
 #### await Image.read()
-This will return a BytesIO object, which can be passed to discord.File() with a filename 
+This will return a [io.BytesIO](https://docs.python.org/3/library/io.html#binary-i-o) object, 
+which can be passed to discord.File() with a filename 
 for [discord.py](https://github.com/Rapptz/discord.py):
 ```py
 supreme_logo = await alex_api.supreme("ah yes")
 supreme_bytes = await supreme_logo.read() # <_io.BytesIO object at 0x0438DFC8> - BytesIO object.
 await ctx.send(file=discord.File(supreme_bytes, filename="supreme.png"))
 ```
+\
+You can set `bytesio` to `False` if you want the bytes instead of an `io.BytesIO` object.
 
 ## Colour
 The object returned from `alex_api.colour()`
@@ -382,37 +398,187 @@ The G values of the colour
 #### ColourRGB.b
 The B values of the colour
 
-## Icon
----
-The objects you can pass to the icon param for `alex_api.achievement()` and `alex_api.challenge()`
+## MinecraftIcons
+Enum for [`.achievement()`](#await-alex_apiachievementtext-icon--minecrafticonsrandom) and [`.challenge()`](#await-alex_apichallengetext-icon--minecrafticonsrandom).
 
-#### int:
+### 1 or grass_block (or grassblock)
+Grass_Block icon for the achievement or challenge.
 
-**1:** `grass_block`, **2:** `diamond`, **3:** `diamond_sword`, **4:** `creeper`, **5:** `pig`, \
-**6:** `tnt`, **7:** `cookie`, **8:** `heart`, **9:** `bed`, **10:** `cake`, \
-**11:** `sign` **12:** `rail` **13:** `crafting_bench` **14:** `redstone`, **15:** `fire`, \
-**16:** `cobweb`, **17:** `chest`, **18:** `furnace`, **19:** `book`, **20:** `stone_block`, \
-**21:** `wooden_plank_block`, **22:** `iron_ingot`, **23:** `gold_ingot`, **24:** `wooden_door`, **25:** `iron_door`, \
-**26:** `diamond_chestplate`, **27:** `flint_and_steel`, **28:** `glass_bottle`, **29:** `splash_potion`, **30:** `creeper_spawnegg`, \
-**31:** `coal`, **32:** `iron_sword`, **33:** `bow`, **34:** `arrow`, **35:** `iron_chestplate`, \
-**36:** `bucket`, **37:** `bucket_with_water`, **38:** `bucket_with_lava`, **39:** `bucket_with_milk`, **40:** `diamond_boots`, \
-**41:** `wooden_hoe`, **42:** `bread`, **43:** `wooden_sword`, **44:** `bone`, **45:** `oak_log`
+### 2 or diamond
+Diamond icon for the achievement or challenge.
 
-#### str:
+### 3 or diamond_sword (or diamondsword)
+Diamond_Sword icon for the achievement or challenge.
 
-`grass_block`, `diamond`, `diamond_sword`, `creeper`, `pig`, `tnt`, `cookie`, `heart`, `bed`, `cake`,
-`sign`, `rail`, `crafting_bench`, `redstone`, `fire`, `cobweb`, `chest`, `furnace`, `book`, `stone_block`,
-`wooden_plank_block`, `iron_ingot`, `gold_ingot`, `wooden_door`, `iron_door`, `diamond_chestplate`, `flint_and_steel`, `glass_bottle`, `splash_potion`, `creeper_spawnegg`,
-`coal`, `iron_sword`, `bow`, `arrow`, `iron_chestplate`, `bucket`, `bucket_with_water`, `bucket_with_lava`, `bucket_with_milk`, `diamond_boots`,
-`wooden_hoe`, `bread`, `wooden_sword`, `bone`, `oak_log`
+### 4 or creeper
+Creeper icon for the achievement or challenge.
 
-#### object:
+### 5 or pig
+Pig icon for the achievement or challenge.
 
-`Icon.grass_block`, `Icon.diamond`, `Icon.diamond_sword`, `Icon.creeper`, `Icon.pig`, `Icon.tnt`,
-`Icon.cookie`, `Icon.heart`, `Icon.bed`, `Icon.cake`, `Icon.sign`, `Icon.rail`,
-`Icon.crafting_bench`, `Icon.redstone`, `Icon.fire`, `Icon.cobweb`, `Icon.chest`, `Icon.furnace`,
-`Icon.book`, `Icon.stone_block`, `Icon.wooden_plank_block`, `Icon.iron_ingot`, `Icon.gold_ingot`, `Icon.wooden_door`,
-`Icon.iron_door`, `Icon.diamond_chestplate`, `Icon.flint_and_steel`, `Icon.glass_bottle`, `Icon.splash_potion`, `Icon.creeper_spawnegg`,
-`Icon.coal`, `Icon.iron_sword`, `Icon.bow`, `Icon.arrow`, `Icon.iron_chestplate`, `Icon.bucket`,
-`Icon.bucket_with_water`, `Icon.bucket_with_lava`, `Icon.bucket_with_milk`, `Icon.diamond_boots`, `Icon.wooden_hoe`, `Icon.bread`,
-`Icon.wooden_sword`, `Icon.bone`, `Icon.oak_log`
+### 6 or tnt
+Tnt icon for the achievement or challenge.
+
+### 7 or cookie
+Cookie icon for the achievement or challenge.
+
+### 8 or heart
+Heart icon for the achievement or challenge.
+
+### 9 or bed
+Bed icon for the achievement or challenge.
+
+### 10 or cake
+Cake icon for the achievement or challenge.
+
+### 11 or sign
+Sign icon for the achievement or challenge.
+
+### 12 or rail
+Rail icon for the achievement or challenge.
+
+### 13 or crafting_bench (or craftingbench)
+Crafting_Bench icon for the achievement or challenge.
+
+### 14 or redstone
+Redstone icon for the achievement or challenge.
+
+### 15 or fire
+Fire icon for the achievement or challenge.
+
+### 16 or cobweb
+Cobweb icon for the achievement or challenge.
+
+### 17 or chest
+Chest icon for the achievement or challenge.
+
+### 18 or furnace
+Furnace icon for the achievement or challenge.
+
+### 19 or book
+Book icon for the achievement or challenge.
+
+### 20 or stone_block (or stoneblock)
+Stone_Block icon for the achievement or challenge.
+
+### 21 or wooden_plank_block (or woodenplankblock)
+Wooden_Plank_Block icon for the achievement or challenge.
+
+### 22 or iron_ingot (or ironingot)
+Iron_Ingot icon for the achievement or challenge.
+
+### 23 or gold_ingot (or goldingot)
+Gold_Ingot icon for the achievement or challenge.
+
+### 24 or wooden_door (or woodendoor)
+Wooden_Door icon for the achievement or challenge.
+
+### 25 or iron_door (or irondoor)
+Iron_Door icon for the achievement or challenge.
+
+### 26 or diamond_chestplate (or diamondchestplate)
+Diamond_Chestplate icon for the achievement or challenge.
+
+### 27 or flint_and_steel (or flintandsteel)
+Flint_And_Steel icon for the achievement or challenge.
+
+### 28 or glass_bottle (or glassbottle)
+Glass_Bottle icon for the achievement or challenge.
+
+### 29 or splash_potion (or splashpotion)
+Splash_Potion icon for the achievement or challenge.
+
+### 30 or creeper_spawnegg (or creeperspawnegg)
+Creeper_Spawnegg icon for the achievement or challenge.
+
+### 38 or creeperspawnegg
+Creeperspawnegg icon for the achievement or challenge.
+
+### 31 or coal
+Coal icon for the achievement or challenge.
+
+### 32 or iron_sword (or ironsword)
+Iron_Sword icon for the achievement or challenge.
+
+### 33 or bow
+Bow icon for the achievement or challenge.
+
+### 34 or arrow
+Arrow icon for the achievement or challenge.
+
+### 35 or iron_chestplate (or ironchestplate)
+Iron_Chestplate icon for the achievement or challenge.
+
+### 36 or bucket
+Bucket icon for the achievement or challenge.
+
+### 37 or bucket_with_water (or bucketwithwater)
+Bucket_With_Water icon for the achievement or challenge.
+
+### 39 or bucket_with_milk (or bucketwithmilk)
+Bucket_With_Milk icon for the achievement or challenge.
+
+### 40 or diamond_boots (or diamondboots)
+Diamond_Boots icon for the achievement or challenge.
+
+### 41 or wooden_hoe (or woodenhoe)
+Wooden_Hoe icon for the achievement or challenge.
+
+### 42 or bread
+Bread icon for the achievement or challenge.
+
+### 43 or wooden_sword (or woodensword)
+Wooden_Sword icon for the achievement or challenge.
+
+### 44 or bone
+Bone icon for the achievement or challenge.
+
+### 45 or oak_log (or oaklog)
+Oak_Log icon for the achievement or challenge.
+
+### 46 or random
+Random icon from above for the achievement or challenge.
+
+
+## Filters
+Enum for [`.filter()`](#await-alex_apifiltername-image).
+
+### 1 or blur
+Blur filter.
+
+### 2 or invert
+Invert filter.
+
+### 3 or black_and_white
+Black_And_White filter.
+
+### 4 or deepfry
+Deepfry filter.
+
+### 5 or sepia
+Sepia filter.
+
+### 6 or pixelate
+Pixelate filter.
+
+### 7 or magik
+Magik filter.
+
+### 8 or jpegify
+Jpegify filter.
+
+### 9 or wide
+Wide filter.
+
+### 10 or snow
+Snow filter.
+
+### 11 or gay
+Gay filter.
+
+### 12 or communist
+Communist filter.
+
+### 13 or random
+Random filter from above.
+
