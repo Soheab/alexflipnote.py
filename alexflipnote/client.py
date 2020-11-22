@@ -32,14 +32,14 @@ class Client:
 
     def __init__(self, token: str, *, session: ClientSession = None, loop: AbstractEventLoop = None) -> None:
         self.token = token
-        self.session = session or ClientSession(loop = loop or get_event_loop())
+        self.session = ClientSession(loop = get_event_loop() or loop) or loop
         self._api_url = "https://api.alexflipnote.dev"
 
     async def _api_request(self, endpoint: str, params: dict = None):
         url = f"https://api.alexflipnote.dev/{endpoint}"
         headers = {"Authorization": str(self.token).strip()}
         params = params
-        response = await self.session.get(url = url, headers = headers, params = params)
+        response = await self.session.get(str(url), headers = headers, params = params)
 
         if response.content_type == "application/json" and response.status == 200:
             return await response.json()
