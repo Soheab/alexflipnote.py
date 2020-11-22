@@ -12,7 +12,7 @@ Since 2.0.0 is not on PYPI yet, you can install this repo via GIT like so:
 
 **Using pip (recommended)**:
 - `pip install git+https://github.com/Soheab/alexflipnote.py@master-U`
-- `python -m pip install https://github.com/Soheab/alexflipnote.py@master -U`
+- `python -m pip install git+https://github.com/Soheab/alexflipnote.py@master -U`
 
 # Token
 A recent (November 22) change to API has made an Authorization header with a personal token required for ALL endpoints. \
