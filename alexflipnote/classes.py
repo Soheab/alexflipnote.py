@@ -2,19 +2,19 @@ from enum import Enum
 from io import BytesIO
 from typing import Union
 
-from aiohttp import ClientSession
+from aiohttp import ClientResponse
 
 
 class Image:
     def __init__(self, url: str, session) -> None:
         self.url: str = url
-        self.session: ClientSession = session
+        self.response: ClientResponse = session
 
     def __str__(self) -> str:
         return self.url if self.url is not None else ""
 
     async def read(self, bytesio = True) -> Union[bytes, BytesIO]:
-        _bytes = await (await self.session.get(str(self.url))).read()
+        _bytes = await self.response.read()
         if bytesio is False:
             return _bytes
 

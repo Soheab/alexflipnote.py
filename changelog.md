@@ -3,6 +3,9 @@ See here what changed or broke each version.
 
 ---
 
+### v2.0.0 - November 22, 2020
+soon
+
 ### v1.7.0 - November 1, 2020
 - Added support for new endpoint: `.what()` [See more in docs](docs.md#await-alex_apiwhatimage)
 - Now using urllib.parse to parse text.

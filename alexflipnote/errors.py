@@ -17,6 +17,10 @@ class InternalServerError(AlexFlipnoteException):
     pass
 
 
+class Forbidden(AlexFlipnoteException):
+    pass
+
+
 class HTTPException(AlexFlipnoteException):
     def __init__(self, response, message):
         self.response = response

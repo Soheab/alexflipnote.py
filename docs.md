@@ -287,7 +287,7 @@ See here some examples
 import asyncio
 import alexflipnote
 
-alex_api = alexflipnote.Client()
+alex_api = alexflipnote.Client("YOUR-API-TOKEN")
 
 
 async def custom_supreme_logo(text, dark=False, light=False):
@@ -307,7 +307,7 @@ import alexflipnote
 from discord.ext import commands
 
 bot = commands.Bot(command_prefix="!")
-alex_api = alexflipnote.Client() # just a example, the client doesn't have to be under bot.
+alex_api = alexflipnote.Client("YOUR-API-TOKEN") # just a example, the client doesn't have to be under bot.
 
 @bot.command()
 async def achievement(ctx, text: str, icon = None): 
