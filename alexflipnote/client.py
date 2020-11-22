@@ -28,7 +28,7 @@ def _get_from_enum(enum_class, value: Union[str, int]) -> Any:
 
 
 class Client:
-    __slots__ = ("token", "session", "loop")
+    __slots__ = ("token", "session", "loop", "_api_url")
 
     def __init__(self, token: str, *, session: ClientSession = None, loop: AbstractEventLoop = None) -> None:
         self.token = token
