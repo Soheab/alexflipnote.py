@@ -13,6 +13,16 @@ class Image:
     def __str__(self) -> str:
         return self.url if self.url is not None else ""
 
+    async def to_discord_file(self, filename: str, *, spoiler: bool = False):
+        try:
+            from discord import File
+        except (ValueError, ImportError):  # ImportError for python 3.9 iirc and ValueError for under
+            raise RuntimeError("You need to have discord.py installed in order to use this method.")
+
+        _bytesio = BytesIO(await self.response.read())
+        file = File(_bytesio, filename, spoiler = spoiler)
+        return file
+
     async def read(self, bytesio = True) -> Union[bytes, BytesIO]:
         _bytes = await self.response.read()
         if bytesio is False:

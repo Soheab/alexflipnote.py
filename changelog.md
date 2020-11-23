@@ -2,9 +2,14 @@
 See here what changed or broke each version.
 
 ---
+### v2.1.0 - November 24?, 2020
+- New method to `alexflipnote.Image`, `.to_discord_file()`
 
-### v2.0.0 - November 22, 2020
-soon
+### v2.0.1 - November 23, 2020
+- Fixed `.drake()` returning a weird image.
+
+### v2.0.0 - November 23, 2020
+This introduced the required token in the constructor to be up to date with the api.
 
 ### v1.7.0 - November 1, 2020
 - Added support for new endpoint: `.what()` [See more in docs](docs.md#await-alex_apiwhatimage)

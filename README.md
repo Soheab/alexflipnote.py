@@ -7,16 +7,7 @@ An easy to use Python Wrapper for the AlexFlipnote API
 
 <img src="https://alexflipnote.dev/branding/assets/avatar.png" alt="drawing" width="200"/>
 
-# 2.0.0
-Since 2.0.0 is not on PYPI yet, you can install this repo via GIT like so:
-
-**Using pip (recommended)**:
-- `pip install git+https://github.com/Soheab/alexflipnote.py@master-U`
-- `python -m pip install git+https://github.com/Soheab/alexflipnote.py@master -U`
-
-NOTHING HAS BEEN TESTED YET.
-
-# Token
+## 2.0.0
 A recent (November 22) change to API has made an Authorization header with a personal token required for ALL endpoints. \
 ALL previous versions of this wrapper will no longer work and are considered to be deprecated!
 
@@ -24,11 +15,7 @@ Wondering how to get an Auth token to use the API ? Join the API's support serve
 
 You can pass your token in the constructor like so, `alexflipnote.Client("YOUR-API-TOKEN")`.
 
-# Embeds
-As stated above that ALL endpoint require a token, you can't really embed a link from the API anymore...
-but this wrapper has a nice way to do it easily. See here how:
-
-SOON.
+For embedding links see [here](docs.md#embed)
 
 
 ## Requirements
