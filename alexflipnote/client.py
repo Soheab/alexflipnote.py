@@ -2,7 +2,7 @@ from asyncio import get_event_loop, AbstractEventLoop
 from random import choice, randint
 from re import search
 from typing import Union, Tuple, Any
-from urllib.parse import quote
+from urllib.parse import quote, urlencode
 
 from aiohttp import ClientSession
 
@@ -32,14 +32,17 @@ class Client:
 
     def __init__(self, token: str, *, session: ClientSession = None, loop: AbstractEventLoop = None) -> None:
         self.token = token
-        self.session = ClientSession(loop = get_event_loop() or loop) or loop
+        self.session = ClientSession(loop = get_event_loop() or loop) or session
         self._api_url = "https://api.alexflipnote.dev"
 
     async def _api_request(self, endpoint: str, params: dict = None):
-        url = f"https://api.alexflipnote.dev/{endpoint}"
+
         headers = {"Authorization": str(self.token).strip()}
-        params = params
-        response = await self.session.get(str(url), headers = headers, params = params)
+        url = f"https://api.alexflipnote.dev/{endpoint}"
+        if params:
+            encoded_param = urlencode(params, quote_via = quote)
+            url += f"?{encoded_param}"
+        response = await self.session.get(str(url), headers = headers)
 
         if response.content_type == "application/json" and response.status == 200:
             return await response.json()
@@ -147,7 +150,7 @@ class Client:
         else:
             icon = get_icon.value
 
-        response = await self._api_request("achievement", {"text": quote(str(text)), "icon": icon})
+        response = await self._api_request("achievement", {"text": str(text), "icon": int(icon)})
         return Image(str(response.url), response)
 
     async def challenge(self, text: str, icon: Union[str, int, MinecraftIcons] = MinecraftIcons.RANDOM) -> Image:
@@ -157,7 +160,7 @@ class Client:
         else:
             icon = get_icon.value
 
-        response = await self._api_request("challenge", {"text": quote(str(text)), "icon": icon})
+        response = await self._api_request("challenge", {"text": str(text), "icon": int(icon)})
         return Image(str(response.url), response)
 
     # Image
@@ -171,23 +174,23 @@ class Client:
         return Image(str(response.url), response)
 
     async def calling(self, text: str) -> Image:
-        response = await self._api_request("calling", {"text": str(quote(str(text)))})
+        response = await self._api_request("calling", {"text": str(text)})
         return Image(str(response.url), response)
 
     async def captcha(self, text: str) -> Image:
-        response = await self._api_request("captcha", {"text": str(quote(str(text)))})
+        response = await self._api_request("captcha", {"text": str(text)})
         return Image(str(response.url), response)
 
     async def didyoumean(self, top: str, bottom: str) -> Image:
-        response = await self._api_request("didyoumean", {"top": str(quote(str(top))), "bottom": quote(str(bottom))})
+        response = await self._api_request("didyoumean", {"top": str(top), "bottom": str(bottom)})
         return Image(str(response.url), response)
 
-    async def drake(self, top: str, bottom: str) -> Image:
-        response = await self._api_request("drake", {"top": str(quote(str(top))), "bottom": quote(str(bottom))})
+    async def drake(self, top: str, bottom: str, *, ayano: bool = False) -> Image:
+        response = await self._api_request("drake", {"top": str(top), "bottom": str(bottom), "ayano": bool(ayano)})
         return Image(str(response.url), response)
 
     async def facts(self, text: str) -> Image:
-        response = await self._api_request("facts", {"text": str(quote(str(text)))})
+        response = await self._api_request("facts", {"text": str(text)})
         return Image(str(response.url), response)
 
     async def filter(self, name: Union[str, int, Filters], image: str) -> Image:
@@ -213,7 +216,7 @@ class Client:
         return Image(str(response.url), response)
 
     async def floor(self, text: str, image: str = None) -> Image:
-        params = {"text": quote(str(text))}
+        params = {"text": str(text)}
         if image:
             params["image"] = str(image)
 
@@ -225,7 +228,7 @@ class Client:
         return Image(str(response.url), response)
 
     async def pornhub(self, text: str, text2: str) -> Image:
-        response = await self._api_request("pornhub", {"text": quote(str(text)), "text2": quote(str(text2))})
+        response = await self._api_request("pornhub", {"text": str(text), "text2": str(text)})
         return Image(str(response.url), response)
 
     async def salty(self, image: str) -> Image:
@@ -233,7 +236,7 @@ class Client:
         return Image(str(response.url), response)
 
     async def scroll(self, text: str) -> Image:
-        response = await self._api_request(f"scroll", {"text": quote(str(text))})
+        response = await self._api_request(f"scroll", {"text": str(text)})
         return Image(str(response.url), response)
 
     async def ship(self, user: str, user2: str) -> Image:
@@ -241,7 +244,7 @@ class Client:
         return Image(str(response.url), response)
 
     async def supreme(self, text: str, dark: bool = False, light: bool = False) -> Image:
-        params = {"text": quote(str(text))}
+        params = {"text": str(text)}
         if dark:
             params["dark"] = "true"
         if light:
