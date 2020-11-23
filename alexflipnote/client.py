@@ -186,7 +186,10 @@ class Client:
         return Image(str(response.url), response)
 
     async def drake(self, top: str, bottom: str, *, ayano: bool = False) -> Image:
-        response = await self._api_request("drake", {"top": str(top), "bottom": str(bottom), "ayano": bool(ayano)})
+        params = {"top": str(top), "bottom": str(bottom)}
+        if ayano:
+            params["ayano"] = bool(ayano)
+        response = await self._api_request("drake", params)
         return Image(str(response.url), response)
 
     async def facts(self, text: str) -> Image:
