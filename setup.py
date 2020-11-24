@@ -30,7 +30,6 @@ setup(
     license = _license,
     author = author,
     install_requires = ["aiohttp"],
-    extras_require = {"discord.py"},
     keywords = [
         "alexflipnote",
         "discord",
