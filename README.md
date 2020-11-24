@@ -11,11 +11,11 @@ An easy to use Python Wrapper for the AlexFlipnote API
 A recent (November 22) change to API has made an Authorization header with a personal token required for ALL endpoints. \
 ALL previous versions of this wrapper will no longer work and are considered to be deprecated!
 
-Wondering how to get an Auth token to use the API ? Join the API's support server here: https://discord.gg/DpxkY3x to request one. \
+Wondering how to get an Auth token to use the API ? Join the API's support server here: https://discord.gg/DpxkY3x to request one.
 
 You can pass your token in the constructor like so, `alexflipnote.Client("YOUR-API-TOKEN")`.
 
-⚠️ **This is for v2.1.0, which isn't on PyPi yet**
+⚠️ **This is for v2.1.0, which isn't on PyPi yet** \
 For embedding links see [here](docs.md#embed)
 - For v2.0.0 and v2.0.1, use [Image.read()](https://github.com/Soheab/alexflipnote.py/blob/master/docs.md#await-imagereadbytesio--true) and pass the bytes to discord.File.
 
