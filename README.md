@@ -15,8 +15,9 @@ Wondering how to get an Auth token to use the API ? Join the API's support serve
 
 You can pass your token in the constructor like so, `alexflipnote.Client("YOUR-API-TOKEN")`.
 
+⚠️ **This is for v2.1.0, which isn't on PyPi yet**
 For embedding links see [here](docs.md#embed)
-
+- For v2.0.0 and v2.0.1, use [Image.read()](https://github.com/Soheab/alexflipnote.py/blob/master/docs.md#await-imagereadbytesio--true) and pass the bytes to discord.File.
 
 ## Requirements
 - Python 3.6 or above
