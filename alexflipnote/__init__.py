@@ -4,4 +4,4 @@ from .errors import BadRequest, HTTPException, InternalServerError, NotFound
 
 __license__ = "MIT"
 __author__ = "Soheab_"
-__version__ = "2.0.1"
+__version__ = "2.0.2"
