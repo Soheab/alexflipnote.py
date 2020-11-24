@@ -349,7 +349,7 @@ async def supreme(ctx, text: str):
 await alex_api.close()
 
 
-# invoke: !achievement "nice job!" diamond_sword
+# invoke: !supreme Supreme
 
 bot.run("TOKEN")
 ```
