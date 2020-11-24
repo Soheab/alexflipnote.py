@@ -302,6 +302,7 @@ asyncio.get_event_loop().run_until_complete(custom_supreme_logo('#some text, yes
 ##### Minecraft [achievement](docs.md#await-alex_apiachievementtext-icon) (same for `alex_api.challenge()`) using [discord.py](https://github.com/Rapptz/discord.py):
 [Output](https://api.alexflipnote.dev/achievement?text=nice%20job&icon=3)
 ```python
+import discord
 import alexflipnote
 from discord.ext import commands
 
@@ -311,7 +312,8 @@ alex_api = alexflipnote.Client("YOUR-API-TOKEN") # just a example, the client do
 @bot.command()
 async def achievement(ctx, text: str, icon = None): 
     image = await alex_api.achievement(text=text, icon=icon)
-    file = await image.to_discord_file("achievement.png")
+    image_bytes = await image.read()
+    file = discord.File(image_bytes, "achievement.png")
     await ctx.send(f"Rendered by {ctx.author}", file=file)
     
 # have this where you close the bot or somewhere to close the session and prevent the "Unclosed client session" warning.
@@ -325,7 +327,7 @@ bot.run("TOKEN")
 
 ##### Embed 
 Since the API now requires a token for all endpoints, you can't embed a link from the API anymore.. but here is how to 
-embed it via a file using [discord.py](https://github.com/Rapptz/discord.py) and `Image.to_discord_file()`:
+embed it via a file using [discord.py](https://github.com/Rapptz/discord.py):
 ```python
 import discord
 import alexflipnote
@@ -335,10 +337,12 @@ bot = commands.Bot(command_prefix="!!")
 alex_api = alexflipnote.Client("YOUR-API-TOKEN") # just a example, the client doesn't have to be under bot.
 
 @bot.command()
-async def supreme(ctx, text: str):
+async def supreme(ctx, text: str): 
     embed = discord.Embed(title = f"Rendered by {ctx.author}")
-    embed.set_image(url="attachment://supreme.png")
-    file = await (await alex_api.supreme(text=text)).to_discord_file("supreme.png")
+    embed.set_image(url="attachment://supreme.png") # attaching file image to embed.
+    image = await alex_api.supreme(text=text)
+    image_bytes = await image.read()
+    file = discord.File(image_bytes, "supreme.png")
     await ctx.send(embed=embed, file=file)
     
 # have this where you close the bot or somewhere to close the session and prevent the "Unclosed client session" warning.
@@ -362,16 +366,6 @@ The object returned from `alex_api.achievement()`, `alex_api.amiajoke()`, `alex_
 #### Image.url
 The url of the image
 
-#### await Image.to_discord_file(filename, spoiler = False)
-This will return a [discord.File](https://discordpy.readthedocs.io/en/latest/api.html#discord.File) object, 
-which can be passed to `file` kwarg in `.send()` for [discord.py](https://github.com/Rapptz/discord.py):
-```py
-supreme_logo = await (await alex_api.supreme("ah yes")).to_discord_file("supreme.png")
-await ctx.send(file=discord.File(supreme_bytes, filename=supreme_logo))
-```
-\
-There is a `spoiler` kwarg that can set to True.
-
 #### await Image.read(bytesio = True)
 This will return a [io.BytesIO](https://docs.python.org/3/library/io.html#binary-i-o) object, 
 which can be passed to discord.File() with a filename 
@@ -382,7 +376,7 @@ supreme_bytes = await supreme_logo.read() # <_io.BytesIO object at 0x0438DFC8> -
 await ctx.send(file=discord.File(supreme_bytes, filename="supreme.png"))
 ```
 \
-You can set `bytesio` to `False` if you want the bytes instead of an `io.BytesIO` object.
+You can set `bytesio` to `False` if you want raw bytes instead of an `io.BytesIO` object.
 
 ## Colour
 The object returned from `alex_api.colour()`

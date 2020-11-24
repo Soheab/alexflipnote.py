@@ -2,8 +2,8 @@
 See here what changed or broke each version.
 
 ---
-### v2.1.0 - November 24?, 2020
-- New method to `alexflipnote.Image`, `.to_discord_file()`
+### v2.0.2 - November 24?, 2020
+- Push better README to PyPi
 
 ### v2.0.1 - November 23, 2020
 - Fixed `.drake()` returning a weird image.
