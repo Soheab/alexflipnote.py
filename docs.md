@@ -13,7 +13,7 @@ After that, you will have to create the client:
 ```python
 import alexflipnote
 
-alex_api = alexflipnote.Client()
+alex_api = alexflipnote.Client("YOUR-API-TOKEN")
 ```
 
 For future reference in this documentation: when referring to 'alex_api' we refer to that above.
@@ -586,8 +586,8 @@ Blur filter.
 ### 2 or invert
 Invert filter.
 
-### 3 or black_and_white
-Black_And_White filter.
+### 3 or b&w or black_and_white
+Black and White filter.
 
 ### 4 or deepfry
 Deepfry filter.
