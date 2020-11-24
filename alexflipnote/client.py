@@ -231,7 +231,7 @@ class Client:
         return Image(str(response.url), response)
 
     async def pornhub(self, text: str, text2: str) -> Image:
-        response = await self._api_request("pornhub", {"text": str(text), "text2": str(text)})
+        response = await self._api_request("pornhub", {"text": str(text), "text2": str(text2)})
         return Image(str(response.url), response)
 
     async def salty(self, image: str) -> Image:

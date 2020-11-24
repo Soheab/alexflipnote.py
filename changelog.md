@@ -2,8 +2,9 @@
 See here what changed or broke each version.
 
 ---
-### v2.0.2 - November 24?, 2020
+### v2.0.2 - November 24, 2020
 - Push better README to PyPi
+- Fixes `.pornhub()` having the same value for text2.
 
 ### v2.0.1 - November 23, 2020
 - Fixed `.drake()` returning a weird image.
