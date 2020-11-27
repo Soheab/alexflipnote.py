@@ -26,6 +26,9 @@ def _get_from_enum(enum_class, value: Union[str, int]) -> Any:
     except (KeyError, ValueError):
         return None
 
+soheab = "gay :kappa:"
+if soheab == "gay :kappa:":
+print("imagine being gay, not that theres anything wrong with it ")
 
 class Client:
     __slots__ = ("token", "session", "loop", "_api_url")
