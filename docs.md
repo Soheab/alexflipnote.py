@@ -337,13 +337,16 @@ bot = commands.Bot(command_prefix="!!")
 alex_api = alexflipnote.Client("YOUR-API-TOKEN") # just a example, the client doesn't have to be under bot.
 
 @bot.command()
-async def supreme(ctx, text: str): 
+async def supreme(ctx, text: str):
+    # Your Embed
     embed = discord.Embed(title = f"Rendered by {ctx.author}")
     embed.set_image(url="attachment://supreme.png") # attaching file image to embed.
-    image = await alex_api.supreme(text=text)
-    image_bytes = await image.read()
-    file = discord.File(image_bytes, "supreme.png")
-    await ctx.send(embed=embed, file=file)
+    # wrapper part
+    image = await alex_api.supreme(text=text) # get Image object
+    image_bytes = await image.read() # get io.BytesIO object 
+    # sending part
+    file = discord.File(image_bytes, "supreme.png") # pass io.BytesIO object to discord.File with a filename
+    await ctx.send(embed=embed, file=file) # send both the embed and file, the file will attach to the embed
     
 # have this where you close the bot or somewhere to close the session and prevent the "Unclosed client session" warning.
 await alex_api.close()
