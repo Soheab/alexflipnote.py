@@ -6,9 +6,9 @@ from aiohttp import ClientResponse
 
 
 class Image:
-    def __init__(self, url: str, session) -> None:
+    def __init__(self, url: str, response) -> None:
         self.url: str = url
-        self.response: ClientResponse = session
+        self.response: ClientResponse = response
 
     def __str__(self) -> str:
         return self.url if self.url is not None else ""

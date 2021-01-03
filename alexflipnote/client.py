@@ -264,6 +264,10 @@ class Client:
         response = await self._api_request("what", {"image": str(image)})
         return Image(str(response.url), response)
 
+    async def shame(self, image: str) -> Image:
+        response = await self._api_request("shame", {"image": str(image)})
+        return Image(str(response.url), response)
+
     # Other
 
     async def support_server(self, creator: bool = False) -> Union[str, Tuple]:
