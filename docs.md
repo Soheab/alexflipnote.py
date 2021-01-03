@@ -23,7 +23,7 @@ For future reference in this documentation: when referring to 'alex_api' we refe
 All available endpoints you can use.
 
 ### await alex_api.achievement(text, icon = MinecraftIcons.RANDOM)
-Generate a Minecraft achievement with custom text.
+Generate a Minecraft achievement with custom text and icon.
 
 **Parameters**:
 - text `string` | Text for the achievement.
@@ -33,10 +33,10 @@ Generate a Minecraft achievement with custom text.
 
 ---
 ### await alex_api.amiajoke(image)
-Get an "am i a joke" picture with your image.
+Get an "am i a joke" picture with your avatar.
   
 **Parameters**:
-- image `string` | URL of the image you want.
+- image `string` | URL of the avatar.
 
 **Return type:** [Image](docs.md#image "Image object attributes")
 
@@ -221,6 +221,15 @@ When someone is being salty.
 **Return type:** [Image](docs.md#image "Image object attributes")
 
 ---
+### await alex_api.shame(image)
+Make that "Dock Of Shame" picture with your own image.
+
+**Parameters**:
+- image `string` | The person's avatar.
+
+**Return type:** [Image](docs.md#image "Image object attributes")
+
+---
 ### await alex_api.scroll(text)
 Make that scroll meme with your text.
 
@@ -348,6 +357,13 @@ async def supreme(ctx, text: str):
     file = discord.File(image_bytes, "supreme.png") # pass io.BytesIO object to discord.File with a filename.
     await ctx.send(embed=embed, file=file) # send both the embed and file, the file will attach to the embed.
     
+    # Or ----
+    
+    # Oneline, because oneline = best
+    embed = discord.Embed(title = f"Rendered by {ctx.author}").set_image(url="attachment://supreme.png")
+    image = discord.File(await (await alex_api.supreme(text=text)).read(), "supreme.png")
+    await ctx.send(embed=embed, file=image)
+    
 # have this where you close the bot or somewhere to close the session and prevent the "Unclosed client session" warning.
 await alex_api.close()
 
@@ -405,7 +421,7 @@ The INT value of colour
 #### Colour.name
 The name of colour
 
-#### Colour.rgb
+### Colour.rgb
 The RGB values of colour
 
 #### Colour.rgb_values
@@ -435,184 +451,184 @@ The B values of the colour
 ## MinecraftIcons
 Enum for [`.achievement()`](#await-alex_apiachievementtext-icon--minecrafticonsrandom) and [`.challenge()`](#await-alex_apichallengetext-icon--minecrafticonsrandom).
 
-### 1 or grass_block (or grassblock)
+#### 1 or grass_block (or grassblock)
 Grass_Block icon for the achievement or challenge.
 
-### 2 or diamond
+#### 2 or diamond
 Diamond icon for the achievement or challenge.
 
-### 3 or diamond_sword (or diamondsword)
+#### 3 or diamond_sword (or diamondsword)
 Diamond_Sword icon for the achievement or challenge.
 
-### 4 or creeper
+#### 4 or creeper
 Creeper icon for the achievement or challenge.
 
-### 5 or pig
+#### 5 or pig
 Pig icon for the achievement or challenge.
 
-### 6 or tnt
+#### 6 or tnt
 Tnt icon for the achievement or challenge.
 
-### 7 or cookie
+#### 7 or cookie
 Cookie icon for the achievement or challenge.
 
-### 8 or heart
+#### 8 or heart
 Heart icon for the achievement or challenge.
 
-### 9 or bed
+#### 9 or bed
 Bed icon for the achievement or challenge.
 
-### 10 or cake
+#### 10 or cake
 Cake icon for the achievement or challenge.
 
-### 11 or sign
+#### 11 or sign
 Sign icon for the achievement or challenge.
 
-### 12 or rail
+#### 12 or rail
 Rail icon for the achievement or challenge.
 
-### 13 or crafting_bench (or craftingbench)
+#### 13 or crafting_bench (or craftingbench)
 Crafting_Bench icon for the achievement or challenge.
 
-### 14 or redstone
+#### 14 or redstone
 Redstone icon for the achievement or challenge.
 
-### 15 or fire
+#### 15 or fire
 Fire icon for the achievement or challenge.
 
-### 16 or cobweb
+#### 16 or cobweb
 Cobweb icon for the achievement or challenge.
 
-### 17 or chest
+#### 17 or chest
 Chest icon for the achievement or challenge.
 
-### 18 or furnace
+#### 18 or furnace
 Furnace icon for the achievement or challenge.
 
-### 19 or book
+#### 19 or book
 Book icon for the achievement or challenge.
 
-### 20 or stone_block (or stoneblock)
+#### 20 or stone_block (or stoneblock)
 Stone_Block icon for the achievement or challenge.
 
-### 21 or wooden_plank_block (or woodenplankblock)
+#### 21 or wooden_plank_block (or woodenplankblock)
 Wooden_Plank_Block icon for the achievement or challenge.
 
-### 22 or iron_ingot (or ironingot)
+#### 22 or iron_ingot (or ironingot)
 Iron_Ingot icon for the achievement or challenge.
 
-### 23 or gold_ingot (or goldingot)
+#### 23 or gold_ingot (or goldingot)
 Gold_Ingot icon for the achievement or challenge.
 
-### 24 or wooden_door (or woodendoor)
+#### 24 or wooden_door (or woodendoor)
 Wooden_Door icon for the achievement or challenge.
 
-### 25 or iron_door (or irondoor)
+#### 25 or iron_door (or irondoor)
 Iron_Door icon for the achievement or challenge.
 
-### 26 or diamond_chestplate (or diamondchestplate)
+#### 26 or diamond_chestplate (or diamondchestplate)
 Diamond_Chestplate icon for the achievement or challenge.
 
-### 27 or flint_and_steel (or flintandsteel)
+#### 27 or flint_and_steel (or flintandsteel)
 Flint_And_Steel icon for the achievement or challenge.
 
-### 28 or glass_bottle (or glassbottle)
+#### 28 or glass_bottle (or glassbottle)
 Glass_Bottle icon for the achievement or challenge.
 
-### 29 or splash_potion (or splashpotion)
+#### 29 or splash_potion (or splashpotion)
 Splash_Potion icon for the achievement or challenge.
 
-### 30 or creeper_spawnegg (or creeperspawnegg)
+#### 30 or creeper_spawnegg (or creeperspawnegg)
 Creeper_Spawnegg icon for the achievement or challenge.
 
-### 38 or creeperspawnegg
+#### 38 or creeperspawnegg
 Creeperspawnegg icon for the achievement or challenge.
 
-### 31 or coal
+#### 31 or coal
 Coal icon for the achievement or challenge.
 
-### 32 or iron_sword (or ironsword)
+#### 32 or iron_sword (or ironsword)
 Iron_Sword icon for the achievement or challenge.
 
-### 33 or bow
+#### 33 or bow
 Bow icon for the achievement or challenge.
 
-### 34 or arrow
+#### 34 or arrow
 Arrow icon for the achievement or challenge.
 
-### 35 or iron_chestplate (or ironchestplate)
+#### 35 or iron_chestplate (or ironchestplate)
 Iron_Chestplate icon for the achievement or challenge.
 
-### 36 or bucket
+#### 36 or bucket
 Bucket icon for the achievement or challenge.
 
-### 37 or bucket_with_water (or bucketwithwater)
+#### 37 or bucket_with_water (or bucketwithwater)
 Bucket_With_Water icon for the achievement or challenge.
 
-### 39 or bucket_with_milk (or bucketwithmilk)
+#### 39 or bucket_with_milk (or bucketwithmilk)
 Bucket_With_Milk icon for the achievement or challenge.
 
-### 40 or diamond_boots (or diamondboots)
+#### 40 or diamond_boots (or diamondboots)
 Diamond_Boots icon for the achievement or challenge.
 
-### 41 or wooden_hoe (or woodenhoe)
+#### 41 or wooden_hoe (or woodenhoe)
 Wooden_Hoe icon for the achievement or challenge.
 
-### 42 or bread
+#### 42 or bread
 Bread icon for the achievement or challenge.
 
-### 43 or wooden_sword (or woodensword)
+#### 43 or wooden_sword (or woodensword)
 Wooden_Sword icon for the achievement or challenge.
 
-### 44 or bone
+#### 44 or bone
 Bone icon for the achievement or challenge.
 
-### 45 or oak_log (or oaklog)
+#### 45 or oak_log (or oaklog)
 Oak_Log icon for the achievement or challenge.
 
-### 46 or random
+#### 46 or random
 Random icon from above for the achievement or challenge.
 
 
 ## Filters
 Enum for [`.filter()`](#await-alex_apifiltername-image).
 
-### 1 or blur
+#### 1 or blur
 Blur filter.
 
-### 2 or invert
+#### 2 or invert
 Invert filter.
 
-### 3 or b&w or black_and_white
+#### 3 or b&w or black_and_white
 Black and White filter.
 
-### 4 or deepfry
+#### 4 or deepfry
 Deepfry filter.
 
-### 5 or sepia
+#### 5 or sepia
 Sepia filter.
 
-### 6 or pixelate
+#### 6 or pixelate
 Pixelate filter.
 
-### 7 or magik
+#### 7 or magik
 Magik filter.
 
-### 8 or jpegify
+#### 8 or jpegify
 Jpegify filter.
 
-### 9 or wide
+#### 9 or wide
 Wide filter.
 
-### 10 or snow
+#### 10 or snow
 Snow filter.
 
-### 11 or gay
+#### 11 or gay
 Gay filter.
 
-### 12 or communist
+#### 12 or communist
 Communist filter.
 
-### 13 or random
+#### 13 or random
 Random filter from above.
 
