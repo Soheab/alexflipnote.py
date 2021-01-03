@@ -16,13 +16,12 @@ _hex_regex_failed = "Invalid HEX value. You're only allowed to enter HEX (0-9 & 
 def _get_from_enum(enum_class, value: Union[str, int]) -> Any:
     try:
         if isinstance(value, str):
-            val = enum_class[str(value.upper())]
+            return enum_class[str(value.upper())]
         elif isinstance(value, int):
-            val = enum_class(int(value))
+            return enum_class(int(value))
         else:
-            val = value
+            return value
 
-        return val
     except (KeyError, ValueError):
         return None
 
@@ -197,9 +196,8 @@ class Client:
         return Image(str(response.url), response)
 
     async def filter(self, name: Union[str, int, Filters], image: str) -> Image:
-        if isinstance(name, str):
-            if name == "b&w":  # any better way ?
-                name = Filters.BLACK_AND_WHITE
+        if isinstance(name, str) and name == "b&w":  # any better way ?
+            name = Filters.BLACK_AND_WHITE
         get_filter = _get_from_enum(Filters, name)
         if not get_filter:
             #              want people to use the actual name (b&w) and all lower instead.
