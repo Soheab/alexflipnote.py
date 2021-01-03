@@ -2,6 +2,9 @@
 See here what changed or broke each version.
 
 ---
+### v2.1.0 - January 3, 2021
+- Added support for a new endpoint: `.shame()` [See more in docs](docs.md#await-alex_apishameimage)
+
 ### v2.0.2 - November 24, 2020
 - Push better README to PyPi
 - Fixes `.pornhub()` having the same value for text2.
@@ -13,7 +16,7 @@ See here what changed or broke each version.
 This introduced the required token in the constructor to be up to date with the api.
 
 ### v1.7.0 - November 1, 2020
-- Added support for new endpoint: `.what()` [See more in docs](docs.md#await-alex_apiwhatimage)
+- Added support for a new endpoint: `.what()` [See more in docs](docs.md#await-alex_apiwhatimage)
 - Now using urllib.parse to parse text.
 - Added `bytesio=True` to `Image.read()` set it to False if you want the bytes returned instead of an io.BytesIO object.
 - Removed `.steam()`.
