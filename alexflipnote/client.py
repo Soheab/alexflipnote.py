@@ -1,13 +1,13 @@
-from asyncio import get_event_loop, AbstractEventLoop
+from asyncio import AbstractEventLoop, get_event_loop
 from random import choice, randint
 from re import search
-from typing import Union, Tuple, Any
+from typing import Any, Tuple, Union
 from urllib.parse import quote, urlencode
 
 from aiohttp import ClientSession
 
-from .classes import Colour, Image, MinecraftIcons, Filters
-from .errors import BadRequest, HTTPException, InternalServerError, NotFound, Forbidden
+from .classes import Colour, Filters, Image, MinecraftIcons
+from .errors import BadRequest, Forbidden, HTTPException, InternalServerError, NotFound
 
 _hex_regex = r"^(?:[0-9a-fA-F]{3}){1,2}$"
 _hex_regex_failed = "Invalid HEX value. You're only allowed to enter HEX (0-9 & A-F)"
