@@ -59,28 +59,17 @@ You can join AlexFlipnote's server [here][discord_alexflipnote] to suggest or re
 - **C#:** [GitHub][wrappers_c#-github] | [Nuget][wrappers_c#-author]
 - **Javascript:** [GitHub][wrappers_js-github] | [Npm][wrapper_js-npm]
 
+
 [docs]: https://github.com/Soheab/alexflipnote.py/blob/master/docs.md
-
 [changelog]: https://github.com/Soheab/alexflipnote.py/blob/master/changelog.md
-
 [examples]: https://github.com/Soheab/alexflipnote.py/blob/master/docs.md#examples
-
 [embed_example]: https://github.com/Soheab/alexflipnote.py/blob/master/docs.md#embed
-
 [base_url]: https://api.alexflipnote.dev
-
 [github]: https://github.com/Soheab/alexflipnote.py
-
 [pypi]: https://pypi.org/project/alexflipnote.py/
-
 [discord_alexflipnote]: https://discord.gg/DpxkY3x
-
 [discord_mine]: https://discord.gg/yCzcfju
-
 [wrappers_c#-github]: https://github.com/VACEfron/AlexFlipnote.NET
-
 [wrappers_c#-nuget]: https://www.nuget.org/packages/AlexFlipnote.NET/
-
 [wrappers_js-github]: https://github.com/HarutoHiroki/alexflipnote.js
-
 [wrapper_js-npm]: https://www.npmjs.com/package/alexflipnote.js
