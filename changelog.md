@@ -4,6 +4,10 @@ See here what changed or broke each version.
 
 ---
 
+### v2.2.0 - February 10, 2021
+
+- Added support for new [Filter](#docs.md#await-alex_apifiltername-image): **flip**
+
 ### v2.1.1 - January 9, 2021
 
 - Fixed hyperlinks to docs and others for PyPi's description.

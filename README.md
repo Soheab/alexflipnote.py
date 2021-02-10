@@ -56,7 +56,7 @@ You can join AlexFlipnote's server [here][discord_alexflipnote] to suggest or re
 
 ## Other Wrappers
 
-- **C#:** [GitHub][wrappers_c#-github] | [Nuget][wrappers_c#-author]
+- **C#:** [GitHub][wrappers_c#-github] | [Nuget][wrappers_c#-nuget]
 - **Javascript:** [GitHub][wrappers_js-github] | [Npm][wrapper_js-npm]
 
 

@@ -143,7 +143,8 @@ class Filters(Enum):
     MAGIK = 7
     JPEGIFY = 8
     WIDE = 9
-    SNOW = 10
-    GAY = 11
-    COMMUNIST = 12
-    RANDOM = 13
+    FLIP = 10
+    SNOW = 11
+    GAY = 12
+    COMMUNIST = 13
+    RANDOM = 14

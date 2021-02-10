@@ -202,7 +202,6 @@ class Client:
                 name = Filters.BLACK_AND_WHITE
         get_filter = _get_from_enum(Filters, name)
         if not get_filter:
-            #              want people to use the actual name (b&w) and all lower instead.
             all_filters = [
                 fil.name.lower().replace("black_and_white", "b&w")
                 for fil in list(Filters)

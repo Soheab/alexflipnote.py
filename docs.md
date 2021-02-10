@@ -204,8 +204,8 @@ Get the facts book.
 Put a filter on an image.
 
 **Available options:** `blur`, `invert`, `b&w`, `deepfry`, `sepia`, `pixelate`,
-`magik`, `jpegify`, `wide`, `snow`, `gay`, `communist`, `random`,
-[Filters enum](docs.md#Filters), number from 1 to 13.
+`magik`, `jpegify`, `wide`, `flip`, `snow`, `gay`, `communist`, `random`,
+[Filters enum](docs.md#Filters), number from 1 to 14.
 
 **Parameters**:
 
@@ -569,7 +569,7 @@ and [`.challenge()`](#await-alex_apichallengetext-icon--minecrafticonsrandom).
 
 #### 1 or grass_block (or grassblock)
 
-Grass_Block icon for the achievement or challenge.
+Grass Block icon for the achievement or challenge.
 
 #### 2 or diamond
 
@@ -577,7 +577,7 @@ Diamond icon for the achievement or challenge.
 
 #### 3 or diamond_sword (or diamondsword)
 
-Diamond_Sword icon for the achievement or challenge.
+Diamond Sword icon for the achievement or challenge.
 
 #### 4 or creeper
 
@@ -617,7 +617,7 @@ Rail icon for the achievement or challenge.
 
 #### 13 or crafting_bench (or craftingbench)
 
-Crafting_Bench icon for the achievement or challenge.
+Crafting Bench icon for the achievement or challenge.
 
 #### 14 or redstone
 
@@ -645,47 +645,47 @@ Book icon for the achievement or challenge.
 
 #### 20 or stone_block (or stoneblock)
 
-Stone_Block icon for the achievement or challenge.
+Stone Block icon for the achievement or challenge.
 
 #### 21 or wooden_plank_block (or woodenplankblock)
 
-Wooden_Plank_Block icon for the achievement or challenge.
+Wooden Plank Block icon for the achievement or challenge.
 
 #### 22 or iron_ingot (or ironingot)
 
-Iron_Ingot icon for the achievement or challenge.
+Iron Ingot icon for the achievement or challenge.
 
 #### 23 or gold_ingot (or goldingot)
 
-Gold_Ingot icon for the achievement or challenge.
+Gold Ingot icon for the achievement or challenge.
 
 #### 24 or wooden_door (or woodendoor)
 
-Wooden_Door icon for the achievement or challenge.
+Wooden Door icon for the achievement or challenge.
 
 #### 25 or iron_door (or irondoor)
 
-Iron_Door icon for the achievement or challenge.
+Iron Door icon for the achievement or challenge.
 
 #### 26 or diamond_chestplate (or diamondchestplate)
 
-Diamond_Chestplate icon for the achievement or challenge.
+Diamond Chestplate icon for the achievement or challenge.
 
 #### 27 or flint_and_steel (or flintandsteel)
 
-Flint_And_Steel icon for the achievement or challenge.
+Flint And Steel icon for the achievement or challenge.
 
 #### 28 or glass_bottle (or glassbottle)
 
-Glass_Bottle icon for the achievement or challenge.
+Glass Bottle icon for the achievement or challenge.
 
 #### 29 or splash_potion (or splashpotion)
 
-Splash_Potion icon for the achievement or challenge.
+Splash Potion icon for the achievement or challenge.
 
 #### 30 or creeper_spawnegg (or creeperspawnegg)
 
-Creeper_Spawnegg icon for the achievement or challenge.
+Creeper Spawnegg icon for the achievement or challenge.
 
 #### 38 or creeperspawnegg
 
@@ -697,7 +697,7 @@ Coal icon for the achievement or challenge.
 
 #### 32 or iron_sword (or ironsword)
 
-Iron_Sword icon for the achievement or challenge.
+Iron Sword icon for the achievement or challenge.
 
 #### 33 or bow
 
@@ -709,7 +709,7 @@ Arrow icon for the achievement or challenge.
 
 #### 35 or iron_chestplate (or ironchestplate)
 
-Iron_Chestplate icon for the achievement or challenge.
+Iron Chestplate icon for the achievement or challenge.
 
 #### 36 or bucket
 
@@ -717,19 +717,19 @@ Bucket icon for the achievement or challenge.
 
 #### 37 or bucket_with_water (or bucketwithwater)
 
-Bucket_With_Water icon for the achievement or challenge.
+Bucket With Water icon for the achievement or challenge.
 
 #### 39 or bucket_with_milk (or bucketwithmilk)
 
-Bucket_With_Milk icon for the achievement or challenge.
+Bucket With Milk icon for the achievement or challenge.
 
 #### 40 or diamond_boots (or diamondboots)
 
-Diamond_Boots icon for the achievement or challenge.
+Diamond Boots icon for the achievement or challenge.
 
 #### 41 or wooden_hoe (or woodenhoe)
 
-Wooden_Hoe icon for the achievement or challenge.
+Wooden Hoe icon for the achievement or challenge.
 
 #### 42 or bread
 
@@ -737,7 +737,7 @@ Bread icon for the achievement or challenge.
 
 #### 43 or wooden_sword (or woodensword)
 
-Wooden_Sword icon for the achievement or challenge.
+Wooden Sword icon for the achievement or challenge.
 
 #### 44 or bone
 
@@ -745,7 +745,7 @@ Bone icon for the achievement or challenge.
 
 #### 45 or oak_log (or oaklog)
 
-Oak_Log icon for the achievement or challenge.
+Oak Log icon for the achievement or challenge.
 
 #### 46 or random
 
@@ -791,19 +791,23 @@ Jpegify filter.
 
 Wide filter.
 
-#### 10 or snow
+#### 10 or flip
+
+flip filter.
+
+#### 11 or snow
 
 Snow filter.
 
-#### 11 or gay
+#### 12 or gay
 
 Gay filter.
 
-#### 12 or communist
+#### 13 or communist
 
 Communist filter.
 
-#### 13 or random
+#### 14 or random
 
 Random filter from above.
 
