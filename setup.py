@@ -41,9 +41,7 @@ setup(
     ],
     project_urls = {
         "Discord": "https://discord.gg/DpxkY3x",
-        "Source": "https://github.com/Soheab/alexflipnote.py",
         "Documentation": "https://github.com/Soheab/alexflipnote.py/blob/master/docs.md",
-        "Issue tracker": "https://github.com/Soheab/alexflipnote.py/issues",
     },
     python_requires = ">=3.6",
 )
