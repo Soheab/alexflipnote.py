@@ -24,358 +24,335 @@ For future reference in this documentation: when referring to 'alex_api' we refe
 
 All available endpoints you can use.
 
-### await alex_api.achievement(text, icon = MinecraftIcons.RANDOM)
+## await alex_api.achievement(text, icon = MinecraftIcons.RANDOM)
+Returns a Minecraft Achievement image with your text and icon.
 
-Generate a Minecraft achievement with custom text and icon.
+### Parameters
 
-**Parameters**:
+- text ([str]) - Text for the achievement.
+- icon (Optional[Union[[str], [int], [MinecraftIcons]]]) - Icon for the achievement.
 
-- text `string` | Text for the achievement.
-- icon `string, int or MinecraftIcons` | The icon you want from [here](docs.md#MinecraftIcons). `defaults to random`
-
-**Return type**: [Image](docs.md#image "Image object attributes")
-
----
-
-### await alex_api.amiajoke(image)
-
-Get an "am i a joke" picture with your avatar.
-
-**Parameters**:
-
-- image `string` | URL of the avatar.
-
-**Return type:** [Image](docs.md#image "Image object attributes")
+### Returns
+[Image]
 
 ---
 
-### await alex_api.birb()
+## await alex_api.amiajoke(image)
+Returns an "am I a joke" picture with your image.
 
-Get a random birb picture.
+### Parameters
 
-**Return type:** String
+- image ([str]) - Discord CDN URL for image.
 
----
-
-### await alex_api.calling(text)
-
-Get a calling meme image with your text.
-
-**Parameters**:
-
-- text `string` | Your text for the image.
-
-**Return type:** [Image](docs.md#image "Image object attributes")
+### Returns
+[Image]
 
 ---
 
-### await alex_api.captcha(text)
+## await alex_api.birb()
+Returns random birb picture or gif.
 
-Make a ~~fake~~ captcha with your text.
-
-**Parameters**:
-
-- text `string` | Your text for the image.
-
-**Return type:** [Image](docs.md#image "Image object attributes")
+### Returns
+[str]
 
 ---
 
-### await alex_api.cats()
+## await alex_api.calling(text)
+Returns calling meme picture with your text.
 
-Get a random cat picture.
+### Parameters
 
-**Return type:** String
+- text ([str]) - Text for the image.
 
----
-
-### await alex_api.challenge(text, icon = MinecraftIcons.RANDOM)
-
-Generate a Minecraft challenge with custom text.
-
-**Parameters**:
-
-- text `string` | Text for the challenge.
-- icon `string, int or MinecraftIcons` | The icon you want from [here](docs.md#MinecraftIcons). `defaults to random`
-
-**Return type**: [Image](docs.md#image "Image object attributes")
+### Returns
+[Image]
 
 ---
 
-### await alex_api.colour(colour = None)
+## await alex_api.captcha(text)
+Returns a ~~fake~~ captcha image with custom text.
 
-Get info on provided colour.
+### Parameters
 
+- text ([str]) - Text for the image.
+
+### Returns
+[Image]
+
+---
+
+## await alex_api.cats()
+Returns random cat picture or gif.
+
+### Returns
+[str]
+
+---
+
+## await alex_api.challenge(text, icon = MinecraftIcons.RANDOM)
+Returns a Minecraft Challenge image with custom text and icon.
+
+### Parameters
+
+- text ([str]) - Text for the challenge.
+- icon (Optional[Union[[str], [int], [MinecraftIcons]]]) - Icon for the challenge.
+
+### Returns
+[Image]
+
+---
+
+## await alex_api.colour(colour = None)
+Returns info on random or provided hex colour.\
 **Aliases**: color
 
-**Parameters**:
+### Parameters
+- colour (Optional[[str]]) - HEX Value.
 
-- text `string` | The Colour. `Defaults to random colour.`
-
-**Return type:** [Colour](docs.md#colour "Image object attributes")
+### Returns
+[Colour]
 
 ---
 
-### await alex_api.github_colours()
-
-Get all github colours, per language.
-
+## await alex_api.github_colours()
+Returns all github colours, per language.\
 **Aliases**: github_color
 
-**Return type:** JSON
+### Returns
+[dict]
 
 ---
 
 ### await alex_api.colour_image(colour = None)
-
-Get an image of provided colour.
-
+Returns an image of random or provided hex colour.\
 **Aliases**: color_image
 
-**Parameters**:
+### Parameters
+- colour (Optional[[str]]) - HEX Value.
 
-- text `string` | The Colour. `Defaults to random colour.`
-
-**Return type:** [Image](docs.md#image "Image object attributes")
+### Returns
+[Image]
 
 ---
 
-### await alex_api.colour_image_gradient(colour = None)
-
-Get an image gradients of provided colour.
-
+## await alex_api.colour_image_gradient(colour = None)
+Return an image with gradients of random or provided hex colour.\
 **Aliases**: color_image_gradient
 
-**Parameters**:
+### Parameters
+- colour (Optional[[str]]) - HEX Value.
 
-- text `string` | The Colour. `Defaults to random colour.`
-
-**Return type:** [Image](docs.md#image "Image object attributes")
-
----
-
-### await alex_api.didyoumean(top, bottom)
-
-Get a custom google "Did you mean" suggestion thing.
-
-**Parameters**:
-
-- top `string` | What you search for. -bottom `string` | The suggested search.
-
-**Return type:** [Image](docs.md#image "Image object attributes")
+### Returns
+[Image]
 
 ---
 
-### await alex_api.dogs()
+## await alex_api.did_you_mean(top, bottom)
+Returns a Google "Did you mean" suggestion image with your texts.
 
-Get a random dog picture.
+### Parameters
+- top ([str]) - What you searched for.
+- bottom ([str]) - The suggested search.
 
-**Return type:** String
-
----
-
-### await alex_api.drake(top, bottom)
-
-Make a custom drake meme image.
-
-**Parameters**:
-
-- top `string` | Bad thing.
-- bottom `string` | Good thing.
-
-**Return type:** [Image](docs.md#image "Image object attributes")
+### Returns
+[Image]
 
 ---
 
-### await alex_api.facts(text)
+## await alex_api.dogs()
+Returns random dog picture or gif.
 
-Get the facts book.
-
-**Parameters**:
-
-- text `url` | The fact.
-
-**Return type:** [Image](docs.md#image "Image object attributes")
+### Returns
+[str]
 
 ---
 
-### await alex_api.filter(name, image)
+## await alex_api.drake(top, bottom)
+Returns a custom drake meme image.
 
-Put a filter on an image.
+### Parameters
+- top ([str]) - Top text.
+- bottom ([str]) - Bottom Test.
 
-**Available options:** `blur`, `invert`, `b&w`, `deepfry`, `sepia`, `pixelate`,
-`magik`, `jpegify`, `wide`, `flip`, `snow`, `gay`, `communist`, `random`,
-[Filters enum](docs.md#Filters), number from 1 to 14.
-
-**Parameters**:
-
-- name `string, int or Filters` | The filter name from [here](docs.md#Filters) or see Available options. `random` will
-  be a random filter from options above.
-- image `string` | The image to put the filter on.
-
-**Return type:** [Image](docs.md#image "Image object attributes")
+### Returns
+[Image]
 
 ---
 
-### await alex_api.floor(text, image = None)
+## await alex_api.facts(text)
+Returns a image of the facts book with your text.
 
-Get a "Don't touch the floor" meme with your text and image.
+### Parameters
+- text ([str]) | The fact.
 
-**Parameters**:
-
-- text `string` | The text you want.
-- image `string` | The image you want.
-
-**Return type:** [Image](docs.md#image "Image object attributes")
+### Returns
+[Image]
 
 ---
 
-### await alex_api.fml()
+## await alex_api.filter(name, image)
+Returns your provided image with a filter on it.
 
-Get a random fu*k my life text.
+### Parameters
+- name (Union[[str], [int], [Filters]]) - The filter for the image.
+- image ([str]) - Discord CDN URL as the image to put the filter on.
 
-**Return type:** String
-
----
-
-### await alex_api.jokeoverhead(image)
-
-When da jokes goes over da head.
-
-**Parameters**:
-
-- image `url` | The person's avatar.
-
-**Return type:** [Image](docs.md#image "Image object attributes")
+### Returns
+[Image]
 
 ---
 
-### await alex_api.pornhub(text, text2)
+## await alex_api.floor(text, image = None)
+Returns a "Don't touch the floor" meme with your text and image.
 
-Make a custom Pornhub logo!
+### Parameters
+- text ([str]) - The text for the image.
+- image (Optional[[str]]) - Discord CDN URL as the image.
 
-**Parameters**:
-
-- text `string` | The white part. ~~Porn~~
-- text2 `string` | The yellow part. ~~Hub~~
-
-**Return type:** [Image](docs.md#image "Image object attributes")
-
----
-
-### await alex_api.sadcat()
-
-Get a random sadcat picture.
-
-**Return type:** String
+### Returns
+[Image]
 
 ---
 
-### await alex_api.salty(image)
+## await alex_api.fml()
+Returns a random string of fu*k my life text.
 
+### Returns
+[str]
+
+---
+
+## await alex_api.joke_overhead(image)
+When the jokes goes over the head. R/WOOOOOSH
+
+### Parameters
+- image ([str]) - Discord CDN URL as the image.
+
+### Returns
+[Image]
+
+---
+
+## await alex_api.pornhub(text, text2)
+Returns a custom Pornhub logo!
+
+### Parameters
+- text ([str]) - The white part. ~~Porn~~
+- text2 ([str]) - The yellow part. ~~Hub~~
+
+### Returns
+[Image]
+
+---
+
+## await alex_api.sadcat()
+Returns random sadcat picture or gif.
+
+### Returns
+[str]
+
+---
+
+## await alex_api.salty(image)
 When someone is being salty.
 
-**Parameters**:
+### Parameters
+- image ([str]) - Discord CDN URL as the image.
 
-- image `string` | The person's avatar.
-
-**Return type:** [Image](docs.md#image "Image object attributes")
-
----
-
-### await alex_api.shame(image)
-
-Make that "Dock Of Shame" picture with your own image.
-
-**Parameters**:
-
-- image `string` | The person's avatar.
-
-**Return type:** [Image](docs.md#image "Image object attributes")
+### Returns
+[Image]
 
 ---
 
-### await alex_api.scroll(text)
+## await alex_api.shame(image)
+Returns a "Dock Of Shame" picture with your own image in the middle.
 
+### Parameters
+- image ([str]) - Discord CDN URL as the image.
+
+### Returns
+[Image]
+
+---
+
+## await alex_api.scroll(text)
 Make that scroll meme with your text.
 
-**Parameters**:
+### Parameters
+- text ([str]) - The scroll text.
 
-- text `string` | The scroll text.
-
-**Return type:** [Image](docs.md#image "Image object attributes")
+### Returns
+[Image]
 
 ---
 
-### await alex_api.ship(user, user2)
-
+## await alex_api.ship(user, user2)
 Ship someone or yourself with someone else.
 
-**Parameters**:
+### Parameters
+- user ([str]) - Discord CDN URL as the image.
+- user2 ([str]) - Discord CDN URL as the image.
 
-- user `string` | The user's avatar.
-- user2 `string` | Someone else's avatar.
-
-**Return type:** [Image](docs.md#image "Image object attributes")
+### Returns
+[Image]
 
 ---
 
-### await alex_api.supreme(text, dark = False, light = False)
+## await alex_api.supreme(text, dark = False, light = False)
 
 Make a custom supreme logo.
 
-**Parameters**:
+### Parameters
+- text ([str]) - Text for the logo.
+- dark ([bool]) - Make the background dark.
+- light ([bool]) - Make the background light.
 
-- text `string` | Text for the logo.
-- dark `boolean` | Make the background dark. `Defaults to False`
-- light `boolean` | Make the background light. `Defaults to False`
-
-**Return type:** [Image](docs.md#image "Image object attributes")
+### Returns
+[Image]
 
 ---
 
-### await alex_api.trash(face, trash)
-
+## await alex_api.trash(face, trash)
 Throw someone in the trash bin 🚮
 
-**Parameters**:
+### Parameters
 
-- face `url` | Your avatar.
-- trash `url` | Someone else's avatar.
+- face ([str]) - Discord CDN URL as the image.
+- trash ([str]) - Discord CDN URL as the image.
 
-**Return type:** [Image](docs.md#image "Image object attributes")
-
----
-
-### await alex_api.what(image)
-
-Create an image with "what" and an image.
-
-**Parameters**:
-
-- image `url` | A discord avatar URL.
-
-**Return type:** [Image](docs.md#image "Image object attributes")
+### Returns
+[Image]
 
 ---
 
-### await alex_api.support_server(creator = False)
+## await alex_api.what(image)
+Returns an image with "what" under the provided image.
 
-Get an invitation to the AlexFlipnote server (or and the creator of this wrapper.)
+### Parameters
+- image ([str]) - Discord CDN URL as the image.
 
-**Parameters**:
+### Returns
+[image]
 
-- creator `boolean` | To also get an invitation to the server of creator of this wrapper.
+---
 
-**Return type**: string or tuple when `creator` is True. `Defaults to False`
+## await alex_api.support_server(creator = False)
+Returns an invitation to the AlexFlipnote server + the creator of this wrapper.
+
+### Parameters
+
+- creator ([bool]) - To also get an invitation to the server of creator of this wrapper.
+
+### Returns
+Union[[str], [tuple]]
+
+--- 
 
 # Examples
 
 See here some examples
 
 ##### Make a custom [supreme](docs.md#await-alex_apisupremetext-dark-light) logo:
-
-[Output](https://api.alexflipnote.dev/supreme?text=%23some%20text,%20yes&dark=true)
 
 ```python
 import asyncio
@@ -395,15 +372,13 @@ asyncio.get_event_loop().run_until_complete(custom_supreme_logo('#some text, yes
 
 ##### Minecraft [achievement](docs.md#await-alex_apiachievementtext-icon) (same for `alex_api.challenge()`) using [discord.py](https://github.com/Rapptz/discord.py):
 
-[Output](https://api.alexflipnote.dev/achievement?text=nice%20job&icon=3)
-
 ```python
 import discord
 import alexflipnote
 from discord.ext import commands
 
 bot = commands.Bot(command_prefix="!")
-alex_api = alexflipnote.Client("YOUR-API-TOKEN") # just a example, the client doesn't have to be under bot.
+alex_api = alexflipnote.Client("YOUR-API-TOKEN", loop=bot.loop) # just a example, the client doesn't have to be under bot and loop kwarg is optional
 
 @bot.command()
 async def achievement(ctx, text: str, icon = None): 
@@ -411,10 +386,6 @@ async def achievement(ctx, text: str, icon = None):
     image_bytes = await image.read()
     file = discord.File(image_bytes, "achievement.png")
     await ctx.send(f"Rendered by {ctx.author}", file=file)
-
-
-# have this where you close the bot or somewhere to close the session and prevent the "Unclosed client session" warning.
-await alex_api.close()
 
 # invoke: !achievement "nice job!" diamond_sword
 
@@ -432,8 +403,7 @@ import alexflipnote
 from discord.ext import commands
 
 bot = commands.Bot(command_prefix = "!!")
-alex_api = alexflipnote.Client("YOUR-API-TOKEN")  # just a example, the client doesn't have to be under bot.
-
+alex_api = alexflipnote.Client("YOUR-API-TOKEN", loop=bot.loop) # just a example, the client doesn't have to be under bot and loop kwarg is optional
 
 @bot.command()
 async def supreme(ctx, text: str):
@@ -443,19 +413,16 @@ async def supreme(ctx, text: str):
   # Wrapper
   image = await alex_api.supreme(text = text)  # get Image object
   image_bytes = await image.read()  # get io.BytesIO object
-    # Sending
-    file = discord.File(image_bytes, "supreme.png") # pass io.BytesIO object to discord.File with a filename.
-    await ctx.send(embed=embed, file=file) # send both the embed and file, the file will attach to the embed.
-    
-    # Or ----
-    
-    # Oneline, because oneline = best
-    embed = discord.Embed(title = f"Rendered by {ctx.author}").set_image(url="attachment://supreme.png")
-    image = discord.File(await (await alex_api.supreme(text=text)).read(), "supreme.png")
-    await ctx.send(embed=embed, file=image)
-    
-# have this where you close the bot or somewhere to close the session and prevent the "Unclosed client session" warning.
-await alex_api.close()
+  # Sending
+  file = discord.File(image_bytes, "supreme.png") # pass io.BytesIO object to discord.File with a filename.
+  await ctx.send(embed=embed, file=file) # send both the embed and file, the file will attach to the embed.
+
+  # Or ----
+
+  # Oneline, because oneline = best
+  embed = discord.Embed(title = f"Rendered by {ctx.author}").set_image(url="attachment://supreme.png")
+  image = discord.File(await (await alex_api.supreme(text=text)).read(), "supreme.png")
+  await ctx.send(embed=embed, file=image)
 
 # invoke: !supreme Supreme
 
@@ -468,13 +435,11 @@ Here is explained what attributes the returned objects have
 
 ## Image
 
-The object returned from `alex_api.achievement()`, `alex_api.amiajoke()`, `alex_api.bad()`, `alex_api.calling()`
-, `alex_api.captcha()`,
-`alex_api.challenge()`, `alex_api.colour_image()`, `alex_api.colour_image_gradient()`, `alex_api.colourify()`
-, `alex_api.didyoumean()`,
-`alex_api.drake()`, `alex_api.facts()`, `alex_api.filter()`, `alex_api.floor()`, `alex_api.jokeoverhead()`
-, `alex_api.pornhub()`,
-`alex_api.salty()`, `alex_api.scroll()`, `alex_api.ship()`, `alex_api.supreme()`, `alex_api.trash()`, `alex_api.what()`
+The object returned from `alex_api.achievement()`, `alex_api.amiajoke()`, `alex_api.bad()`, `alex_api.calling()`,
+`alex_api.captcha()`, `alex_api.challenge()`, `alex_api.colour_image()`, `alex_api.colour_image_gradient()`,
+`alex_api.colourify()`, `alex_api.didyoumean()`, `alex_api.drake()`, `alex_api.facts()`, `alex_api.filter()`,
+`alex_api.floor()`, `alex_api.jokeoverhead()`, `alex_api.pornhub()`, `alex_api.shame()`, `alex_api.salty()`,
+`alex_api.scroll()`, `alex_api.ship()`, `alex_api.supreme()`, `alex_api.trash()`, `alex_api.what()`
 
 #### Image.url
 
@@ -793,21 +758,35 @@ Wide filter.
 
 #### 10 or flip
 
-flip filter.
+Flip filter.
 
-#### 11 or snow
+#### 11 or mirror
+
+Mirror filter.
+
+#### 12 or snow
 
 Snow filter.
 
-#### 12 or gay
+#### 13 or gay
 
 Gay filter.
 
-#### 13 or communist
+#### 14 or communist
 
 Communist filter.
 
-#### 14 or random
+#### 15 or random
 
 Random filter from above.
 
+
+[str]: https://docs.python.org/3/library/stdtypes.html#str
+[int]: https://docs.python.org/3/library/functions.html#int
+[dict]: https://docs.python.org/3/library/stdtypes.html#dict
+[bool]: https://docs.python.org/3/library/functions.html#bool
+[tuple]: https://docs.python.org/3/library/stdtypes.html#tuple
+[image]: docs.md#image
+[MinecraftIcons]: docs.md#minecrafticons
+[Colour]: docs.md#colour
+[Filters]: docs.md#Filters

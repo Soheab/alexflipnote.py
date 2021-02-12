@@ -4,6 +4,11 @@ See here what changed or broke each version.
 
 ---
 
+### v2.3.0 - February 12, 2021
+
+- Added support for new [Filter](#docs.md#await-alex_apifiltername-image): **mirror**
+- Rewritten the docs to be easier to read and understand. [Go To Docs](docs.md)
+
 ### v2.2.0 - February 10, 2021
 
 - Added support for new [Filter](#docs.md#await-alex_apifiltername-image): **flip**

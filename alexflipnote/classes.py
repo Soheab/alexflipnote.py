@@ -144,7 +144,8 @@ class Filters(Enum):
     JPEGIFY = 8
     WIDE = 9
     FLIP = 10
-    SNOW = 11
-    GAY = 12
-    COMMUNIST = 13
-    RANDOM = 14
+    MIRROR = 11
+    SNOW = 12
+    GAY = 13
+    COMMUNIST = 14
+    RANDOM = 15

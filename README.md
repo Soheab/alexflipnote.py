@@ -12,9 +12,8 @@ An easy-to-use Python Wrapper for the AlexFlipnote API
 
 ## 2.0.0
 
-A recent (November 22) change to API has made an Authorization header with a personal token required for ALL
-endpoints. \
-ALL previous versions of this wrapper will no longer work and are considered to be deprecated!
+A change on November 22, 2020 to API has made an Authorization header with a personal token required for ALL endpoints. \
+ALL previous versions under 2.0.0 of this wrapper will no longer work and are considered to be deprecated!
 
 Wondering how to get an Auth token to use the API ? Join the API's support server here: https://discord.gg/DpxkY3x to
 request one.
@@ -49,16 +48,10 @@ See the full and detailed [docs here][docs]
 
 ## Made by
 
-This wrapper is made by **Soheab#6240**, DM me on Discord or join my server [here][discord_mine] for anything related to
+This wrapper is made by **Soheab_#6240** (150665783268212746), DM me on Discord or join my server [here][discord_mine] for anything related to
 this wrapper.
 
-You can join AlexFlipnote's server [here][discord_alexflipnote] to suggest or report anything on the API.
-
-## Other Wrappers
-
-- **C#:** [GitHub][wrappers_c#-github] | [Nuget][wrappers_c#-nuget]
-- **Javascript:** [GitHub][wrappers_js-github] | [Npm][wrapper_js-npm]
-
+Join AlexFlipnote's server [here][discord_alexflipnote] to suggest or report anything on the API.
 
 [docs]: https://github.com/Soheab/alexflipnote.py/blob/master/docs.md
 [changelog]: https://github.com/Soheab/alexflipnote.py/blob/master/changelog.md
@@ -69,7 +62,3 @@ You can join AlexFlipnote's server [here][discord_alexflipnote] to suggest or re
 [pypi]: https://pypi.org/project/alexflipnote.py/
 [discord_alexflipnote]: https://discord.gg/DpxkY3x
 [discord_mine]: https://discord.gg/yCzcfju
-[wrappers_c#-github]: https://github.com/VACEfron/AlexFlipnote.NET
-[wrappers_c#-nuget]: https://www.nuget.org/packages/AlexFlipnote.NET/
-[wrappers_js-github]: https://github.com/HarutoHiroki/alexflipnote.js
-[wrapper_js-npm]: https://www.npmjs.com/package/alexflipnote.js

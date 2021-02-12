@@ -181,7 +181,7 @@ class Client:
         response = await self._api_request("captcha", {"text": str(text)})
         return Image(str(response.url), response)
 
-    async def didyoumean(self, top: str, bottom: str) -> Image:
+    async def did_you_mean(self, top: str, bottom: str) -> Image:
         response = await self._api_request("didyoumean", {"top": str(top), "bottom": str(bottom)})
         return Image(str(response.url), response)
 
@@ -225,7 +225,7 @@ class Client:
         response = await self._api_request("floor", params)
         return Image(str(response.url), response)
 
-    async def jokeoverhead(self, image: str) -> Image:
+    async def joke_overhead(self, image: str) -> Image:
         response = await self._api_request("jokeoverhead", {"image": str(image)})
         return Image(str(response.url), response)
 
@@ -279,12 +279,14 @@ class Client:
 
     # Aliases
 
+    didyoumean = did_you_mean
     discord_server = support_server
     color = colour
     colorify = colourify
     github_colors = github_colours
     color_image = colour_image
     color_image_gradient = colour_image_gradient
+    jokeoverhead = joke_overhead
 
     # Session
 
