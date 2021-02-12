@@ -107,7 +107,7 @@ Returns info on random or provided hex colour.\
 **Aliases**: color
 
 ### Parameters
-- colour (Optional[[str]]) - HEX Value.
+- colour (Optional[[str]]) - HEX colour value
 
 ### Returns
 [Colour]
@@ -128,7 +128,7 @@ Returns an image of random or provided hex colour.\
 **Aliases**: color_image
 
 ### Parameters
-- colour (Optional[[str]]) - HEX Value.
+- colour (Optional[[str]]) - HEX colour value
 
 ### Returns
 [Image]
@@ -140,7 +140,21 @@ Return an image with gradients of random or provided hex colour.\
 **Aliases**: color_image_gradient
 
 ### Parameters
-- colour (Optional[[str]]) - HEX Value.
+- colour (Optional[[str]]) - HEX colour value
+
+### Returns
+[Image]
+
+---
+
+## await alex_api.colourify(image, colour = None, background = None)
+Recolour an image to the colours you desire.\
+**Aliases**: colorify
+
+### Parameters
+- image ([str]) - Discord CDN URL as the image.
+- colour (Optional[[str]]) - HEX colour value
+- background (Optional[[str]]) - HEX colour value
 
 ### Returns
 [Image]
@@ -148,7 +162,8 @@ Return an image with gradients of random or provided hex colour.\
 ---
 
 ## await alex_api.did_you_mean(top, bottom)
-Returns a Google "Did you mean" suggestion image with your texts.
+Returns a Google "Did you mean" suggestion image with your texts.\
+**Aliases**: didyoumean
 
 ### Parameters
 - top ([str]) - What you searched for.
@@ -223,7 +238,8 @@ Returns a random string of fu*k my life text.
 ---
 
 ## await alex_api.joke_overhead(image)
-When the jokes goes over the head. R/WOOOOOSH
+When the jokes goes over the head. R/WOOOOOSH\
+**Aliases**: jokeoverhead
 
 ### Parameters
 - image ([str]) - Discord CDN URL as the image.
