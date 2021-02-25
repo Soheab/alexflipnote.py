@@ -49,6 +49,18 @@ Returns an "am I a joke" picture with your image.
 
 ---
 
+## await alex_api.bad(image)
+Returns an "(image) bad" image.
+
+### Parameters
+
+- image ([str]) - Discord CDN URL for image.
+
+### Returns
+[Image]
+
+---
+
 ## await alex_api.birb()
 Returns random birb picture or gif.
 
