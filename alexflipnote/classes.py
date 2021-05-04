@@ -1,20 +1,22 @@
 from enum import Enum
 from io import BytesIO
-from typing import Union
+from typing import List, Union
 
 from aiohttp import ClientResponse
 
 
 class Image:
-    def __init__(self, url: str, response) -> None:
-        self.url: str = url
-        self.response: ClientResponse = response
+    __slots__ = ("url", "_response")
+
+    def __init__(self, response: ClientResponse) -> None:
+        self.url: str = str(response.url)
+        self._response: ClientResponse = response
 
     def __str__(self) -> str:
-        return self.url if self.url is not None else ""
+        return self.url
 
     async def read(self, bytesio = True) -> Union[bytes, BytesIO]:
-        _bytes = await self.response.read()
+        _bytes = await self._response.read()
         if bytesio is False:
             return _bytes
 
@@ -34,7 +36,7 @@ class Colour:
         "rgb_values",
         "shade",
         "tint",
-    )
+        )
 
     def __init__(self, data) -> None:
         self.blackorwhite_text: str = data.get("blackorwhite_text")
@@ -46,8 +48,8 @@ class Colour:
         self.name: str = data.get("name")
         self.rgb: str = data.get("rgb")
         self.rgb_values: Colour.ColourRGB = Colour.ColourRGB(data.get("rgb_values"))
-        self.shade: list = data.get("shade")
-        self.tint: list = data.get("tint")
+        self.shade: List[str] = data.get("shade")
+        self.tint: List[str] = data.get("tint")
 
     class ColourRGB:
         __slots__ = ("all", "r", "g", "b")

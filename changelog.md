@@ -4,15 +4,32 @@ See here what changed or broke each version.
 
 ---
 
+### v2.4.0 - May 4, 2021
+
+- Added new method: [`.coffee()`](docs.md#await-alex_apicoffee) . Makes a request to https://coffee.alexflipnote.dev
+  which then returns a random coffee image URL.
+- Token is no longer required due to the following method not requiring a token anymore:
+  `colour, colour_image, colour_image_gradient, birb, dogs, sadcat, cats, coffee`.
+- New Exception added: `MissingToken`, this is raised when a method that is not listed above is used with a token being
+  present in the constructor.
+- Removed `.github_colours()` since the endpoint it used is gone.
+- `.colour()` `.colour_image()` and `.colour_image_gradient()` now accepts a "python like hex". E.g, 0x9a6b48. Also, it
+  can take a # now.
+
+
+- Suggestions are as always welcome, you can ping me in the [AlexFlipnote server](https://discord.gg/DpxkY3x),
+  #general_developers channel.
+
 ### v2.3.0 - February 12, 2021
 
-- Added support for new [Filter](#docs.md#await-alex_apifiltername-image): **mirror**
-- Added [colourify](docs.md#await-alex_apicolourifyimage-colour--none-background--none) to the docs. For some reason this wasn't there since the beginning.
+- Added support for new [Filter](docs.md#await-alex_apifiltername-image): **mirror**
+- Added [colourify](docs.md#await-alex_apicolourifyimage-colour--none-background--none) to the docs. For some reason
+  this wasn't there since the beginning.
 - Rewritten the docs to be easier to read and understand. [Go To Docs](docs.md)
 
 ### v2.2.0 - February 10, 2021
 
-- Added support for new [Filter](#docs.md#await-alex_apifiltername-image): **flip**
+- Added support for new [Filter](docs.md#await-alex_apifiltername-image): **flip**
 
 ### v2.1.1 - January 9, 2021
 
