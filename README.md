@@ -22,8 +22,7 @@ You can pass your token in the constructor like so, `alexflipnote.Client("YOUR-A
 
 ### Update: 03/05/2021
 
-A change on 03/05/2021 has made the following endpoints (with related method) not require and form of Authorization
-anymore:
+A change on 03/05/2021 has made the following endpoints (with related method) not require a token anymore:
 
 - `/colour/<hex>` | `.colour()`
 - `/colour/image/<hex>` | `.colour_image()`
