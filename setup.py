@@ -25,7 +25,7 @@ setup(
     long_description_content_type = "text/markdown",
     version = version,
     packages = ["alexflipnote"],
-    url = "https://github.com/Soheab/Alexflipnote.py",
+    url = "https://github.com/Soheab/alexflipnote.py/tree/2.x",
     download_url = f"https://github.com/Soheab/alexflipnote.py/archive/v{version}.tar.gz",
     license = _license,
     author = author,
@@ -41,7 +41,7 @@ setup(
         ],
     project_urls = {
         "Discord": "https://discord.gg/DpxkY3x",
-        "Documentation": "https://github.com/Soheab/alexflipnote.py/blob/master/docs.md",
+        "Documentation": "https://github.com/Soheab/alexflipnote.py/blob/2.x/docs.md",
         },
     python_requires = ">=3.6",
     )
