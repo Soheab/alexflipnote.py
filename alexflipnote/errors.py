@@ -21,6 +21,12 @@ class Forbidden(AlexFlipnoteException):
     pass
 
 
+class MissingToken(AlexFlipnoteException):
+    def __init__(self, called_from: str):
+        super().__init__(
+            f"Missing Token. The \"{called_from}\" endpoint requires a token to be passed to the constructor.")
+
+
 class HTTPException(AlexFlipnoteException):
     def __init__(self, response, message):
         self.response = response

@@ -10,13 +10,13 @@ with open("alexflipnote/__init__.py") as f:
     content = f.read()
     version = search(
         r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', content, MULTILINE
-    ).group(1)
+        ).group(1)
     author = search(r'^__author__\s*=\s*[\'"]([^\'"]*)[\'"]', content, MULTILINE).group(
         1
-    )
+        )
     _license = search(
         r'^__license__\s*=\s*[\'"]([^\'"]*)[\'"]', content, MULTILINE
-    ).group(1)
+        ).group(1)
 
 setup(
     name = "alexflipnote.py",
@@ -38,10 +38,10 @@ setup(
         "memes",
         "image",
         "discord.py",
-    ],
+        ],
     project_urls = {
         "Discord": "https://discord.gg/DpxkY3x",
         "Documentation": "https://github.com/Soheab/alexflipnote.py/blob/master/docs.md",
-    },
+        },
     python_requires = ">=3.6",
-)
+    )
