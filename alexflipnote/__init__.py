@@ -1,6 +1,7 @@
-from .client import (BadRequest, Client, Colour, Filters, HTTPException, Image, InternalServerError, MinecraftIcons,
-                     MissingToken, NotFound)
+from .client import *
+from .colour import *
+from .errors import *
 
 __license__ = "MIT"
 __author__ = "Soheab_"
-__version__ = "2.4.0"
+__version__ = "3.0.0"

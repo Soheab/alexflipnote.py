@@ -3,6 +3,23 @@
 See here what changed or broke each version.
 
 ---
+### v3.0.0 - December 12, 2021
+
+- Python version bumped to >=3.8
+- Removed token argument.
+- Removed `loop` kwarg from `Client()` constructor.	
+- Removed following methods: `achievement, amiajoke, bad, calling, captcha, challenge, colour_image, colour_image_gradient, colourify, did_you_mean, drake, facts, filter, floor, fml, joke_overhead, pornhub, salty, shame, scroll, ship, supreme, trash, what`.
+- Removed the following classes: `Image, MinecraftIcons, Filters, MissingTokens`
+- Added the following classes: `RGB`
+- `Colour.image_gradient` renamed to `Colour.gradient`.
+- `Colour.blackorwhite_text` renamed to `Colour.black_or_white_text`.
+- `Colour.shade` renamed to `Colour.shades`.
+- `Colour.tint` renamed to `Colour.tints`.
+- `Colour.rgb` now returns a `RGB` object.
+- `Colour.rgb_values` renamed to `Colour.rgb`.
+- Added `Colour.rgb_string` this returns a string in the format `rgb(r, g, b)` which was previously returned by `Colour.rgb`.
+- Rewritten `HTTPSession` to `HTTPClient`.
+- Rewritten the docs.
 
 ### v2.4.0 - May 4, 2021
 
