@@ -11,7 +11,7 @@ An easy-to-use Python Wrapper for the AlexFlipnote API
 <img src="https://github.com/AlexFlipnote/alexflipnote.github.io/blob/master/public/images/branding/avatar.png?raw=true" alt="drawing" width="200"/>
 
 ## Recent Updates
-Since December 12, 2021, AlexFlipnote's API will no longer be providing image generation endpoints and will only keep random images endpoints. The image generation endpoints has been made Open-sourced at [GitHub.com/Alexflipnote/alex_api_archive](<https://github.com/AlexFlipnote/alex_api_archive>).
+Since December 12, 2021, AlexFlipnote's API will no longer be providing image generation endpoints and will only keep random images endpoints. The image generation endpoints have been made Open-sourced at [GitHub.com/Alexflipnote/alex_api_archive](<https://github.com/AlexFlipnote/alex_api_archive>).
 
 **Original Annoucement in [AlexFlipnote's Discord][discord_alexflipnote]**:
 
