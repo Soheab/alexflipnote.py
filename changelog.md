@@ -6,6 +6,7 @@ See here what changed or broke each version.
 ### v3.0.0 - December 12, 2021
 
 - Python version bumped to >=3.8
+- Addeed typings.
 - Removed token argument.
 - Removed `loop` kwarg from `Client()` constructor.	
 - Removed following methods: `achievement, amiajoke, bad, calling, captcha, challenge, colour_image, colour_image_gradient, colourify, did_you_mean, drake, facts, filter, floor, fml, joke_overhead, pornhub, salty, shame, scroll, ship, supreme, trash, what`.
