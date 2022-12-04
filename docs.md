@@ -1,7 +1,7 @@
 # AlexFlipnote.py | Docs
 
 An easy-to-use Python Wrapper for the [AlexFlipnote API](https://api.alexflipnote.dev)\
-For any questions and support, you can join the [AlexFlipnote server](https://discord.gg/DpxkY3x)
+For any questions and support, you can join the [AlexFlipnote server](https://discord.gg/Alexflipnote)
 
 ## Getting Started:
 

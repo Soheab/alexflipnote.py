@@ -8,15 +8,6 @@
 
 An easy-to-use Python Wrapper for the AlexFlipnote API
 
-<img src="https://github.com/AlexFlipnote/alexflipnote.github.io/blob/master/public/images/branding/avatar.png?raw=true" alt="drawing" width="200"/>
-
-## Recent Updates
-Since December 12, 2021, AlexFlipnote's API will no longer be providing image generation endpoints and will only keep random images endpoints. The image generation endpoints have been made Open-sourced at [GitHub.com/Alexflipnote/alex_api_archive](<https://github.com/AlexFlipnote/alex_api_archive>).
-
-**Original Annoucement in [AlexFlipnote's Discord][discord_alexflipnote]**:
-
-![Screenshot](https://cdn.discordapp.com/attachments/757283952141664336/919599803560788050/unknown.png)
-
 ## Requirements
 
 - Python 3.8 or above
@@ -53,5 +44,5 @@ Join AlexFlipnote's server [here][discord_alexflipnote] to suggest or report any
 [base_url]: https://api.alexflipnote.dev
 [github]: https://github.com/Soheab/alexflipnote.py
 [pypi]: https://pypi.org/project/alexflipnote.py/
-[discord_alexflipnote]: https://discord.gg/DpxkY3x
+[discord_alexflipnote]: https://discord.gg/Alexflipnote
 [discord_mine]: https://discord.gg/yCzcfju
