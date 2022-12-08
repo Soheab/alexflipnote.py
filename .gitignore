@@ -129,3 +129,8 @@ dmypy.json
 !/test.py
 test.py
 test.py
+
+
+# Visual Studio Code and other IDEs
+.idea/
+.vscode/*

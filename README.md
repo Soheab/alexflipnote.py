@@ -11,7 +11,7 @@ An easy-to-use Python Wrapper for the AlexFlipnote API
 ## Requirements
 
 - Python 3.8 or above
-- aiohttp (python3 -m pip install -U aiohttp)
+- aiohttp (``python -m pip install -U aiohttp``)
 
 ## Installation
 
@@ -37,10 +37,9 @@ for anything related to this wrapper.
 
 Join AlexFlipnote's server [here][discord_alexflipnote] to suggest or report anything on the API.
 
-[docs]: https://github.com/Soheab/alexflipnote.py/blob/master/docs.md
+[docs]: start-docs.md
 [changelog]: https://github.com/Soheab/alexflipnote.py/blob/master/changelog.md
-[examples]: https://github.com/Soheab/alexflipnote.py/blob/master/docs.md#examples
-[embed_example]: https://github.com/Soheab/alexflipnote.py/blob/master/docs.md#embed
+[examples]: start-docs.md#examples
 [base_url]: https://api.alexflipnote.dev
 [github]: https://github.com/Soheab/alexflipnote.py
 [pypi]: https://pypi.org/project/alexflipnote.py/
