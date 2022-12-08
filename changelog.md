@@ -11,6 +11,7 @@ Ayo another major release! A lot of endpoints that were previously removed are n
 - Updated the `colour` endpoint to support the new fields, you'll need to update your code to use the new fields.
 - Rewritten the docs again to be more readable and split up into multiple pages.
 - Library should be fully typed now.
+- Changed license from MIT to MPL-2.0.
 
 ### v3.0.0 - December 12, 2021
 
