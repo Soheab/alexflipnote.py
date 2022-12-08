@@ -1,8 +1,4 @@
-# Customm
-.idea
-.dmypy.json
 
-# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
@@ -126,9 +122,12 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# custom
 !/test.py
 test.py
 test.py
+./venv
 
 
 # Visual Studio Code and other IDEs
