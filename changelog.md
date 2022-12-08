@@ -1,8 +1,17 @@
 ## AlexFlipnote.py | Changelog
-
 See here what changed or broke each version.
 
 ---
+
+### v4.0.0 - December 8, 2022
+Ayo another major release! A lot of endpoints that were previously removed are now back!!
+
+- Full rewrite of the library.
+- Added support for new endpoints: `achievement, challenge, captcha, didyoumean, drake, facts, scroll, pornhub,` and probably more.
+- Updated the `colour` endpoint to support the new fields, you'll need to update your code to use the new fields.
+- Rewritten the docs again to be more readable and split up into multiple pages.
+- Library should be fully typed now.
+
 ### v3.0.0 - December 12, 2021
 
 - Python version bumped to >=3.8
