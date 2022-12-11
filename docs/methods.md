@@ -180,9 +180,9 @@ Returns an invite to the API's support server.
 [Optional]: https://docs.python.org/3/library/typing.html#typing.Optional
 [Any]: https://docs.python.org/3/library/typing.html#typing.Any
 [Union]: https://docs.python.org/3/library/typing.html#typing.Union
-[Image]: models\image.md
-[NFT]: models\nft.md
-[SillyCat]: models\sillycat.md
-[Colour]: models\colour.md
+[Image]: models/image.md
+[NFT]: models/nft.md
+[SillyCat]: models/sillycat.md
+[Colour]: models/colour.md
 [NFTSeason]: enums.md#nftseason
 [MinecraftIcon]: enums.md#minecrafticon

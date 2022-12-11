@@ -25,37 +25,37 @@ All available methods and classes that are available in the wrapper are listed b
 
 ### Methods:
 
-- [achivement](docs\methods.md#await-alex_apiachievementtext-str-icon-unionstr-int-minecrafticon--minecrafticonrandom---image)
-- [birb](docs\methods.md#await-alex_apibirb---str) (alias: bird)
-- [calling](docs\methods.md#await-alex_apicallingtext-str---image)
-- [captcha](docs\methods.md#await-alex_apicaptchatop-str-bottom-str---image)
-- [cats](docs\methods.md#await-alex_apicats---str) (alias: cat)
-- [challenge](docs\methods.md#await-alex_apichallengetext-str-icon-unionstr-int-minecrafticon--minecrafticonrandom---image)
-- [close](docs\methods.md#await-alex_apiclose---none)
-- [coffee](docs\methods.md#await-alex_apicoffee---str)
-- [colour](docs\methods.md#await-alex_apicolourcolour-optionalstr--none---colour) (alias: color)
-- [did_you_mean](docs\methods.md#await-alex_apidid_you_meantop-str-bottom-str---image) (alias: didyoumean)
-- [dogs](docs\methods.md#await-alex_apidogs---str)
-- [drake](docs\methods.md#await-alex_apidraketop-str-bottom-str---image)
-- [facts](docs\methods.md#await-alex_apifactstext-str---image)
-- [nft](docs\methods.md#await-alex_apinfthex-optionalstr--none-season-nftseason--nftseasonrandom--seed-optionalany--none-return_image-bool--false---nft)
-- [pornhub](docs\methods.md#await-alex_apipornhubtext-str---image) (alias: ph)
-- [sadcat](docs\methods.md#await-alex_apisadcat---str)
-- [scroll](docs\methods.md#await-alex_apiscrolltext-str---image)
-- [sillycat](docs\methods.md#await-alex_apisillycatleft_hex-optionalstr--none-right_hex-optionalstr--none--random-bool--true-seed-optionalany--none-return_image-bool--false---sillycat)
-- [support_server](docs\methods.md#await-alex_apisupport_server-creator-bool--false---unionstr-tuplestr-str)
+- [achivement](docs/methods.md#await-alex_apiachievementtext-str-icon-unionstr-int-minecrafticon--minecrafticonrandom---image)
+- [birb](docs/methods.md#await-alex_apibirb---str) (alias: bird)
+- [calling](docs/methods.md#await-alex_apicallingtext-str---image)
+- [captcha](docs/methods.md#await-alex_apicaptchatop-str-bottom-str---image)
+- [cats](docs/methods.md#await-alex_apicats---str) (alias: cat)
+- [challenge](docs/methods.md#await-alex_apichallengetext-str-icon-unionstr-int-minecrafticon--minecrafticonrandom---image)
+- [close](docs/methods.md#await-alex_apiclose---none)
+- [coffee](docs/methods.md#await-alex_apicoffee---str)
+- [colour](docs/methods.md#await-alex_apicolourcolour-optionalstr--none---colour) (alias: color)
+- [did_you_mean](docs/methods.md#await-alex_apidid_you_meantop-str-bottom-str---image) (alias: didyoumean)
+- [dogs](docs/methods.md#await-alex_apidogs---str)
+- [drake](docs/methods.md#await-alex_apidraketop-str-bottom-str---image)
+- [facts](docs/methods.md#await-alex_apifactstext-str---image)
+- [nft](docs/methods.md#await-alex_apinfthex-optionalstr--none-season-nftseason--nftseasonrandom--seed-optionalany--none-return_image-bool--false---nft)
+- [pornhub](docs/methods.md#await-alex_apipornhubtext-str---image) (alias: ph)
+- [sadcat](docs/methods.md#await-alex_apisadcat---str)
+- [scroll](docs/methods.md#await-alex_apiscrolltext-str---image)
+- [sillycat](docs/methods.md#await-alex_apisillycatleft_hex-optionalstr--none-right_hex-optionalstr--none--random-bool--true-seed-optionalany--none-return_image-bool--false---sillycat)
+- [support_server](docs/methods.md#await-alex_apisupport_server-creator-bool--false---unionstr-tuplestr-str)
 
 ### Classes:
 
-- [Colour](docs\models\colour.md)
-- [NFT](docs\models\nft.md)
-- [Image](docs\models\image.md)
-- [SillyCat](docs\models\sillycat.md)
+- [Colour](docs/models:colour.md)
+- [NFT](docs/models/nft.md)
+- [Image](docs/models/image.md)
+- [SillyCat](docs/models/sillycat.md)
 
 ### Enums:
 
-- [MinecraftIcon](docs\enums.md#minecrafticon)
-- [NFTSeason](docs\enums#nftseason)
+- [MinecraftIcon](docs/enums.md#minecrafticon)
+- [NFTSeason](docs/enums#nftseason)
 
 
 # Examples
@@ -92,9 +92,9 @@ alex_api = alexflipnote.Client()
 
 
 @bot.command(aliases=["ph"])
-async def phublogo(ctx, texts: str):
-    top, bottom = texts.split("|")
-    url = await alex_api.sadcat()
+async def phublogo(ctx, *, texts: str):
+    white, yellow = texts.split(" | ")
+    url = await alex_api.phub(white, yellow)
     await ctx.send(f"Requested by {ctx.author}\n{url}")
 
 
