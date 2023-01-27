@@ -1,4 +1,4 @@
-# AlexFlipnote.py Docs | Models/NFT
+# Models // NFT
 
 ## NFT
 Represents a NFT image.
