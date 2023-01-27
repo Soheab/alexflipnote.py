@@ -1,4 +1,4 @@
-# AlexFlipnote.py Docs | Models/Image
+# Models // Image
 
 ## Image
 Represents a class for all image endpoints.
