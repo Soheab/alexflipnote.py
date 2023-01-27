@@ -1,4 +1,4 @@
-# Models // Colour/Color
+# Models // Colour (Or Color)
 
 ## Colour
 Represents a colour from the API.
