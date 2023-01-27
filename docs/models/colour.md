@@ -1,5 +1,4 @@
-
-# AlexFlipnote.py Docs | Models/Colour (Or Color)
+# Models // Colour/Color
 
 ## Colour
 Represents a colour from the API.
