@@ -1,5 +1,5 @@
-# AlexFlipnote.py Docs | Models/SillyCat
-
+# Models // SillyCat
+---
 
 ## SillyCat
 Represents a silly cat image.
