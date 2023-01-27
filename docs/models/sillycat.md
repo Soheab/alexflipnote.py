@@ -1,5 +1,4 @@
 # Models // SillyCat
----
 
 ## SillyCat
 Represents a silly cat image.
