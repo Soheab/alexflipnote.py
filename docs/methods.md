@@ -131,6 +131,14 @@ Returns a scroll message.
 
 ---
 
+### await alex_api.supreme(text: [str]) -> [Image]
+Returns a supreme message.
+
+#### Parameters
+- text ([str]) - The text to display on the image.
+
+---
+
 ### await alex_api.sillycat(left_hex: [Optional]\[[str]] = ``None``, right_hex: [Optional]\[[str]] = ``None``, *, random: [bool] = ``True``, seed: [Optional]\[[Any]] = None, return_image: [bool] = ``False``) -> [SillyCat]
 Generates a SillyCat image
 
