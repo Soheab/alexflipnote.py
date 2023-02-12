@@ -302,6 +302,22 @@ class Client:
         url = await self.__http.with_image(Endpoint.SCROLL, text=text)
         return Image(url, self.__http._session)  # type: ignore
 
+    async def supreme(self, text: str) -> Image:
+        """Returns a supreme image.
+
+        Parameters
+        ----------
+        text: :class:`str`
+            The text to display on the image.
+
+        Returns
+        -------
+        :class:`.Image`
+            The image object.
+        """
+        url = await self.__http.with_image(Endpoint.SUPREME, text=text)
+        return Image(url, self.__http._session)  # type: ignore
+
     async def did_you_mean(self, top: str, bottom: str) -> Image:
         """Returns a did you mean message.
 

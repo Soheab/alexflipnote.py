@@ -3,6 +3,10 @@ See here what changed or broke each version.
 
 ---
 
+### 4.0.1 - February 12, 2023
+
+- Add support for the new `/supreme` endpoint.
+
 ### v4.0.0 - December 8, 2022
 Ayo another major release! A lot of endpoints that were previously removed are now back!!
 

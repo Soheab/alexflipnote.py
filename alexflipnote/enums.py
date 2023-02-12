@@ -29,6 +29,7 @@ class Endpoint(_BaseEnum):
     FACTS = "/facts"
     PORNHUB = "/pornhub"
     SCROLL = "/scroll"
+    SUPREME = "/supreme"
 
 
 class WithJsonEndpoint(_BaseEnum):
