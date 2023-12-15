@@ -221,6 +221,8 @@ class Colour:
         The name of the colour.
     int: :class:`int`
         The integer value of the colour.
+    brightness: :class:`int`
+        The brightness of the colour.
     shades: List[:class:`str`]
         The shades of the colour.
     tints: List[:class:`str`]
@@ -229,7 +231,7 @@ class Colour:
         The image of the colour. This is an alias to :attr:`Colour.square`.
     """
 
-    __slots__: Tuple[str, ...] = ("_http", "__data", "name", "int", "shades", "tints", "image")
+    __slots__: Tuple[str, ...] = ("_http", "__data", "name", "int", "brightness", "shades", "tints", "image")
 
     def __init__(self, http: HTTPClient, data: ColourWithWebsafeData) -> None:
         self._http: HTTPClient = http
@@ -237,6 +239,7 @@ class Colour:
 
         self.name: str = data["name"]
         self.int = data["int"]  # type: ignore # key is named int
+        self.brightness: int = data["brightness"]
         self.shades: List[str] = data["shade"]
         self.tints: List[str] = data["tint"]
 
@@ -316,7 +319,7 @@ class Colour:
         """
         try:
             data = self.__data["websafe"]
-            return ColourWebSafe(self._http, data)
+            return ColourWebSafe(self._http, data)  # type: ignore
         except KeyError:
             return self
 
