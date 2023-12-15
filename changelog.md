@@ -3,6 +3,10 @@ See here what changed or broke each version.
 
 ---
 
+### 4.0.2 - December 16, 2023
+
+- Added missing ``brightness`` attribute to Colour.
+
 ### 4.0.1 - February 12, 2023
 
 - Add support for the new `/supreme` endpoint.
