@@ -1,0 +1,59 @@
+[build-system]
+requires      = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "alexflipnote.py"
+authors = [{ name = "Soheab_" }]
+requires-python = ">=3.8"
+keywords = [
+    "alexflipnote",
+    "discord",
+    "api",
+    "wrapper",
+    "discord.py",
+]
+license = { file = "LICENSE" }
+dependencies = ["aiohttp>=3.7.0,<4.0.0"]
+dynamic = ["version", "readme", "description"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Natural Language :: English",
+    "Typing :: Typed",
+    "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+
+[tool.setuptools]
+packages = ["alexflipnote", "alexflipnote.models", "alexflipnote._types"]
+
+[project.urls]
+homepage = "https://github.com/Soheab/alexflipnote.py"
+documentation = "https://github.com/Soheab/alexflipnote.py/blob/master/start-docs.md"
+repository = "https://github.com/Soheab/alexflipnote.py"
+discord = "https://discord.gg/yCzcfju"
+
+[tool.setuptools.dynamic]
+version = { attr = "alexflipnote.__version__" }
+description = { file = "alexflipnote" }
+readme = { file = ["README.md"], content-type = "text/markdown" }
+
+[tool.pyright]
+include = ["alexflipnote", "alexflipnote.models", "alexflipnote._types"]
+exclude = ["**/__pycache__", "dist",]
+reportUnnecessaryTypeIgnoreComment = "warning"
+reportUnusedImport = "error"
+pythonVersion = "3.8"
+typeCheckingMode = "strict"
+reportDuplicateImport = "warning"
+reportDeprecated = "warning"
+
+[tool.coverage.report]
+exclude_lines = ["pragma: no cover", "@overload"]
+
+[tool.black]
+line-length = 120
