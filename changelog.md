@@ -3,6 +3,10 @@ See here what changed or broke each version.
 
 ---
 
+### 4.1.0 - April 17, 2025
+
+- Added support for the new `/http` endpoint. See [HTTPResult](docs/models/httpresult.md#httpresult) for more info.
+
 ### 4.0.2 - December 16, 2023
 
 - Added missing ``brightness`` attribute to Colour.
