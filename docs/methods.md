@@ -100,6 +100,13 @@ Returns a facts image.
 
 ---
 
+### await alex_api.http_code(code: [int]) -> [HTTPResult]
+Returns the HTTP result for the given status code.
+
+#### Parameters
+- code ([int]) - The HTTP code to get information about.
+
+---
 
 ### await alex_api.nft(hex: [Optional]\[[str]] = None, season: [NFTSeason] = [NFTSeason]``.RANDOM``, *, seed: [Optional]\[[Any]] = None, return_image: [bool] = ``False``) -> [NFT]
 Generates an NFT of the Xela discord bot.
@@ -194,3 +201,4 @@ Returns an invite to the API's support server.
 [Colour]: models/colour.md
 [NFTSeason]: enums.md#nftseason
 [MinecraftIcon]: enums.md#minecrafticon
+[HTTPResult]: models/httpresult.md

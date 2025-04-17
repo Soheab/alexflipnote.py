@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from ._types.http import Image as ImageData, Raw
     from ._types.nft import NFT as NFTData
     from ._types.sillycat import Sillycat as SillycatData
+    from ._types.http_endpoint import HTTP as HTTPData
 
     T = TypeVar("T")
     Response = Coroutine[Any, Any, T]
@@ -47,48 +48,45 @@ class HTTPClient:
             self._session = aiohttp.ClientSession()
 
     @overload
-    async def request(self, endpoint: Literal[WithDocsEndpoint.NFT], **parameters: Any) -> NFTData:
-        ...
+    async def request(self, endpoint: str, **parameters: Any) -> Any: ...
 
     @overload
-    async def request(self, endpoint: Literal[WithDocsEndpoint.SILLYCAT], **parameters: Any) -> SillycatData:
-        ...
+    async def request(self, endpoint: Literal[WithDocsEndpoint.NFT], **parameters: Any) -> NFTData: ...
+
+    @overload
+    async def request(self, endpoint: Literal[WithDocsEndpoint.SILLYCAT], **parameters: Any) -> SillycatData: ...
 
     @overload
     async def request(
         self,
         endpoint: Union[Endpoint, MinecraftEndpoint] = ...,
         **parameters: Any,
-    ) -> str:
-        ...
+    ) -> str: ...
 
     @overload
     async def request(
         self,
         endpoint: Literal[WithJsonEndpoint.COLOR] = ...,
         **parameters: Any,
-    ) -> ColourData:
-        ...
+    ) -> ColourData: ...
 
     @overload
     async def request(
         self,
         endpoint: WithJsonEndpoint = ...,
         **parameters: Any,
-    ) -> ImageData:
-        ...
+    ) -> ImageData: ...
 
     @overload
     async def request(
         self,
         endpoint: Literal[None] = ...,
         **parameters: Any,
-    ) -> Raw:
-        ...
+    ) -> Raw: ...
 
     async def request(
         self,
-        endpoint: Optional[Union[Endpoint, WithJsonEndpoint, MinecraftEndpoint, WithDocsEndpoint]] = None,
+        endpoint: Optional[Union[Endpoint, WithJsonEndpoint, MinecraftEndpoint, WithDocsEndpoint, str]] = None,
         **parameters: Any,
     ) -> Any:
         url = f"{self.BASE_URL}"
@@ -158,8 +156,7 @@ class HTTPClient:
         return self.request(endpoint, **parameters)
 
     @overload
-    def handle_nft(self, hex: str = ..., season: Optional[NFTSeason] = ..., /) -> Response[str]:
-        ...
+    def handle_nft(self, hex: str = ..., season: Optional[NFTSeason] = ..., /) -> Response[str]: ...
 
     @overload
     def handle_nft(
@@ -177,26 +174,22 @@ class HTTPClient:
             NFTSeason.WINTER,
         ] = ...,
         /,
-    ) -> Response[str]:
-        ...
+    ) -> Response[str]: ...
 
     @overload
     def handle_nft(
         self, hex: str = ..., season: Optional[NFTSeason] = ..., seed: Optional[Any] = ..., /
-    ) -> Response[str]:
-        ...
+    ) -> Response[str]: ...
 
     @overload
     def handle_nft(
         self, hex: Optional[str] = ..., season: Literal[NFTSeason.RANDOM] = ..., seed: Optional[Any] = ..., /
-    ) -> Response[NFTData]:
-        ...
+    ) -> Response[NFTData]: ...
 
     @overload
     def handle_nft(
         self, hex: str = ..., season: Literal[NFTSeason.RANDOM] = ..., seed: Optional[Any] = ..., /
-    ) -> Response[NFTData]:
-        ...
+    ) -> Response[NFTData]: ...
 
     def handle_nft(
         self, hex: Optional[str] = None, season: Optional[NFTSeason] = None, seed: Optional[Any] = None, /
@@ -213,16 +206,15 @@ class HTTPClient:
     @overload
     def handle_sillycat(
         self, hex: Optional[str] = ..., hex2: Optional[str] = ..., seed: Optional[Any] = ..., /
-    ) -> Response[SillycatData]:
-        ...
+    ) -> Response[SillycatData]: ...
 
     @overload
-    def handle_sillycat(self, hex: str = ..., hex2: Optional[str] = ..., seed: Optional[Any] = ..., /) -> Response[str]:
-        ...
+    def handle_sillycat(
+        self, hex: str = ..., hex2: Optional[str] = ..., seed: Optional[Any] = ..., /
+    ) -> Response[str]: ...
 
     @overload
-    def handle_sillycat(self, hex: str = ..., hex2: str = ..., seed: Optional[Any] = ..., /) -> Response[str]:
-        ...
+    def handle_sillycat(self, hex: str = ..., hex2: str = ..., seed: Optional[Any] = ..., /) -> Response[str]: ...
 
     def handle_sillycat(
         self, hex: Optional[str] = None, hex2: Optional[str] = None, seed: Optional[Any] = None, /
@@ -236,6 +228,14 @@ class HTTPClient:
             payload["seed"] = seed
         return self.request(WithDocsEndpoint.SILLYCAT, **payload)
 
+    async def with_http_code(self, code: int, /) -> HTTPData:
+        try:
+            return await self.request(f"{WithJsonEndpoint.HTTP}/{code}")
+        except AlexFlipnoteException as e:
+            if len(e.data) >= 3:
+                return e.data
+            raise e from None
+
     def support_server(self) -> Response[Raw]:
         return self.request(None)
 
@@ -244,4 +244,4 @@ class HTTPClient:
         if self._session and not self._session.closed:
             await self._session.close()
 
-        self._session = None  # type: ignore
+        self._session = None

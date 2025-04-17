@@ -3,7 +3,7 @@ from typing import TYPE_CHECKING, Any, Literal, Optional, Tuple, Union, overload
 
 import random
 
-from .models import Colour, Image, NFT, SillyCat
+from .models import Colour, Image, NFT, SillyCat, HTTPResult
 from .errors import BadRequest
 from .http import HTTPClient as _HTTPClient
 from .enums import Endpoint, MinecraftIcon, NFTSeason, WithJsonEndpoint, MinecraftEndpoint
@@ -36,10 +36,10 @@ class Client:
         self.__http = _HTTPClient(self, session)
 
     def __str__(self) -> str:
-        return f"<AlexFlipnote.py Client __str__>"
+        return "<AlexFlipnote.py Client __str__>"
 
     def __repr__(self) -> str:
-        return f"<AlexFlipnote.py Client __repr__>"
+        return "<AlexFlipnote.py Client __repr__>"
 
     # Animals / JSON
 
@@ -55,8 +55,7 @@ class Client:
         return data["file"]
 
     @_utils._alias_of(birb)
-    async def bird(self) -> str:
-        ...
+    async def bird(self) -> str: ...
 
     async def cats(self) -> str:
         """Returns a random cat image.
@@ -70,8 +69,7 @@ class Client:
         return data["file"]
 
     @_utils._alias_of(cats)
-    async def cat(self) -> str:
-        ...
+    async def cat(self) -> str: ...
 
     async def sadcat(self) -> str:
         """Returns a random sadcat image.
@@ -96,8 +94,7 @@ class Client:
         return data["file"]
 
     @_utils._alias_of(dogs)
-    async def dog(self) -> str:
-        ...
+    async def dog(self) -> str: ...
 
     async def coffee(self) -> str:
         """Returns a random coffee image.
@@ -133,8 +130,7 @@ class Client:
         return Colour(self.__http, data)
 
     @_utils._alias_of(colour)
-    async def color(self, colour: Optional[Union[str, int]] = None) -> Colour:
-        ...
+    async def color(self, colour: Optional[Union[str, int]] = None) -> Colour: ...
 
     # Images
 
@@ -266,6 +262,23 @@ class Client:
         url = await self.__http.with_image(Endpoint.FACTS, text=text)
         return Image(url, self.__http._session)  # type: ignore
 
+    async def http_code(self, code: int, /) -> HTTPResult:
+        """Returns the HTTP result for the given status code.
+
+        Parameters
+        ----------
+        code: :class:`int`
+            The HTTP code to get information about.
+
+
+        Returns
+        -------
+        :class:`.HTTPResult`
+            The result containing information about the HTTP code.
+        """
+        res = await self.__http.with_http_code(code)
+        return HTTPResult(res)
+
     async def pornhub(self, text: str, text2: str) -> Image:
         """Returns a pornhub image.
 
@@ -283,8 +296,7 @@ class Client:
         return Image(url, self.__http._session)  # type: ignore
 
     @_utils._alias_of(pornhub)
-    async def ph(self, text: str, text2: str) -> Image:
-        ...
+    async def ph(self, text: str, text2: str) -> Image: ...
 
     async def scroll(self, text: str) -> Image:
         """Returns a scroll message.
@@ -338,8 +350,7 @@ class Client:
         return Image(url, self.__http._session)  # type: ignore
 
     @_utils._alias_of(did_you_mean)
-    async def didyoumean(self, top: str, bottom: str) -> Image:
-        ...
+    async def didyoumean(self, top: str, bottom: str) -> Image: ...
 
     # Sillycat and NFT
 
@@ -497,12 +508,10 @@ class Client:
     # Other
 
     @overload
-    async def support_server(self, *, creator: Literal[False] = ...) -> str:
-        ...
+    async def support_server(self, *, creator: Literal[False] = ...) -> str: ...
 
     @overload
-    async def support_server(self, *, creator: Literal[True] = ...) -> Tuple[str, str]:
-        ...
+    async def support_server(self, *, creator: Literal[True] = ...) -> Tuple[str, str]: ...
 
     async def support_server(self, *, creator: bool = False) -> Union[str, Tuple[str, str]]:
         """Returns an invite to the API's support server.

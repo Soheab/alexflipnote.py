@@ -39,6 +39,7 @@ class WithJsonEndpoint(_BaseEnum):
     SADCAT = "/sadcat"
     COLOR = "/color"
     DOGS = "/dogs"
+    HTTP = "/http"
 
 
 class MinecraftEndpoint(_BaseEnum):
