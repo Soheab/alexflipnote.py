@@ -1,27 +1,27 @@
-# AlexFlipnote.py Docs | Models/NFT
+# NFT
 
-## NFT
-Represents a NFT image.
+Represents an NFT image.
 
-### Attributes
-- colour_name [str] - This is only available if the season was set to [NFTSeason]``.RANDOM``. Use [fetch_colour_name](nft.md#await-fetch_colour_name---str) to call the ``colour`` endpoint for the name.
-- hex [str] - The colour of the NFT.
-- image [Image](image.md#image) - The image of the NFT.
-- seeason [NFTSeason] - The season of the NFT.
+## Attributes
+- **colour_name** ([`str`][str]):
+    The name of the NFT's colour. Available only if the season is [`NFTSeason.RANDOM`][NFTSeason]. To retrieve this value, use the [`fetch_colour_name`](#await-fetch_colour_name---str) method.
+- **hex** ([`str`][str]):
+    The hexadecimal representation of the NFT's colour.
+- **image** ([`Image`][Image]):
+    The image object associated with the NFT.
+- **season** ([`NFTSeason`][NFTSeason]):
+    The season associated with the NFT.
 
-### Methods
----
+## Methods
 
-### await fetch_colour_name() -> [str]
-Fetches the name of the NFT's colour from the ``colour`` endpoint.
+- ### `await fetch_colour_name()`
+    Fetches the name of the NFT's colour from the API.
+
+    #### Returns
+
+    - [`str`][str]: The name of the colour.
 
 
-[str]: https://docs.python.org/3/library/stdtypes.html#str
-[int]: https://docs.python.org/3/library/functions.html#int
-[dict]: https://docs.python.org/3/library/functions.html#func-dict
-[list]: https://docs.python.org/3/library/functions.html#func-list
-[bool]: https://docs.python.org/3/library/functions.html#bool
-[tuple]: https://docs.python.org/3/library/stdtypes.html#tuple
-[Optional]: https://docs.python.org/3/library/typing.html#typing.Optional
-[Union]: https://docs.python.org/3/library/typing.html#typing.Union
-[NFTSeason]: enums.md#nftseason
+[str]: https://docs.python.org/3/library/stdtypes.html#str  
+[NFTSeason]: enums.md#nftseason  
+[Image]: image.md#image

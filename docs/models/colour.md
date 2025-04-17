@@ -1,137 +1,154 @@
+# Colour
 
-# AlexFlipnote.py Docs | Models/Colour (Or Color)
-
-## Colour
 Represents a colour from the API.
 
 ### Attributes
-- cmyk ([CMYK](colour.md#cmyk)) - Returns a class holding the CMYK values of the colour.
-- gradient ([Image](image.md#Image)) - Returns a image with all possible gradients of the colour. This is an alias to [ColourImages](colour.md#colourimages)``.gradient``
-- hex ([Hex](colour.md#hex)) - Returns a class holding the hex value of the colour.
-- hsl ([HSL](colour.md#hsl)) - Returns a class holding the HSL values of the colour.
-- image ([str]) - The image of the colour. This is an alias to [ColourImages](colour.md#colourimages)``.square``.
-- images ([ColourImages](colour.md#colourimages)) - Returns a class holding the different images of the colour. There are attributes on this class that can be used to get each image: ``.square`` and ``.gradient``.
-- int ([int]) - The integer value of the colour.
-- name ([str]) - The name of the colour.
-- rgb [RGB](colour.md#rgb) - Returns a class holding the RGB values of the colour.
-- safe_text_colour ([SafeTextColour](colour.md#safetextcolour)) - Returns a class holding the safe text colour of the colour. This can be used on images etc. to make sure the text is readable.
-- shades ([List][list][[str]]) - The shades of the colour.
-- square ([Image](image.md#Image)) - Returns a square image of the colour. This is an alias to [ColourImages](colour.md#colourimages)``.square``.
-- tints ([List][list][[str]]) - The tints of the colour.
-- websafe ([Colour](colour.md#colour)) - Returns a class holding the websafe version of the colour. This is for really old browsers that don't support the full colour range.
 
+- **cmyk** ([`CMYK`](#cmyk))  
+    Returns a class holding the CMYK values of the colour.
+- **gradient** ([`Image`](image.md#image))  
+    Returns an image showing all possible gradients of the colour. Alias for [`ColourImages`](#colourimages).gradient.
+- **hex** ([`Hex`](#hex))  
+    Returns a class holding the hex value of the colour.
+- **hsl** ([`HSL`](#hsl))  
+    Returns a class holding the HSL values of the colour.
+- **image** ([`str`][str])
+    The image of the colour. Alias for [`ColourImages`](#colourimages).square.
+- **images** ([`ColourImages`](#colourimages))  
+    Returns a class holding different images of the colour. Use `.square` and `.gradient` attributes to access each image.
+- **int** ([`int`][int])
+    The integer value of the colour.
+- **name** ([`str`][str])  
+    The name of the colour.
+- **rgb** ([`RGB`](#rgb))  
+    Returns a class holding the RGB values of the colour.
+- **safe_text_colour** ([`SafeTextColour`](#safetextcolour))  
+    Returns a class holding the safe text colour for readability on images, etc.
+- **shades** ([`List`][list][[`str`][str]])
+    The shades of the colour.
+- **square** ([`Image`](image.md#image))  
+    Returns a square image of the colour. Alias for [`ColourImages`](#colourimages).square.
+- **tints** ([`List`][list][[`str`][str]]) 
+    The tints of the colour.
+- **websafe** ([`Colour`](#colour))  
+    Returns a class holding the websafe version of the colour (for legacy browser support).
 
----
+# ColourImages
 
-## ColourImages
-Represents a class holding the different images of a [Colour](colour.md#colour)
+Represents a class holding different images of a [Colour](#colour).
+
+### Attributes
+
+- **colour** ([`Colour`](#colour))
+    The colour this class is associated with.
+- **gradient** ([`Image`](image.md#image))  
+    Returns an image with all possible gradients of the colour.
+- **square** ([`Image`](image.md#image))  
+    Returns a square image of the colour.
+
+# ColourWebSafe
+
+Represents a websafe version of a [Colour](#colour) but with the `websafe` attribute returning the same class for infinite recursion reasons.
+
+# CMYK
+
+Represents a class holding the CMYK values of a [Colour](#colour).
 
 ### Attributes
 
-- colour ([Colour](colour.md#colour)) - The colour that this class is holding the images for.
-- gradient ([Image](image.md#Image)) - Returns a image with all possible gradients of the colour.
-- square ([Image](image.md#Image)) - Returns a square image of the colour.
+- **string** ([`str`][str]) 
+    The CMYK value as a string.
+- **values** ([`List`][list][[`int`][int]])  
+    The CMYK values as a list of integers.
+- **c** ([`int`][int])
+    The cyan value.
+- **m** ([`int`][int])
+    The magenta value.
+- **y** ([`int`][int])
+    The yellow value.
+- **k** ([`int`][int])
+    The black value.
+
+# RGB
+
+Represents a class holding RGB values of a [Colour](#colour).
+
+### Attributes
+
+- **r** ([`int`][int]))  
+    The red value.
+- **g** ([`int`][int]))  
+    The green value.
+- **b** ([`int`][int]))  
+    The blue value.
+- **string** ([`str`][str]))  
+    The RGB value as a string.
+- **values** ([`List`][list][[`int`][int]])  
+    The RGB values as a list of integers.
+
+# Hex
+
+Represents a class holding information about a colour's hex value.
+
+### Attributes
+
+- **string** ([`str`][str]) 
+    The hex value as a string.
+- **values** ([`List`][list][[`str`][str]])  
+    The hex value split into a list (two characters per item).
+- **clean** ([`str`][str])
+    The hex value without the `#`.
+- **shorten** ([`Optional`][Optional][[`str`][str]])
+    The shortened hex value, if available.
+
+# HSL
+
+Represents a class holding HSL values of a [Colour](#colour).
+
+### Attributes
+
+- **string** ([`str`][str])
+    The HSL value as a string.
+- **values** ([`List`][list][[`int`][int]])
+    The HSL values as a list of integers.
+- **h** ([`int`][int]) 
+    The hue value.
+- **s** ([`int`][int])  
+    The saturation value.
+- **l** ([`int`][int])
+    The lightness value.
+
+# SafeTextColour
+
+Represents a class holding the "safe" version of a [Colour](#colour) for text readability.
+
+### Attributes
+
+- **name** ([`str`][str]): The name of the colour.
+- **hex** ([`str`][str]): The hex value of the colour.
+- **rgb** ([`SafeTextColourRGB`](#safetextcolourrgb)): The RGB values of the colour.
+
+# SafeTextColourRGB
+
+Represents a class holding RGB values of a [SafeTextColour](#safetextcolour).
+
+### Attributes
+
+- **r** ([`int`][int])
+    The red value.
+- **g** ([`int`][int])
+    The green value.
+- **b** ([`int`][int])  
+    The blue value.
+- **values** ([`List`][list][[`int`][int]])  
+    The RGB values as a list of integers.
 
 ---
 
-## ColourWebSafe
-Represents a websafe version of a [Colour](colour.md#colour)
-
-### Attributes
-- cmyk [CMYK](colour.md#cmyk) - Returns a class holding the CMYK values of the colour.
-- gradient ([Image](image.md#Image)) - Returns a image with all possible gradients of the colour. This is an alias to [ColourImages](colour.md#colourimages)``.gradient``
-- hex ([Hex](colour.md#hex)) - Returns a class holding the hex value of the colour.
-- hsl ([HSL](colour.md#hsl)) - Returns a class holding the HSL values of the colour.
-- image ([str]) - The image of the colour. This is an alias to [ColourImages](colour.md#colourimages)``.square``.
-- images ([ColourImages](colour.md#colourimages)) - Returns a class holding the different images of the colour. There are attributes on this class that can be used to get each image: ``.square`` and ``.gradient``.
-- int ([int]) - The integer value of the colour.
-- name ([str]) - The name of the colour.
-- rgb [RGB](colour.md#rgb) - Returns a class holding the RGB values of the colour.
-- safe_text_colour ([SafeTextColour](colour.md#safetextcolour)) - Returns a class holding the safe text colour of the colour. This can be used on images etc. to make sure the text is readable.
-- shades ([List][list][[str]]) - The shades of the colour.
-- square ([Image](image.md#Image)) - Returns a square image of the colour. This is an alias to [ColourImages](colour.md#colourimages)``.square``.
-- tints ([List][list][[str]]) - The tints of the colour.
-- websafe ([Colour](colour.md#colour)) - Returns this class. This is to prevent an infinite loop when getting the websafe version of a websafe colour.
-
----
-
-## CMYK
-Represents a class holding the CMYK values of a [Colour](colour.md#colour)
-
-### Attributes
-- string ([str]) - The CMYK value of the colour.
-- values ([List][list][[int]]) - The CMYK values of the colour as a list of integers.
-- c ([int]) - The cyan value of the colour.
-- m ([int]) - The magenta value of the colour.
-- y ([int]) - The yellow value of the colour.
-- k ([int]) - The black value of the colour.
-
-
----
-
-## RGB
-Represents a class holding RGB values of a [Colour](colour.md#colour)
-
-### Attributes
-- r ([int]) - The red value of the colour.
-- g ([int]) - The green value of the colour.
-- b ([int]) - The blue value of the colour.
-- string ([str]) - The RGB value of the colour.
-- values ([List][list][[int]]) - 
-    The RGB values of the colour as a list of integers.
-
----
-
-## Hex
-Represents a class holding information about a :class:`Colour`'s hex value.
-
-### Attributes
-- string ([str]) - The hex value of the colour.
-- values (List[[str]]) - The hex value of the colour split into a list per two characters.
-- clean ([str]) - The hex value of the colour without the ``#``.
-- shorten ([Optional]\[[str]]) - The shortened hex value of the colour.
-
----
-
-## HSL
-Represents a class holding HSL values of a [Colour](colour.md#colour)
-
-### Attributes
-- string ([str]) - The HSL value of the colour.
-- values ([List][list][[int]]) - The HSL values of the colour as a list of integers.
-- h ([int]) - The hue value of the colour.
-- s ([int]) - The saturation value of the colour.
-- l ([int]) - The lightness value of the colour.
-
-
----
-
-## SafeTextColour
-Represents a class holding the "safe" version of a [Colour](colour.md#colour)
-
-### Attributes
-- name ([str]) - The name of the colour.
-- hex ([str]) - The hex value of the colour.
-- rgb [SafeTextColourRGB](colour.md#safetextcolourrgb) - The RGB values of the colour.
-
----
-
-## SafeTextColourRGB
-Represents a class holding RGB values of a [SafeTextColour](colour.md#safetextcolour)
-
-### Attributes
-- r ([int]) - The red value of the colour.
-- g ([int]) - The green value of the colour.
-- b ([int]) - The blue value of the colour.
-- values ([List][list][[int]]) - The RGB values of the colour as a list of integers.
-
-
-
-
-[str]: https://docs.python.org/3/library/stdtypes.html#str
-[int]: https://docs.python.org/3/library/functions.html#int
-[dict]: https://docs.python.org/3/library/functions.html#func-dict
-[list]: https://docs.python.org/3/library/functions.html#func-list
-[bool]: https://docs.python.org/3/library/functions.html#bool
-[tuple]: https://docs.python.org/3/library/stdtypes.html#tuple
+[str]: https://docs.python.org/3/library/stdtypes.html#str  
+[int]: https://docs.python.org/3/library/functions.html#int  
+[dict]: https://docs.python.org/3/library/functions.html#func-dict  
+[list]: https://docs.python.org/3/library/functions.html#func-list  
+[bool]: https://docs.python.org/3/library/functions.html#bool  
+[tuple]: https://docs.python.org/3/library/stdtypes.html#tuple  
 [Optional]: https://docs.python.org/3/library/typing.html#typing.Optional

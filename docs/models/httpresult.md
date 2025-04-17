@@ -1,22 +1,26 @@
-# AlexFlipnote.py Docs | Models/HTTPResult
+# HTTPResult
 
-## HTTPResult
-Represents the result from the /http endpoint.
+Represents the result returned from the `/http` endpoint.
 
-### Attributes
-- code [int] - The HTTP status code.
-- name [str] - The name of the HTTP status code.
-- description [str] - The description of the HTTP status code.
+## Attributes
 
-### Example
+- **code** ([`int`][int]):
+    The HTTP status code returned by the endpoint.
+
+- **name** ([`str`][str]):
+    The standard name associated with the HTTP status code.
+
+- **description** ([`str`][str]):
+    A brief explanation of the HTTP status code.
+
+## Example
 
 ```python
 result = await alex_api.http_code(200)
-print(result.code) # 200
-print(result.name) # OK
+print(result.code)        # 200
+print(result.name)        # OK
 print(result.description) # Indicates that the request has succeeded.
 ```
 
-
-[str]: https://docs.python.org/3/library/stdtypes.html#str
 [int]: https://docs.python.org/3/library/functions.html#int
+[str]: https://docs.python.org/3/library/stdtypes.html#str

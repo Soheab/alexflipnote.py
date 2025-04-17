@@ -1,204 +1,224 @@
-# AlexFlipnote.py Docs | Methods
+# Minecraft
 
-## Minecraft
----
+- ### `await achievement(text: str, icon: str | int | MinecraftIcon = MinecraftIcon.RANDOM)`
+    Generates a Minecraft achievement image.
+    #### Parameters
+    - **text** ([`str`][str]): The text to display on the achievement image.
+    - **icon** ([`Optional`][Optional][[`str`][str] | [`int`][int] | [`MinecraftIcon`][int]]): The icon to display. Defaults to [`MinecraftIcon.RANDOM`][MinecraftIcon].
+    #### Returns
+    [`Image`][Image]: The generated achievement image.
 
-### await alex_api.achievement(text: [str], icon: [Union]\[[str], [int], [MinecraftIcon]] = [MinecraftIcon]``.RANDOM``) -> [Image]
-Returns an achievement image.
 
-#### Parameters
-- text ([str]) - The text to display on the image.
-- icon ([Union]\[[str], [int], [MinecraftIcon]]) - The icon to display on the image. Defaults to [MinecraftIcon]``.RANDOM``.
+- ### `await challenge(text: str, icon: str | int | MinecraftIcon = MinecraftIcon.RANDOM)`
+    Generates a Minecraft challenge image.
+    #### Parameters
+    - **text** ([`str`][str]): The text to display on the challenge image.
+    - **icon** ([`Optional`][Optional][[`str`][str] | [`int`][int] | [`MinecraftIcon`][int]]): The icon to display. Defaults to [`MinecraftIcon.RANDOM`][MinecraftIcon].
+    #### Returns
+    [`Image`][Image]: The generated challenge image.
 
----
 
-### await alex_api.challenge(text: [str], icon: [Union]\[[str], [int], [MinecraftIcon]] = [MinecraftIcon]``.RANDOM``) -> [Image]
-Returns an challenge image.
+# Animals
 
+- ### `await alex_api.birb()`
+    Returns a random birb image.  
+    **Aliases:** `bird`
+    
+    #### Returns
+    [`str`][str] : The URL of the random birb image.
 
-#### Parameters
-- text ([str]) - The text to display on the image.
-- icon ([Union]\[[str], [int], [MinecraftIcon]]) - The icon to display on the image. Defaults to [MinecraftIcon]``.RANDOM``.
+- ### `await alex_api.cats()`
+    Returns a random cat image.  
+    **Aliases:** `cat`
 
+    #### Returns
+    [`str`][str] : The URL of the random cat image.
 
-## Animals
----
+- ### `await alex_api.dogs()`
+    Returns a random dog image.  
+    **Aliases:** `dog`
 
-### await alex_api.birb() -> [str]
-Returns a random birb image.
-**Aliases:** bird
+    #### Returns
+    [`str`][str] : The URL of the random dog image.
 
----
+- ### `await alex_api.sadcat()`
+    Returns a random sad cat image.
 
-### await alex_api.cats() -> [str]
-Returns a random cat image. \
-**Aliases:** cat
+    #### Returns
+    [`str`][str] : The URL of a random sad cat image.
 
----
+# Images
 
-### await alex_api.dogs() -> [str]
-Returns a random dog image. \
-**Aliases:** dog
+- ### `await alex_api.calling(text: str) -> Image`
+    Generates a "calling" meme image.
 
----
+    #### Parameters
+    - **text** ([`str`][str]): The text to display on the image.
 
-### await alex_api.sadcat() -> [str]
-Returns a random sadcat image.
+    #### Returns
+    [`Image`][Image]: The generated image.
 
----
+- ### `await alex_api.captcha(top: str, bottom: str)`
+    Generates a captcha-style image.
 
-## Images
----
+    #### Parameters
+    - **top** ([`str`][str]): The top text.
+    - **bottom** ([`str`][str]): The bottom text.
+  
+    #### Returns
+    [`Image`][Image]: The generated image.
 
-### await alex_api.calling(text: [str]) -> [Image]
-Returns a calling image.
+- ### `await alex_api.coffee()`
 
-#### Parameters
-- text ([str]) - The text to display on the image. 
+    Returns a random coffee image.
+    
+    #### Returns
+    [`str`][str]: The URL of the random coffee image.
 
----
+- ### `await alex_api.did_you_mean(top: str, bottom: str)`
+    Generates a "Did you mean?" meme image.  
+    **Aliases:** `didyoumean`
 
-### await alex_api.captcha(top: [str], bottom: [str]) -> [Image]
-Returns a captcha image.
+    #### Parameters
 
-#### Parameters
-- top ([str]) - The text to display on the image.
-- bottom ([str]) - The text to display on the image.
+    - **top** ([`str`][str]): The suggested text.
+    - **bottom** ([`str`][str]): The mistaken text.
 
----
+    #### Returns
+    [`Image`][Image]: The generated image.
 
-### await alex_api.coffee() -> [str]
-Returns a random coffee image.
 
----
+- ### `await alex_api.drake(top: str, bottom: str)`
+    Generates a Drake meme image.
 
-### await alex_api.did_you_mean(top: [str], bottom: [str]) -> [Image]
-Returns a did you mean message. \
-**Aliases:** didyoumean
+    #### Parameters
 
-#### Parameters
-- top ([str]) - The text to display on the image.
-- bottom ([str]) - The text to display on the image.
+    - **top** ([`str`][str]): The top text.
+    - **bottom** ([`str`][str]): The bottom text.
 
----
+    #### Returns
+    [`Image`][Image]: The generated Drake meme image.
 
-### await alex_api.drake(top: [str], bottom: [str]) -> [Image]
-Returns a drake meme image.
+- ### `await alex_api.facts(text: str)`
+    Generates a "facts" meme image.
 
-#### Parameters
-- top ([str]) - The text to display on the image.
-- bottom ([str]) - The text to display on the image.
+    #### Parameters
 
----
+    - **text** ([`str`][str]): The fact to display.
 
+    #### Returns
+    [`Image`][Image]: The generated image.
 
-### await alex_api.facts(text: [str]) -> [Image]
-Returns a facts image.
+- ### `await alex_api.http_code(code: int)`
+    Returns information and an image for the given HTTP status code.
 
-#### Parameters
-- text ([str]) - The text to display on the image.
+    #### Parameters
 
----
+    - **code** ([`int`][int]): The HTTP status code.
 
-### await alex_api.http_code(code: [int]) -> [HTTPResult]
-Returns the HTTP result for the given status code.
+    #### Returns
+    [`HTTPResult`][HTTPResult]: The result object containing the code, name, and description.
 
-#### Parameters
-- code ([int]) - The HTTP code to get information about.
 
----
+- ### `await alex_api.nft(hex: Optional[str] = None, season: NFTSeason = NFTSeason.RANDOM, *, seed: Optional[Any] = None, return_image: bool = False) -> NFT`
+    Generates an NFT image of the Xela Discord bot.
 
-### await alex_api.nft(hex: [Optional]\[[str]] = None, season: [NFTSeason] = [NFTSeason]``.RANDOM``, *, seed: [Optional]\[[Any]] = None, return_image: [bool] = ``False``) -> [NFT]
-Generates an NFT of the Xela discord bot.
+    #### Parameters
 
-#### Parameters
-- hex ([Optional]\[[str]]) - The hex code of the colour to use. This is required if ``season`` is not :attr:`.NFTSeason.RANDOM`.
-- season ([NFTSeason]) - The season to use. Defaults to [NFTSeason]``.RANDOM``
-- seed ([Optional][[Any]]) - The unique seed to use. Defaults to ``None``. With this you can get the same NFT every time.
-- return_image ([bool]) - Whether to return an [image] object instead of an :class:`.NFT` object.
-    `season` cannot be [NFTSeason]``.RANDOM`` if this is ``True``.
-    Defaults to ``False``.
+    - **hex** ([`Optional`][Optional][[`str`][str]]): The hex color code. Required if `season` is not [`NFTSeason.RANDOM`][NFTSeason].
+    - **season** ([`Optional`][Optional][`NFTSeason`][NFTSeason]]): The NFT season. Defaults to [`NFTSeason.RANDOM`][NFTSeason].
+    - **seed** ([`Optional`][Optional][`Any`]): Unique seed for deterministic output.
+    - **return_image** ([`Optional`][Optional][[`bool`][bool]]): If `True`, returns an [Image] object instead of an [NFT] object.  
+        Note: `season` cannot be [`NFTSeason.RANDOM`][NFTSeason] if this is `True`. Defaults to `False`.
 
----
+    #### Returns
+    - If `return_image` is `True`: [`Image`][Image]: The generated image.
+    - Otherwise: [`NFT`][NFT]: The generated NFT object containing the image and color information.
 
-### await alex_api.pornhub(text: [str]) -> [Image]
-Returns a pornhub image. \
-**Aliases:** ph
+- ### `await alex_api.pornhub(text: str)`
+    Generates a Pornhub-style meme image.  
+    **Aliases:** `ph`
 
-#### Parameters
-- text ([str]) - The text to display on the image.
+    #### Parameters
 
----
+    - **text** ([`str`][str]): The text to display.
 
-### await alex_api.scroll(text: [str]) -> [Image]
-Returns a scroll message.
+    #### Returns
+    [`Image`][Image]: The generated image.
 
-#### Parameters
-- text ([str]) - The text to display on the image.
+- ### `await alex_api.scroll(text: str)`
+    Generates a scroll message image.
 
----
+    #### Parameters
+    - **text** ([`str`][str]): The text to display.
 
-### await alex_api.supreme(text: [str]) -> [Image]
-Returns a supreme message.
+    #### Returns
+    [`Image`][Image]: The generated image.
 
-#### Parameters
-- text ([str]) - The text to display on the image.
+- ### `await alex_api.supreme(text: str)`
+    Generates a Supreme-style meme image.
 
----
+    #### Parameters
 
-### await alex_api.sillycat(left_hex: [Optional]\[[str]] = ``None``, right_hex: [Optional]\[[str]] = ``None``, *, random: [bool] = ``True``, seed: [Optional]\[[Any]] = None, return_image: [bool] = ``False``) -> [SillyCat]
-Generates a SillyCat image
+    - **text** ([`str`][str]): The text to display.
 
-#### Parameters
-- left_hex ([Optional]\[[str]]) - The hex code of the colour to use on the left side. This is required if ``random`` is ``False``.
-- right_hex ([Optional]\[[str]]) - The hex code of the colour to use on the right side. This is required if ``random`` is ``False``.
-- random ([bool]) - Whether to use random colours or not. Defaults to ``True`` if both ``left_hex`` and ``right_hex`` are ``None``.
-- seed ([Optional][[Any]]) - The unique seed to use. Defaults to ``None``. With this you can get the same sillycat every time.
-- return_image ([bool]) - Whether to return an [image] object only or the full [SillyCat] object.
-    either ``left_hex`` or ``right_hex`` must not be ``None`` if this is ``True``.
-    Defaults to ``False``.
+    #### Returns
+    [`Image`][Image]: The generated image.
 
----
+- ### `await alex_api.sillycat(left_hex: Optional[str] = None, right_hex: Optional[str] = None, *, random: bool = True, seed: Optional[Any] = None, return_image: bool = False)`
 
-## Colour
----
+    Generates a SillyCat image.
 
-### await alex_api.colour(colour: [Optional]\[[str]] = ``None``) -> [Colour]
+    #### Parameters
 
-Returns a [Colour] object.\
-**Aliases:** color
+    - **left_hex** ([`Optional`][Optional][[`str`][str]]: Hex color for the left side. Required if `random` is `False`.
+    - **right_hex** ([`Optional`][Optional][[`str`][str]]): Hex color for the right side. Required if `random` is `False`.
+    - **random** ([`Optional`][Optional][[`bool`][bool]]: Use random colors. Defaults to `True` if both hex values are `None`.
+    - **seed** ([`Optional`][Optional][`Any`]): Unique seed for deterministic output.
+    - **return_image** ([`Optional`][Optional][[`bool`][bool]]): If `True`, returns an [Image] object only.  
+        Note: Either `left_hex` or `right_hex` must not be `None` if this is `True`. Defaults to `False`.
 
-#### Parameters
-- colour ([Optional]\[[str]]) - The colour to get information about.
+    #### Returns
+    [`SillyCat`][SillyCat]: The generated SillyCat object containing the image and color information.
+    If `return_image` is `True`, returns an [Image] object instead.
 
-## Misc
----
+# Colour
 
-### await alex_api.close() -> ``None``:
-Closes the session.
+- ### `await alex_api.colour(colour: Optional[str] = None)`
+    Returns a [Colour] object for the given color.  
+    **Aliases:** `color`
 
----
+    #### Parameters
+    - **colour** ([`Optional`][Optional][[`str`][str]]): The color to get information about.
+  
+    #### Returns
+    [`Colour`][Colour]: The [Colour] object containing information about the color.
 
-### await alex_api.support_server(*, creator: [bool] = ``False``) -> [Union]\[[str], [Tuple][tuple][[str], [str]]]:
-Returns an invite to the API's support server.
+# Misc
 
-#### Parameters
-- creator ([bool]) - Whether to also return the wrapper creator's support server invite.
+- ### `await alex_api.close()`
+    Closes the API session.
 
+- ### `await alex_api.support_server(*, creator: bool = False)`
+    Returns an invite link to the API's support server.
 
+    #### Parameters
+    - **creator** ([`Optional`][Optional][[`bool`][bool]]): If `True`, also returns the wrapper creator's support server invite.
+    
+    #### Returns
+    if `creator` is `True`: [`tuple`][tuple]: A tuple containing the API support server invite and the wrapper creator's support server invite. \
+    else: [`str`][str]: The API support server invite. 
+
+<!-- Reference Links -->
 [str]: https://docs.python.org/3/library/stdtypes.html#str
 [int]: https://docs.python.org/3/library/functions.html#int
-[dict]: https://docs.python.org/3/library/functions.html#func-dict
-[list]: https://docs.python.org/3/library/functions.html#func-list
-[bool]: https://docs.python.org/3/library/functions.html#bool
 [tuple]: https://docs.python.org/3/library/stdtypes.html#tuple
+[bool]: https://docs.python.org/3/library/functions.html#bool
 [Optional]: https://docs.python.org/3/library/typing.html#typing.Optional
-[Any]: https://docs.python.org/3/library/typing.html#typing.Any
-[Union]: https://docs.python.org/3/library/typing.html#typing.Union
 [Image]: models/image.md
 [NFT]: models/nft.md
-[SillyCat]: models/sillycat.md
 [Colour]: models/colour.md
 [NFTSeason]: enums.md#nftseason
 [MinecraftIcon]: enums.md#minecrafticon
+[SillyCat]: models/sillycat.md
 [HTTPResult]: models/httpresult.md

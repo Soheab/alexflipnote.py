@@ -10,7 +10,7 @@ __all__: Tuple[str, ...] = ("HTTPResult",)
 
 
 class HTTPResult:
-    """Represents an HTTP result.
+    """Represents the result from the /http endpoint.
 
     Attributes
     ----------

@@ -1,5 +1,5 @@
-## AlexFlipnote.py | Changelog
-See here what changed or broke each version.
+## Changelog
+See here what changes (or breaks) every version.
 
 ---
 
